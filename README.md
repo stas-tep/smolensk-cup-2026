@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -340,5 +339,3 @@
     window.closePostModal = () => document.getElementById('postModal').classList.remove('active');
     document.querySelectorAll('.pay-option').forEach(btn=>btn.addEventListener('click',()=>{ alert('Оплата через СБП: +7 908 288-70-62'); closeModal(); }));
 </script>
-</body>
-</html>
