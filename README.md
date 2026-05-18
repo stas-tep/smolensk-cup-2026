@@ -1,0 +1,1 @@
+# smolensk-cup-2026
