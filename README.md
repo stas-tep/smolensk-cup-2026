@@ -168,11 +168,11 @@
         <div class="schedule-grid">
             <div class="prize-info"><h3>🏆 ОБЩИЙ ПРИЗОВОЙ ФОНД 🏆</h3><div class="prize-amount">??? ₽</div><p style="color:#ddd;">Сумма будет объявлена позже</p></div>
             <div class="schedule-row">
-                <div class="schedule-card"><div class="schedule-day">🎯 ??? ИЮЛЯ</div><div class="schedule-place">Квалификация</div><div class="schedule-prize">Приз: ??? ₽</div></div>
-                <div class="schedule-card"><div class="schedule-day">⚡ ??? ИЮЛЯ</div><div class="schedule-place">1/4 финала</div><div class="schedule-prize">Приз: ??? ₽</div></div>
-                <div class="schedule-card"><div class="schedule-day">🔥 ??? ИЮЛЯ</div><div class="schedule-place">Полуфинал</div><div class="schedule-prize">Приз: ??? ₽</div></div>
-                <div class="schedule-card"><div class="schedule-day">🏆 ??? ИЮЛЯ</div><div class="schedule-place">Финал</div><div class="schedule-prize">Приз: ??? ₽</div></div>
-                <div class="schedule-card"><div class="schedule-day">🎁 ??? ИЮЛЯ</div><div class="schedule-place">Закрытие</div><div class="schedule-prize">Приз: ??? ₽</div></div>
+                <div class="schedule-card"><div class="schedule-day">🎯 5 ИЮЛЯ</div><div class="schedule-place">Квалификация</div><div class="schedule-prize">Приз: 200 ₽ × 3 поб.</div></div>
+                <div class="schedule-card"><div class="schedule-day">⚡ 10 ИЮЛЯ</div><div class="schedule-place">1/4 финала</div><div class="schedule-prize">Приз: 300 ₽ × 3 поб.</div></div>
+                <div class="schedule-card"><div class="schedule-day">🔥 15 ИЮЛЯ</div><div class="schedule-place">Полуфинал</div><div class="schedule-prize">Приз: 500 ₽ × 3 поб.</div></div>
+                <div class="schedule-card"><div class="schedule-day">🏆 20 ИЮЛЯ</div><div class="schedule-place">Финал</div><div class="schedule-prize">Приз: 700 ₽ × 2 поб.</div></div>
+                <div class="schedule-card"><div class="schedule-day">🎁 31 ИЮЛЯ</div><div class="schedule-place">Закрытие</div><div class="schedule-prize">Приз: 300 ₽ × 2 поб.</div></div>
             </div>
             <div class="total-prize"><p>⭐ <strong>КАК ЭТО РАБОТАЕТ?</strong> В каждый день розыгрыша случайным образом выбираются победители! ⭐</p></div>
         </div>
@@ -182,10 +182,11 @@
 <div id="winnersBlock" class="winners-compact">
     <div class="winners-card">
         <h3>🏆 ПОБЕДИТЕЛИ</h3>
-        <div class="winner-item"><span>🥇 Квалификация</span><span>Скоро определится</span><span>??? ₽</span></div>
-        <div class="winner-item"><span>🥈 1/4 финала</span><span>Скоро определится</span><span>??? ₽</span></div>
-        <div class="winner-item"><span>🥉 Полуфинал</span><span>Скоро определится</span><span>??? ₽</span></div>
-        <div class="winner-item"><span>🏅 Финал</span><span>Скоро определится</span><span>??? ₽</span></div>
+        <div class="winner-item"><span>🥇 Квалификация</span><span>Скоро определится</span><span>200 ₽ × 3 поб.</span></div>
+        <div class="winner-item"><span>🥈 1/4 финала</span><span>Скоро определится</span><span>300 ₽ × 3 поб.</span></div>
+        <div class="winner-item"><span>🥉 Полуфинал</span><span>Скоро определится</span><span>500 ₽ × 3 поб.</span></div>
+        <div class="winner-item"><span>🏅 Финал</span><span>Скоро определится</span><span>700 ₽ × 2 поб.</span></div>
+        <div class="winner-item"><span>🎁 Закрытие</span><span>Скоро определится</span><span>300 ₽ × 2 поб.</span></div>
     </div>
     <div class="winners-card">
         <h3>👥 УЧАСТНИКИ</h3>
@@ -193,6 +194,7 @@
         <div class="stage-item-compact"><div style="display:flex; justify-content:space-between;"><span class="stage-name">2 ЭТАП · 1/4 финала</span><span class="stage-count">0 уч.</span><span style="color:#ffaa55;">▼</span></div><div class="participants-list-compact"><div class="participant-row">Пока нет участников</div></div></div>
         <div class="stage-item-compact"><div style="display:flex; justify-content:space-between;"><span class="stage-name">3 ЭТАП · Полуфинал</span><span class="stage-count">0 уч.</span><span style="color:#ffaa55;">▼</span></div><div class="participants-list-compact"><div class="participant-row">Пока нет участников</div></div></div>
         <div class="stage-item-compact"><div style="display:flex; justify-content:space-between;"><span class="stage-name">4 ЭТАП · Финал</span><span class="stage-count">0 уч.</span><span style="color:#ffaa55;">▼</span></div><div class="participants-list-compact"><div class="participant-row">Пока нет участников</div></div></div>
+        <div class="stage-item-compact"><div style="display:flex; justify-content:space-between;"><span class="stage-name">5 ЭТАП · Закрытие</span><span class="stage-count">0 уч.</span><span style="color:#ffaa55;">▼</span></div><div class="participants-list-compact"><div class="participant-row">Пока нет участников</div></div></div>
     </div>
 </div>
 
