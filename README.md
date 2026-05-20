@@ -25,7 +25,7 @@
         .nav-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
         .nav-links a { color: #FFE4B5; text-decoration: none; font-weight: 600; transition: 0.2s; font-size: 1rem; }
         .nav-links a:hover { color: #ffaa33; text-shadow: 0 0 4px #ffaa33; }
-        .buy-btn { background: linear-gradient(95deg,#ef4444,#f97316); border: none; padding: 10px 28px; border-radius: 60px; font-weight: 800; color: white; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 0 #a16207; }
+        .buy-btn { background: linear-gradient(95deg,#ef4444,#f97316); border: none; padding: 10px 28px; border-radius: 60px; font-weight: 800; color: white; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 0 #a16207; text-decoration: none; display: inline-block; line-height: normal; }
         .buy-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #a16207; background: linear-gradient(95deg,#f97316,#eab308); }
 
         /* ГЛАВНЫЙ ЗАГОЛОВОК */
@@ -141,7 +141,7 @@
             <a href="#" onclick="scrollToBlock('carouselVideos')">ВИДЕО</a>
             <a href="#" onclick="scrollToBlock('scheduleBlock')">ГРАФИК</a>
             <a href="#" onclick="scrollToBlock('winnersBlock')">РЕЙТИНГ</a>
-            <button class="buy-btn" onclick="openModal()">УЧАСТВОВАТЬ</button>
+            <a href="https://forms.gle/8aEpityWJpQz1yNm6" target="_blank" rel="noopener noreferrer" class="buy-btn" style="text-decoration: none; display: inline-block; line-height: normal;">УЧАСТВОВАТЬ</a>
         </div>
     </div>
 
@@ -197,16 +197,6 @@
 </div>
 
 <div id="footerBlock" class="fullscreen-footer"><div class="glow-text">УВИДИМСЯ НА КУБКЕ 2026</div><div class="footer-sub">КОРПОРАЦИЯ SMOLENSK · Летний кубок 2026</div></div>
-
-<div id="buyModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); backdrop-filter:blur(12px); z-index:1000; align-items:center; justify-content:center;">
-    <div style="background:linear-gradient(145deg,#141a28,#0b0f18); border-radius:48px; max-width:420px; width:90%; padding:28px 24px; text-align:center; border:2px solid #facc15;">
-        <div style="font-size:42px;">🎲</div>
-        <h3 style="font-size:26px; font-weight:800; color:#FFE484;">УЧАСТВОВАТЬ</h3>
-        <p style="color:#ccc; margin:8px 0 20px;">Стоимость участия в розыгрыше</p>
-        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:28px;"><button class="pay-option" data-price="100" data-chance="1" style="background:rgba(255,100,0,0.15); border:1px solid #facc15; border-radius:60px; padding:12px; font-weight:700; color:#FFE484; cursor:pointer;">✨ 100 ₽ ✨</button></div>
-        <button onclick="closeModal()" style="background:transparent; border:1px solid #555; padding:8px 24px; border-radius:50px; color:#ccc; cursor:pointer;">Вернуться</button>
-    </div>
-</div>
 
 <div id="postModal" class="post-modal"><div class="modal-content"><div class="modal-close" onclick="closePostModal()">&times;</div><div id="modalBody"></div></div></div>
 
@@ -334,8 +324,7 @@
     function updateActiveNav(){ const scrollPos=window.scrollY+200; let activeId=null; for(let item of navItems){ const el=document.getElementById(item.id); if(el){ const top=el.offsetTop, bottom=top+el.offsetHeight; if(scrollPos>=top && scrollPos<bottom){ activeId=item.id; break; } } } document.querySelectorAll('.nav-dot').forEach((dot,idx)=>{ dot.classList.remove('active'); if(navItems[idx]?.id===activeId) dot.classList.add('active'); }); }
     window.addEventListener('scroll',updateActiveNav); window.addEventListener('load',updateActiveNav);
     window.scrollToBlock = (id) => { const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior:'smooth', block:'start' }); };
-    window.openModal = () => document.getElementById('buyModal').style.display='flex';
-    window.closeModal = () => document.getElementById('buyModal').style.display='none';
     window.closePostModal = () => document.getElementById('postModal').classList.remove('active');
-    document.querySelectorAll('.pay-option').forEach(btn=>btn.addEventListener('click',()=>{ alert('Оплата через СБП: +7 908 288-70-62'); closeModal(); }));
 </script>
+</body>
+</html>
