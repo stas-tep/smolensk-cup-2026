@@ -166,7 +166,7 @@
     <div id="scheduleBlock" class="section" style="margin-top: 20px;">
         <div class="cursive-title"><span class="title-crooked-3">📅 ГРАФИК</span></div>
         <div class="schedule-grid">
-            <div class="prize-info"><h3>🏆 ОБЩИЙ ПРИЗОВОЙ ФОНД 🏆</h3><div class="prize-amount">??? ₽</div><p style="color:#ddd;">Сумма будет объявлена позже</p></div>
+            <div class="prize-info"><h3>🏆 ОБЩИЙ ПРИЗОВОЙ ФОНД 🏆</h3><div class="prize-amount">5.000 ₽</div><p style="color:#ddd;">Стоимость участия — от 100 ₽ (1 заявка)</p></div>
             <div class="schedule-row">
                 <div class="schedule-card"><div class="schedule-day">🎯 5 ИЮЛЯ</div><div class="schedule-place">Квалификация</div><div class="schedule-prize">Приз: 200 ₽ × 3 поб.</div></div>
                 <div class="schedule-card"><div class="schedule-day">⚡ 10 ИЮЛЯ</div><div class="schedule-place">1/4 финала</div><div class="schedule-prize">Приз: 300 ₽ × 3 поб.</div></div>
@@ -328,5 +328,3 @@
     window.scrollToBlock = (id) => { const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior:'smooth', block:'start' }); };
     window.closePostModal = () => document.getElementById('postModal').classList.remove('active');
 </script>
-</body>
-</html>
