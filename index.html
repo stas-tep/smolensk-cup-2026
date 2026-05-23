@@ -43,13 +43,8 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        .phone-frame::-webkit-scrollbar {
-            display: none;
-        }
-        .phone-frame {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .phone-frame::-webkit-scrollbar { display: none; }
+        .phone-frame { -ms-overflow-style: none; scrollbar-width: none; }
 
         .screen {
             padding: 20px 16px;
@@ -59,7 +54,6 @@
             padding-bottom: 40px;
         }
 
-        /* ФОН ВНУТРИ ТЕЛЕФОНА (эмодзи) */
         .inner-bg {
             position: absolute;
             top: 0;
@@ -71,7 +65,6 @@
             overflow: hidden;
             border-radius: 44px;
         }
-
         .inner-bg .emoji-1 { position: absolute; bottom: 15%; right: 5%; font-size: 52px; opacity: 0.4; transform: rotate(-15deg); }
         .inner-bg .emoji-2 { position: absolute; top: 20%; left: 3%; font-size: 48px; opacity: 0.35; transform: rotate(10deg); }
         .inner-bg .emoji-3 { position: absolute; top: 45%; right: 2%; font-size: 45px; opacity: 0.35; transform: rotate(5deg); }
@@ -85,7 +78,13 @@
         .inner-bg .emoji-center-3 { position: absolute; top: 65%; left: 35%; font-size: 34px; opacity: 0.3; transform: rotate(-5deg); }
         .inner-bg .emoji-center-4 { position: absolute; top: 25%; right: 35%; font-size: 35px; opacity: 0.3; transform: rotate(8deg); }
 
-        /* ===== ФИКСИРОВАННАЯ ШАПКА ===== */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: transparent;
+            margin-bottom: 20px;
+        }
         .header-bar {
             background: rgba(0,0,0,0.5);
             backdrop-filter: blur(12px);
@@ -94,13 +93,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
             border: 1px solid rgba(255,255,255,0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
-
         .dropdown-stages {
             position: relative;
             z-index: 200;
@@ -153,12 +147,12 @@
         .stage-item:hover {
             background: rgba(0,102,204,0.15);
         }
-        .stage-item .stage-name {
+        .stage-item .stage-name-drop {
             font-weight: 700;
             color: #003366;
             font-size: 14px;
         }
-        .stage-item .stage-date {
+        .stage-item .stage-date-drop {
             font-size: 12px;
             color: #0066cc;
             font-weight: 500;
@@ -175,8 +169,6 @@
             cursor: pointer;
             transition: 0.2s;
             box-shadow: 0 2px 0 #a16207;
-            position: relative;
-            z-index: 100;
         }
         .join-btn:hover {
             transform: translateY(-1px);
@@ -259,12 +251,9 @@
             transform: scale(1.02);
         }
 
-        /* НИЖНИЙ БЛОК */
         .footer-block {
-            margin-top: 30px;
             text-align: center;
-            position: relative;
-            z-index: 5;
+            margin-top: 20px;
         }
         .footer-phrase {
             font-size: 26px;
@@ -301,12 +290,8 @@
             flex: 1;
             cursor: pointer;
         }
-        .footer-cloud:first-child {
-            transform: rotate(-2deg);
-        }
-        .footer-cloud:last-child {
-            transform: rotate(3deg);
-        }
+        .footer-cloud:first-child { transform: rotate(-2deg); }
+        .footer-cloud:last-child { transform: rotate(3deg); }
         .footer-cloud:hover {
             transform: scale(1.02) rotate(0deg);
             border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
@@ -329,8 +314,6 @@
             font-size: 9px;
             color: rgba(255,255,255,0.5);
             margin-top: 25px;
-            position: relative;
-            z-index: 5;
         }
     </style>
 </head>
@@ -355,37 +338,38 @@
     </div>
 
     <div class="screen">
-        <!-- ФИКСИРОВАННАЯ ШАПКА (липнет к верху при скролле) -->
-        <div class="header-bar">
-            <div class="dropdown-stages" id="dropdownStages">
-                <div class="dropdown-btn" id="dropdownBtn">
-                    <span>ЭТАПЫ</span>
-                    <span class="arrow">▼</span>
+        <div class="sticky-header">
+            <div class="header-bar">
+                <div class="dropdown-stages" id="dropdownStages">
+                    <div class="dropdown-btn" id="dropdownBtn">
+                        <span>ЭТАПЫ</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <div class="stage-item" data-stage="1">
+                            <span class="stage-name-drop">1 ЭТАП</span>
+                            <span class="stage-date-drop">5 ИЮЛЯ</span>
+                        </div>
+                        <div class="stage-item" data-stage="2">
+                            <span class="stage-name-drop">2 ЭТАП</span>
+                            <span class="stage-date-drop">10 ИЮЛЯ</span>
+                        </div>
+                        <div class="stage-item" data-stage="3">
+                            <span class="stage-name-drop">3 ЭТАП</span>
+                            <span class="stage-date-drop">15 ИЮЛЯ</span>
+                        </div>
+                        <div class="stage-item" data-stage="4">
+                            <span class="stage-name-drop">4 ЭТАП</span>
+                            <span class="stage-date-drop">20 ИЮЛЯ</span>
+                        </div>
+                        <div class="stage-item" data-stage="5">
+                            <span class="stage-name-drop">5 ЭТАП</span>
+                            <span class="stage-date-drop">31 ИЮЛЯ</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <div class="stage-item" data-stage="1">
-                        <span class="stage-name">1 ЭТАП</span>
-                        <span class="stage-date">5 ИЮЛЯ</span>
-                    </div>
-                    <div class="stage-item" data-stage="2">
-                        <span class="stage-name">2 ЭТАП</span>
-                        <span class="stage-date">10 ИЮЛЯ</span>
-                    </div>
-                    <div class="stage-item" data-stage="3">
-                        <span class="stage-name">3 ЭТАП</span>
-                        <span class="stage-date">15 ИЮЛЯ</span>
-                    </div>
-                    <div class="stage-item" data-stage="4">
-                        <span class="stage-name">4 ЭТАП</span>
-                        <span class="stage-date">20 ИЮЛЯ</span>
-                    </div>
-                    <div class="stage-item" data-stage="5">
-                        <span class="stage-name">5 ЭТАП</span>
-                        <span class="stage-date">31 ИЮЛЯ</span>
-                    </div>
-                </div>
+                <button class="join-btn" id="joinButton">УЧАСТВОВАТЬ</button>
             </div>
-            <button class="join-btn" id="joinButton">УЧАСТВОВАТЬ</button>
         </div>
 
         <div class="hero-title">
@@ -468,13 +452,13 @@
         }
     });
 
-    // КЛИК ПО ЭТАПУ В ДРОПДАУНЕ
+    // КЛИК ПО ЭТАПУ В ДРОПДАУНЕ -> переход на страницу этапа
     const stageItems = document.querySelectorAll('.stage-item');
     stageItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.stopPropagation();
-            const stage = item.getAttribute('data-stage');
-            window.open(`stage${stage}.html`, '_blank');
+            const stageNum = item.getAttribute('data-stage');
+            window.location.href = `stage${stageNum}.html`;
         });
     });
 
@@ -484,22 +468,20 @@
         window.open('https://forms.gle/8aEpityWJpQz1yNm6', '_blank');
     });
 
-    // КНОПКИ ИНФОРМАЦИЯ
+    // КНОПКИ ИНФОРМАЦИЯ -> переход на страницу соответствующего этапа
     const infoBtns = document.querySelectorAll('.info-btn');
     infoBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const stage = btn.getAttribute('data-stage');
-            window.open(`info_stage${stage}.html`, '_blank');
+            window.location.href = `stage${stage}.html`;
         });
     });
 
-    // ТУЧКА "ПРАВИЛА УЧАСТИЯ"
+    // ТУЧКИ
     const rulesCloud = document.getElementById('rulesCloud');
     rulesCloud.addEventListener('click', () => {
         window.open('rules.html', '_blank');
     });
-
-    // ТУЧКА "ГЕНЕРАЛЬНЫЙ ПАРТНЁР"
     const partnerCloud = document.getElementById('partnerCloud');
     partnerCloud.addEventListener('click', () => {
         window.open('https://example.com', '_blank');
