@@ -2,14 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Лето 2026</title>
-    
-        <!-- ИКОНКА САЙТА -->
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="favicon.png">
-    
-    <style>
-        * {
+    <title>Анонс · Лето 2026</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +11,7 @@
         }
 
         body {
-            background: linear-gradient(145deg, #1a8cff 0%, #0066cc 50%, #004099 100%);
+            background: linear-gradient(145deg, #1a2a3a 0%, #0f1a24 50%, #0a121a 100%);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             min-height: 100vh;
             display: flex;
@@ -27,22 +20,12 @@
             padding: 20px;
         }
 
-        .outer-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #1a8cff 0%, #0066cc 50%, #004099 100%);
-            z-index: 0;
-        }
-
         .phone-frame {
             width: 375px;
             height: 812px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.3);
             border-radius: 44px;
-            box-shadow: 0 0 0 3px rgba(255,255,255,0.4);
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
             position: relative;
             overflow-y: auto;
             overflow-x: hidden;
@@ -61,29 +44,27 @@
             padding-bottom: 40px;
         }
 
-        .inner-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-            border-radius: 44px;
+        /* СТИЛЬ ДЛЯ ЗАЦЕНЗУРЕННЫХ БЛОКОВ — СЕРАЯ ПОЛОСА */
+        .censored-gray {
+            background: #4a4a4a;
+            border-radius: 20px;
+            color: transparent;
+            text-shadow: none;
+            display: inline-block;
         }
-        .inner-bg .emoji-1 { position: absolute; bottom: 15%; right: 5%; font-size: 52px; opacity: 0.4; transform: rotate(-15deg); }
-        .inner-bg .emoji-2 { position: absolute; top: 20%; left: 3%; font-size: 48px; opacity: 0.35; transform: rotate(10deg); }
-        .inner-bg .emoji-3 { position: absolute; top: 45%; right: 2%; font-size: 45px; opacity: 0.35; transform: rotate(5deg); }
-        .inner-bg .emoji-4 { position: absolute; bottom: 30%; left: 2%; font-size: 50px; opacity: 0.35; transform: rotate(-8deg); }
-        .inner-bg .emoji-5 { position: absolute; top: 60%; right: 8%; font-size: 42px; opacity: 0.35; transform: rotate(12deg); }
-        .inner-bg .emoji-6 { position: absolute; top: 75%; left: 8%; font-size: 44px; opacity: 0.35; transform: rotate(-5deg); }
-        .inner-bg .emoji-7 { position: absolute; top: 10%; right: 12%; font-size: 40px; opacity: 0.35; transform: rotate(20deg); }
-        .inner-bg .emoji-8 { position: absolute; bottom: 50%; left: 12%; font-size: 40px; opacity: 0.35; transform: rotate(-25deg); }
-        .inner-bg .emoji-center-1 { position: absolute; top: 35%; left: 25%; font-size: 38px; opacity: 0.3; transform: rotate(-10deg); }
-        .inner-bg .emoji-center-2 { position: absolute; top: 50%; right: 25%; font-size: 36px; opacity: 0.3; transform: rotate(15deg); }
-        .inner-bg .emoji-center-3 { position: absolute; top: 65%; left: 35%; font-size: 34px; opacity: 0.3; transform: rotate(-5deg); }
-        .inner-bg .emoji-center-4 { position: absolute; top: 25%; right: 35%; font-size: 35px; opacity: 0.3; transform: rotate(8deg); }
+        .censored-block {
+            background: #3a3a3a;
+            border-radius: 16px;
+            height: 24px;
+            width: 120px;
+        }
+        .censored-date-block {
+            background: #4a4a4a;
+            border-radius: 20px;
+            height: 16px;
+            width: 80px;
+            display: inline-block;
+        }
 
         .sticky-header {
             position: sticky;
@@ -93,27 +74,27 @@
             margin-bottom: 20px;
         }
         .header-bar {
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.7);
             backdrop-filter: blur(12px);
             border-radius: 60px;
             padding: 10px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.15);
         }
         .dropdown-stages {
             position: relative;
             z-index: 200;
         }
         .dropdown-btn {
-            background: rgba(255,255,255,0.9);
-            border: 1px solid rgba(255,200,80,0.5);
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,200,80,0.3);
             border-radius: 50px;
             padding: 8px 20px;
             font-size: 14px;
             font-weight: 700;
-            color: #0066cc;
+            color: #aaa;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -124,10 +105,10 @@
             top: 100%;
             left: 0;
             margin-top: 8px;
-            background: rgba(255,255,255,0.95);
+            background: rgba(0,0,0,0.95);
             backdrop-filter: blur(8px);
             border-radius: 24px;
-            border: 1px solid #0066cc;
+            border: 1px solid #333;
             min-width: 200px;
             overflow: hidden;
             opacity: 0;
@@ -136,7 +117,6 @@
             transition: 0.2s;
             z-index: 300;
             pointer-events: auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         .dropdown-stages.open .dropdown-menu {
             opacity: 1;
@@ -146,40 +126,41 @@
         .stage-item {
             padding: 12px 18px;
             cursor: pointer;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .stage-item:hover {
-            background: rgba(0,102,204,0.15);
-        }
         .stage-item .stage-name-drop {
             font-weight: 700;
-            color: #003366;
+            color: #ccc;
             font-size: 14px;
         }
         .stage-item .stage-date-drop {
             font-size: 12px;
-            color: #0066cc;
+            color: #888;
             font-weight: 500;
         }
+        .censored-date-small {
+            background: #4a4a4a;
+            border-radius: 12px;
+            height: 14px;
+            width: 70px;
+            display: inline-block;
+        }
 
+        /* КНОПКА УЧАСТВОВАТЬ — ОРИГИНАЛЬНЫЙ СТИЛЬ, НО СЕРАЯ (неактивная) */
         .join-btn {
-            background: linear-gradient(95deg, #ef4444, #f97316);
+            background: linear-gradient(95deg, #6b7280, #4b5563);
             border: none;
             border-radius: 50px;
             padding: 8px 24px;
             font-size: 14px;
             font-weight: 800;
-            color: white;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 2px 0 #a16207;
-        }
-        .join-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 0 #a16207;
+            color: #d1d5db;
+            cursor: default;
+            box-shadow: 0 2px 0 #374151;
+            transition: none;
         }
 
         .hero-title {
@@ -187,30 +168,49 @@
             margin-bottom: 35px;
             position: relative;
             z-index: 5;
-            transform: rotate(-2deg);
-            background: transparent;
         }
         .hero-title h1 {
             font-size: 56px;
             font-weight: 900;
-            background: linear-gradient(135deg, #FFF5E0, #FFDD88, #FF8844);
+            background: linear-gradient(135deg, #888, #555);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             letter-spacing: -1px;
-            transform: skewX(-3deg);
         }
         .year-box {
             display: inline-block;
             margin-top: 5px;
             padding: 6px 18px;
-            border: 2px solid #FFAA44;
+            border: 2px solid #555;
             border-radius: 40px;
             font-size: 18px;
             font-weight: 700;
-            color: #FFFFFF;
-            background: rgba(0,0,0,0.3);
-            transform: rotate(1deg);
+            color: #aaa;
+            background: rgba(0,0,0,0.5);
+        }
+
+        /* ПЛАШКА АНОНСА (НЕ ТРОГАТЬ) */
+        .announce-badge {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            padding: 14px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 1px dashed #ffaa33;
+        }
+        .announce-badge p {
+            color: #ffaa66;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .announce-badge .big-text {
+            font-size: 20px;
+            font-weight: 800;
+            margin-top: 8px;
+            color: #ffcc88;
         }
 
         .stages-list {
@@ -218,44 +218,37 @@
             flex-direction: column;
             gap: 12px;
             margin-bottom: 35px;
-            position: relative;
-            z-index: 5;
         }
         .stage-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px dashed rgba(255,255,255,0.2);
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
         }
         .stage-left {
             display: flex;
             flex-direction: column;
+            gap: 6px;
         }
         .stage-number {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 800;
-            color: #FFFFFF;
+            color: #ccc;
         }
-        .stage-date {
-            font-size: 12px;
-            color: #FFD966;
+        .stage-date-censored {
+            margin-top: 2px;
         }
-        .info-btn {
-            background: #ef4444;
+        .info-btn-censored {
+            background: #333;
             border: none;
             border-radius: 20px;
-            padding: 8px 20px;
-            font-size: 13px;
+            padding: 6px 16px;
+            font-size: 12px;
             font-weight: 600;
-            color: white;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 2px 0 #991b1b;
-        }
-        .info-btn:hover {
-            background: #dc2626;
-            transform: scale(1.02);
+            color: #888;
+            cursor: default;
+            box-shadow: none;
         }
 
         .footer-block {
@@ -263,87 +256,53 @@
             margin-top: 20px;
         }
         .footer-phrase {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
-            color: #FFFFFF;
+            color: #777;
             text-align: center;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-        .footer-year {
-            font-size: 26px;
-            font-weight: 900;
-            color: #FFFFFF;
-            text-align: center;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         .footer-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             gap: 15px;
         }
         .footer-cloud {
-            background: white;
+            background: #222;
             border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
             padding: 10px 16px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: 0.2s;
             flex: 1;
-            cursor: pointer;
-        }
-        .footer-cloud:first-child { transform: rotate(-2deg); }
-        .footer-cloud:last-child { transform: rotate(3deg); }
-        .footer-cloud:hover {
-            transform: scale(1.02) rotate(0deg);
-            border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+            cursor: default;
         }
         .footer-cloud span {
             font-size: 10px;
             font-weight: 600;
-            color: #ff7700;
-            letter-spacing: 1px;
+            color: #666;
         }
         .footer-cloud .cloud-title {
             font-size: 14px;
             font-weight: 800;
-            color: #0a0a1a;
+            color: #888;
             margin-top: 4px;
         }
-
         .footer-note {
             text-align: center;
             font-size: 9px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.3);
             margin-top: 25px;
+        }
+
+        /* ДОПОЛНИТЕЛЬНЫЕ СЕРЫЕ БЛОКИ */
+        .spacer-censored {
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
 
-<div class="outer-bg"></div>
-
 <div class="phone-frame">
-    <div class="inner-bg">
-        <div class="emoji-1">🍔</div>
-        <div class="emoji-2">🎧</div>
-        <div class="emoji-3">💵</div>
-        <div class="emoji-4">🎮</div>
-        <div class="emoji-5">🏆</div>
-        <div class="emoji-6">⭐</div>
-        <div class="emoji-7">🔥</div>
-        <div class="emoji-8">🎉</div>
-        <div class="emoji-center-1">🎈</div>
-        <div class="emoji-center-2">✨</div>
-        <div class="emoji-center-3">💎</div>
-        <div class="emoji-center-4">🌈</div>
-    </div>
-
     <div class="screen">
         <div class="sticky-header">
             <div class="header-bar">
@@ -355,26 +314,27 @@
                     <div class="dropdown-menu" id="dropdownMenu">
                         <div class="stage-item" data-stage="1">
                             <span class="stage-name-drop">1 ЭТАП</span>
-                            <span class="stage-date-drop">1 ИЮЛЯ</span>
+                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
                         </div>
                         <div class="stage-item" data-stage="2">
                             <span class="stage-name-drop">2 ЭТАП</span>
-                            <span class="stage-date-drop">8 ИЮЛЯ</span>
+                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
                         </div>
                         <div class="stage-item" data-stage="3">
                             <span class="stage-name-drop">3 ЭТАП</span>
-                            <span class="stage-date-drop">16 ИЮЛЯ</span>
+                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
                         </div>
                         <div class="stage-item" data-stage="4">
                             <span class="stage-name-drop">4 ЭТАП</span>
-                            <span class="stage-date-drop">24 ИЮЛЯ</span>
+                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
                         </div>
                         <div class="stage-item" data-stage="5">
                             <span class="stage-name-drop">5 ЭТАП</span>
-                            <span class="stage-date-drop">31 ИЮЛЯ</span>
+                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
                         </div>
                     </div>
                 </div>
+                <!-- КНОПКА УЧАСТВОВАТЬ — ОРИГИНАЛЬНЫЙ СТИЛЬ, НО СЕРАЯ -->
                 <button class="join-btn" id="joinButton">УЧАСТВОВАТЬ</button>
             </div>
         </div>
@@ -384,113 +344,113 @@
             <div class="year-box">2026</div>
         </div>
 
+        <!-- ПЛАШКА АНОНСА (НЕ ТРОГАЛИ) -->
+        <div class="announce-badge">
+            <p>⚡ ОФИЦИАЛЬНЫЙ АНОНС СКОРО ⚡</p>
+            <div class="big-text">ДАТЫ И ПРИЗЫ БУДУТ ОБЪЯВЛЕНЫ</div>
+            <div style="margin-top: 12px;"><span class="censored-block" style="width: 120px; height: 12px;"></span></div>
+        </div>
+
+        <!-- СПИСОК ЭТАПОВ — ДАТЫ ЗАМАЗАНЫ -->
         <div class="stages-list">
             <div class="stage-row">
                 <div class="stage-left">
                     <div class="stage-number">1 ЭТАП</div>
-                    <div class="stage-date">1 ИЮЛЯ</div>
+                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
                 </div>
-                <button class="info-btn" data-stage="1">ИНФОРМАЦИЯ</button>
+                <button class="info-btn-censored">СКОРО</button>
             </div>
             <div class="stage-row">
                 <div class="stage-left">
                     <div class="stage-number">2 ЭТАП</div>
-                    <div class="stage-date">8 ИЮЛЯ</div>
+                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
                 </div>
-                <button class="info-btn" data-stage="2">ИНФОРМАЦИЯ</button>
+                <button class="info-btn-censored">СКОРО</button>
             </div>
             <div class="stage-row">
                 <div class="stage-left">
                     <div class="stage-number">3 ЭТАП</div>
-                    <div class="stage-date">16 ИЮЛЯ</div>
+                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
                 </div>
-                <button class="info-btn" data-stage="3">ИНФОРМАЦИЯ</button>
+                <button class="info-btn-censored">СКОРО</button>
             </div>
             <div class="stage-row">
                 <div class="stage-left">
                     <div class="stage-number">4 ЭТАП</div>
-                    <div class="stage-date">24 ИЮЛЯ</div>
+                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
                 </div>
-                <button class="info-btn" data-stage="4">ИНФОРМАЦИЯ</button>
+                <button class="info-btn-censored">СКОРО</button>
             </div>
             <div class="stage-row">
                 <div class="stage-left">
                     <div class="stage-number">5 ЭТАП</div>
-                    <div class="stage-date">31 ИЮЛЯ</div>
+                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
                 </div>
-                <button class="info-btn" data-stage="5">ИНФОРМАЦИЯ</button>
+                <button class="info-btn-censored">СКОРО</button>
             </div>
         </div>
 
+        <!-- ПРИЗОВОЙ ФОНД И ПОБЕДИТЕЛИ ПОЛНОСТЬЮ УБРАНЫ -->
+
         <div class="footer-block">
-            <div class="footer-phrase">УВИДИМСЯ НА РОЗЫГРЫШЕ</div>
-            <div class="footer-year">2026</div>
+            <div class="footer-phrase">ДО СТАРТА ОСТАЛОСЬ НЕДОЛГО</div>
             <div class="footer-row">
-                <div class="footer-cloud" id="partnerCloud">
+                <div class="footer-cloud">
                     <span>Генеральный партнёр</span>
                     <div class="cloud-title">KIIT3K</div>
                 </div>
-                <div class="footer-cloud" id="rulesCloud">
+                <div class="footer-cloud">
                     <span>Правила участия</span>
-                    <div class="cloud-title">Подробнее</div>
+                    <div class="cloud-title">СКОРО</div>
                 </div>
             </div>
         </div>
 
         <div class="footer-note">
-            Лето 2026 · Розыгрыш
+            🔒 Информация засекречена до официального анонса 🔒
         </div>
     </div>
 </div>
 
 <script>
-    // ДРОПДАУН
+    // ДРОПДАУН (чисто визуально)
     const dropdown = document.getElementById('dropdownStages');
     const dropdownBtn = document.getElementById('dropdownBtn');
-
-    dropdownBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.classList.toggle('open');
-    });
-
+    if (dropdownBtn) {
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+    }
     document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target)) {
+        if (dropdown && !dropdown.contains(e.target)) {
             dropdown.classList.remove('open');
         }
     });
 
-    // КЛИК ПО ЭТАПУ В ДРОПДАУНЕ -> переход на страницу этапа
-    const stageItems = document.querySelectorAll('.stage-item');
-    stageItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const stageNum = item.getAttribute('data-stage');
-            window.location.href = `stage${stageNum}.html`;
-        });
-    });
-
-    // КНОПКА УЧАСТВОВАТЬ
+    // ВСЕ КНОПКИ НЕАКТИВНЫ (только визуал)
     const joinBtn = document.getElementById('joinButton');
-    joinBtn.addEventListener('click', () => {
-        window.open('https://forms.gle/8aEpityWJpQz1yNm6', '_blank');
-    });
-
-    // КНОПКИ ИНФОРМАЦИЯ -> переход на страницу соответствующего этапа
-    const infoBtns = document.querySelectorAll('.info-btn');
+    if (joinBtn) {
+        joinBtn.addEventListener('click', () => {
+            alert('🔒 Регистрация временно закрыта. Следите за анонсом!');
+        });
+    }
+    const infoBtns = document.querySelectorAll('.info-btn-censored');
     infoBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const stage = btn.getAttribute('data-stage');
-            window.location.href = `stage${stage}.html`;
+            alert('📅 Информация об этапе появится после официального анонса.');
         });
     });
-
-    // ТУЧКИ
-    const rulesCloud = document.getElementById('rulesCloud');
-    rulesCloud.addEventListener('click', () => {
-        window.open('rules.html', '_blank');
+    const stageItemsDropdown = document.querySelectorAll('.stage-item');
+    stageItemsDropdown.forEach(item => {
+        item.addEventListener('click', () => {
+            alert('⏳ Даты этапов будут объявлены позже.');
+        });
     });
-    const partnerCloud = document.getElementById('partnerCloud');
-    partnerCloud.addEventListener('click', () => {
-        window.open('https://www.youtube.com/@KIIT3K', '_blank');
-    });
+    const rulesCloud = document.querySelector('.footer-cloud:last-child');
+    if (rulesCloud) {
+        rulesCloud.addEventListener('click', () => {
+            alert('📜 Правила участия появятся вместе со стартом регистрации.');
+        });
+    }
 </script>
