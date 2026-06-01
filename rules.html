@@ -415,8 +415,8 @@
         <!-- КРАТКИЕ ПРАВИЛА -->
         <div class="rules-short">
             <div class="rules-short-title">📜 КРАТКИЕ ПРАВИЛА</div>
-            <div class="rule-item"><span class="rule-number">1</span> Участвовать можно с 14 лет (до 18 — с согласия родителей).</div>
-            <div class="rule-item"><span class="rule-number">2</span> Стоимость участия — 100 ₽ за 1 заявку (1 человек = 1 заявка).</div>
+            <div class="rule-item"><span class="rule-number">1</span> Розыгрыш для всех без ограничений (возрастных и географических).</div>
+            <div class="rule-item"><span class="rule-number">2</span> Стоимость участия — 100 ₽ за 1 заявку. Сумма может повышаться ближе к дате проведения этапа.</div>
             <div class="rule-item"><span class="rule-number">3</span> После оплаты заполните Google-форму и прикрепите чек.</div>
             <div class="rule-item"><span class="rule-number">4</span> Заявка проходит модерацию (до 48 часов).</div>
             <div class="rule-item"><span class="rule-number">5</span> Розыгрыши проходят 1, 8, 16, 24 и 31 июля в 20:00 МСК.</div>
@@ -428,16 +428,16 @@
         <!-- 10 ВОПРОСОВ И ОТВЕТОВ -->
         <div class="faq-block">
             <div class="faq-title">❓ ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">1</span><span>Сколько стоит участие?</span></div><div class="faq-answer">Стоимость участия — 100 ₽ за 1 заявку. 1 человек = 1 заявка.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">1</span><span>Сколько стоит участие?</span></div><div class="faq-answer">Стоимость участия — 100 ₽ за 1 заявку. Сумма может повышаться ближе к дате проведения этапа.</div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">2</span><span>Какой призовой фонд?</span></div><div class="faq-answer">Общий призовой фонд — 5 000 ₽. Разыгрывается на 5 этапах. Всего 13 победителей.</div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">3</span><span>Когда проходят розыгрыши?</span></div><div class="faq-answer">1, 8, 16, 24 и 31 июля 2026 года в 20:00 МСК.</div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">4</span><span>Как узнать, что я выиграл?</span></div><div class="faq-answer">Победитель получает уведомление на почту (или в соцсети, указанные при регистрации).</div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">5</span><span>Что делать после оплаты?</span></div><div class="faq-answer">Заполнить Google-форму, прикрепить чек. Модератор проверит заявку в течение 48 часов.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">6</span><span>Могу ли я участвовать, если мне 14–17 лет?</span></div><div class="faq-answer">Да. По требованию организатора нужно предоставить согласие родителей.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">6</span><span>Могу ли я участвовать, если мне 14–17 лет?</span></div><div class="faq-answer">Да. Розыгрыш для всех без ограничений.</div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">7</span><span>Можно ли подать несколько заявок?</span></div><div class="faq-answer">1 человек = 1 заявка. Несколько заявок от одного лица не принимаются.</div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">8</span><span>Как получить приз?</span></div><div class="faq-answer">Организатор связывается с вами и запрашивает реквизиты карты или СБП. Выплата в течение 10 дней.</div></div>
             <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">9</span><span>Что такое этапы? Как они работают?</span></div><div class="faq-answer">5 этапов. Если вы не выиграли в одном этапе, вы продолжаете участвовать в следующих.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">10</span><span>Кто организатор?</span></div><div class="faq-answer">Организатор — Корпорация SMOLENSK. Все вопросы можно задать в поддержку (контакты в Google-форме).</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">10</span><span>Кто организатор?</span></div><div class="faq-answer">Организатор — Корпорация SMOLENSK. Все вопросы можно задать в поддержку stastepl2808@gmail.com.</div></div>
         </div>
 
         <!-- ТРИ ТУЧКИ -->
@@ -455,16 +455,29 @@
     </div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО ОТЗЫВОВ -->
+<!-- МОДАЛЬНОЕ ОКНО С ОТЗЫВАМИ (НОВЫЕ 4 ОТЗЫВА) -->
 <div id="reviewsModal" class="reviews-modal">
     <div class="reviews-container">
         <div class="reviews-header">
             <h2>ОТЗЫВЫ ПОБЕДИТЕЛЕЙ</h2>
             <button class="close-reviews-btn" onclick="closeReviews()">✕ ЗАКРЫТЬ</button>
         </div>
-        <div class="review-card"><div class="review-title">Анна К.</div><div class="review-content">«Участвовала в прошлом году, выиграла 700 ₽ на 4 этапе! Всё честно, деньги пришли на карту через 3 дня.»</div><div class="review-link"><a href="#">📸 Фото выигрыша</a></div></div>
-        <div class="review-card"><div class="review-title">Михаил С.</div><div class="review-content">«Решил попробовать, заплатил 100₽ и забыл. Через неделю приходит уведомление — я выиграл 500₽!»</div><div class="review-link"><a href="#">📸 Скриншот выплаты</a></div></div>
-        <div class="review-card"><div class="review-title">Екатерина М.</div><div class="review-content">«Выиграла 300 ₽ на 2 этапе. Деньги пришли на СБП через 2 дня. Организаторы молодцы!»</div><div class="review-link"><a href="#">📸 Фото отзыва</a></div></div>
+        <div class="review-card">
+            <div class="review-title">Лолик Индусов</div>
+            <div class="review-content">«Очень рад, сомневался, но выиграл во время доставки»</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title">Карнэлия</div>
+            <div class="review-content">«Всё отлично, деньги пришли сразу»</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title">юра24_04</div>
+            <div class="review-content">«Каждый раз выигрываю и радуюсь, всем советую»</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title">КИТЗК</div>
+            <div class="review-content">«Призы классные, условия простые, спасибо за эмоции»</div>
+        </div>
     </div>
 </div>
 
@@ -485,3 +498,27 @@
     window.closeReviews = function() { reviewsModal.style.display = 'none'; document.body.style.overflow = 'auto'; };
     if (reviewsModal) { reviewsModal.addEventListener('click', (e) => { if (e.target === reviewsModal) window.closeReviews(); }); }
 </script>
+    
+    <!-- ========== ФОНОВАЯ МУЗЫКА ========== -->
+    <script>
+        const audio = new Audio('summer-beat.mp3');
+        audio.loop = true;
+        audio.volume = 0.3;
+        
+        let musicStarted = false;
+        
+        function startStageMusic() {
+            if (musicStarted) return;
+            audio.play().then(() => {
+                musicStarted = true;
+            }).catch(e => console.log("Автозапуск заблокирован"));
+        }
+        
+        document.body.addEventListener('click', startStageMusic, { once: true });
+        document.body.addEventListener('touchstart', startStageMusic, { once: true });
+        
+        const interactiveElements = document.querySelectorAll('button, .back-btn, .join-btn, .dropdown-btn, .footer-cloud, .footer-cloud-center, .stage-item');
+        interactiveElements.forEach(el => {
+            el.addEventListener('click', startStageMusic, { once: true });
+        });
+    </script>
