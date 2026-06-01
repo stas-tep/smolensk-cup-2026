@@ -575,3 +575,27 @@
         window.open('https://www.youtube.com/@KIIT3K', '_blank');
     });
 </script>
+// Фоновая музыка (одинаково для всех страниц)
+const audio = new Audio('summer-beat.mp3');
+audio.loop = true;
+audio.volume = 0.3;
+
+let musicStarted = false;
+
+function startMusic() {
+    if (musicStarted) return;
+    audio.play().then(() => {
+        musicStarted = true;
+    }).catch(e => console.log("Автозапуск заблокирован, нужен клик"));
+}
+
+// Запуск при первом клике/касании на странице
+document.body.addEventListener('click', startMusic, { once: true });
+document.body.addEventListener('touchstart', startMusic, { once: true });
+
+// Заодно при клике на любые интерактивные элементы
+const interactiveElements = document.querySelectorAll('button, .footer-cloud, .dropdown-btn, .info-btn, .join-btn, .footer-cloud-center');
+interactiveElements.forEach(el => {
+    el.addEventListener('click', startMusic, { once: true });
+});
+</script>
