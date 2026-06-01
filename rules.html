@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Лето 2026 · Правила участия</title>
     
-        <!-- ИКОНКА САЙТА -->
+    <!-- ИКОНКА САЙТА -->
     <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
     <link rel="apple-touch-icon" sizes="512x512" href="favicon.png">
     
@@ -23,16 +23,6 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-        }
-
-        .outer-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #1a8cff 0%, #0066cc 50%, #004099 100%);
-            z-index: 0;
         }
 
         .phone-frame {
@@ -59,6 +49,7 @@
             padding-bottom: 40px;
         }
 
+        /* ФОНОВЫЕ ЭМОДЗИ */
         .inner-bg {
             position: absolute;
             top: 0;
@@ -83,7 +74,7 @@
         .inner-bg .emoji-center-3 { position: absolute; top: 65%; left: 35%; font-size: 34px; opacity: 0.3; transform: rotate(-5deg); }
         .inner-bg .emoji-center-4 { position: absolute; top: 25%; right: 35%; font-size: 35px; opacity: 0.3; transform: rotate(8deg); }
 
-        /* ===== НОВАЯ ШАПКА ===== */
+        /* ШАПКА */
         .sticky-header {
             position: sticky;
             top: 0;
@@ -135,78 +126,6 @@
             box-shadow: 0 4px 0 #a16207;
         }
 
-        /* ВТОРАЯ СТРОКА ШАПКИ */
-        .header-bottom {
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(12px);
-            border-radius: 60px;
-            padding: 8px 18px;
-            margin-top: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        .rules-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #FFE484;
-        }
-        .dropdown-faq {
-            position: relative;
-        }
-        .dropdown-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,200,80,0.5);
-            border-radius: 50px;
-            padding: 6px 16px;
-            font-size: 13px;
-            font-weight: 700;
-            color: #FFE484;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 8px;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(16px);
-            border-radius: 24px;
-            border: 1px solid rgba(255,200,80,0.5);
-            min-width: 200px;
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: 0.2s;
-            z-index: 300;
-        }
-        .dropdown-faq.open .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .faq-link-item {
-            padding: 12px 18px;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            color: #FFFFFF;
-            font-size: 13px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .faq-link-item:hover {
-            background: rgba(255,200,80,0.2);
-            color: #FFE484;
-        }
-        .faq-link-item:last-child {
-            border-bottom: none;
-        }
-
         .title-section {
             text-align: center;
             margin-bottom: 25px;
@@ -225,7 +144,7 @@
             margin-top: 5px;
         }
 
-        /* КРАТКИЕ ПРАВИЛА (ПЕРВЫЙ БЛОК) */
+        /* КРАТКИЕ ПРАВИЛА */
         .rules-short {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             border-radius: 32px;
@@ -260,7 +179,7 @@
             color: #facc15;
         }
 
-        /* ВОПРОСЫ И ОТВЕТЫ */
+        /* FAQ */
         .faq-block {
             background: rgba(0,0,0,0.3);
             backdrop-filter: blur(8px);
@@ -274,7 +193,6 @@
             color: #FFE484;
             text-align: center;
             margin-bottom: 20px;
-            letter-spacing: 1px;
         }
         .faq-item {
             margin-bottom: 16px;
@@ -314,7 +232,7 @@
             display: block;
         }
 
-        /* ФИНАЛЬНАЯ ФРАЗА И ТУЧКИ */
+        /* ТУЧКИ */
         .footer-block {
             text-align: center;
             margin-top: 20px;
@@ -330,49 +248,140 @@
         .footer-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            gap: 15px;
+            gap: 12px;
+            margin-bottom: 15px;
         }
         .footer-cloud {
             background: white;
             border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
-            padding: 10px 16px;
+            padding: 10px 8px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: 0.2s;
             flex: 1;
             cursor: pointer;
         }
-        .footer-cloud:first-child { transform: rotate(-2deg); }
-        .footer-cloud:last-child { transform: rotate(3deg); }
         .footer-cloud:hover {
-            transform: scale(1.02) rotate(0deg);
+            transform: scale(1.02);
             border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
         }
         .footer-cloud span {
+            font-size: 9px;
+            font-weight: 600;
+            color: #ff7700;
+            letter-spacing: 0.5px;
+        }
+        .footer-cloud .cloud-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #0a0a1a;
+            margin-top: 4px;
+        }
+        .footer-single {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .footer-cloud-center {
+            background: white;
+            border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+            padding: 10px 24px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.2s;
+            transform: rotate(-1deg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .footer-cloud-center:hover {
+            transform: scale(1.02) rotate(0deg);
+            border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+        }
+        .footer-cloud-center span {
             font-size: 10px;
             font-weight: 600;
             color: #ff7700;
             letter-spacing: 1px;
         }
-        .footer-cloud .cloud-title {
+        .footer-cloud-center .cloud-title {
             font-size: 14px;
             font-weight: 800;
             color: #0a0a1a;
             margin-top: 4px;
         }
-
         .footer-note {
             text-align: center;
             font-size: 9px;
             color: rgba(255,255,255,0.5);
-            margin-top: 25px;
+            margin-top: 20px;
+        }
+
+        /* МОДАЛЬНОЕ ОКНО ОТЗЫВОВ */
+        .reviews-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 50px 20px;
+        }
+        .reviews-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #0a1f2a;
+            border-radius: 48px;
+            padding: 28px 22px;
+            border: 1px solid #FFD966;
+        }
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .reviews-header h2 {
+            color: #FFE484;
+            font-size: 24px;
+        }
+        .close-reviews-btn {
+            background: #ef4444;
+            border: none;
+            border-radius: 40px;
+            padding: 6px 18px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .review-card {
+            background: rgba(255,255,240,0.1);
+            border-radius: 32px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+        .review-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #FFD966;
+        }
+        .review-content {
+            margin-top: 10px;
+            color: #FFF;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .review-link a {
+            color: #FFB347;
+            font-size: 12px;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-
-<div class="outer-bg"></div>
 
 <div class="phone-frame">
     <div class="inner-bg">
@@ -391,25 +400,10 @@
     </div>
 
     <div class="screen">
-        <!-- НОВАЯ ШАПКА -->
         <div class="sticky-header">
             <div class="header-bar">
                 <div class="back-btn" onclick="goToHome()">← НА ГЛАВНУЮ</div>
                 <button class="join-btn" id="joinButton">УЧАСТВОВАТЬ</button>
-            </div>
-            <div class="header-bottom">
-                <div class="rules-title">ПРАВИЛА</div>
-                <div class="dropdown-faq" id="dropdownFaq">
-                    <div class="dropdown-btn" id="dropdownBtn">
-                        <span>ПЕРЕЙТИ</span>
-                        <span class="arrow">▼</span>
-                    </div>
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <div class="faq-link-item" id="faqFullRulesLink">
-                            📄 ПОЛНЫЙ РЕГЛАМЕНТ
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -418,10 +412,10 @@
             <p>ознакомьтесь перед регистрацией</p>
         </div>
 
-        <!-- КРАТКИЕ ПРАВИЛА (ПЕРВЫЙ БЛОК) -->
+        <!-- КРАТКИЕ ПРАВИЛА -->
         <div class="rules-short">
             <div class="rules-short-title">📜 КРАТКИЕ ПРАВИЛА</div>
-            <div class="rule-item"><span class="rule-number">1</span> Участвовать можно с 14 лет.</div>
+            <div class="rule-item"><span class="rule-number">1</span> Участвовать можно с 14 лет (до 18 — с согласия родителей).</div>
             <div class="rule-item"><span class="rule-number">2</span> Стоимость участия — 100 ₽ за 1 заявку (1 человек = 1 заявка).</div>
             <div class="rule-item"><span class="rule-number">3</span> После оплаты заполните Google-форму и прикрепите чек.</div>
             <div class="rule-item"><span class="rule-number">4</span> Заявка проходит модерацию (до 48 часов).</div>
@@ -429,173 +423,65 @@
             <div class="rule-item"><span class="rule-number">6</span> Призы выплачиваются на карту/СБП в течение 10 дней после этапа.</div>
             <div class="rule-item"><span class="rule-number">7</span> Одна заявка может выиграть только один раз.</div>
             <div class="rule-item"><span class="rule-number">8</span> Организатор не возвращает оплату, если заявка одобрена.</div>
-            <div class="rule-item"><span class="rule-number">9</span> Чем ближе к финалу — тем выше стоимость участия (будет объявлено).</div>
         </div>
 
         <!-- 10 ВОПРОСОВ И ОТВЕТОВ -->
         <div class="faq-block">
             <div class="faq-title">❓ ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">1</span>
-                    <span>Сколько стоит участие?</span>
-                </div>
-                <div class="faq-answer">Стоимость участия — 100 ₽ за 1 заявку. 1 человек = 1 заявка. Возможно повышение стоимости ближе к финалу (будет объявлено позже).</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">2</span>
-                    <span>Какой призовой фонд?</span>
-                </div>
-                <div class="faq-answer">Общий призовой фонд — 5 000 ₽. Разыгрывается на 5 этапах. Всего 13 победителей.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">3</span>
-                    <span>Когда проходят розыгрыши?</span>
-                </div>
-                <div class="faq-answer">1, 8, 16, 24 и 31 июля 2026 года в 20:00 МСК.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">4</span>
-                    <span>Как узнать, что я выиграл?</span>
-                </div>
-                <div class="faq-answer">Победитель получает уведомление на почту (или в соцсети, указанные при регистрации). Результаты также публикуются в официальном канале.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">5</span>
-                    <span>Что делать после оплаты?</span>
-                </div>
-                <div class="faq-answer">Заполнить Google-форму, прикрепить чек. Модератор проверит заявку в течение 48 часов.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">6</span>
-                    <span>Могу ли я участвовать, если мне 14–17 лет?</span>
-                </div>
-                <div class="faq-answer">Да. По требованию организатора нужно предоставить согласие родителей (в произвольной форме).</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">7</span>
-                    <span>Можно ли подать несколько заявок?</span>
-                </div>
-                <div class="faq-answer">1 человек = 1 заявка. Несколько заявок от одного лица не принимаются.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">8</span>
-                    <span>Как получить приз?</span>
-                </div>
-                <div class="faq-answer">После объявления победителя организатор связывается с вами и запрашивает реквизиты карты или номер телефона для СБП. Выплата в течение 10 дней.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">9</span>
-                    <span>Что такое этапы? Как они работают?</span>
-                </div>
-                <div class="faq-answer">Всего 5 этапов: Квалификация, 1/4 финала, Полуфинал, Финал, Закрытие. Если вы не выиграли в одном этапе, вы продолжаете участвовать в следующих.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleAnswer(this)">
-                    <span class="q-icon">10</span>
-                    <span>Кто организатор?</span>
-                </div>
-                <div class="faq-answer">Организатор — Корпорация SMOLENSK. Все вопросы можно задать в поддержку stastepl2808@gmail.com.</div>
-            </div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">1</span><span>Сколько стоит участие?</span></div><div class="faq-answer">Стоимость участия — 100 ₽ за 1 заявку. 1 человек = 1 заявка.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">2</span><span>Какой призовой фонд?</span></div><div class="faq-answer">Общий призовой фонд — 5 000 ₽. Разыгрывается на 5 этапах. Всего 13 победителей.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">3</span><span>Когда проходят розыгрыши?</span></div><div class="faq-answer">1, 8, 16, 24 и 31 июля 2026 года в 20:00 МСК.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">4</span><span>Как узнать, что я выиграл?</span></div><div class="faq-answer">Победитель получает уведомление на почту (или в соцсети, указанные при регистрации).</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">5</span><span>Что делать после оплаты?</span></div><div class="faq-answer">Заполнить Google-форму, прикрепить чек. Модератор проверит заявку в течение 48 часов.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">6</span><span>Могу ли я участвовать, если мне 14–17 лет?</span></div><div class="faq-answer">Да. По требованию организатора нужно предоставить согласие родителей.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">7</span><span>Можно ли подать несколько заявок?</span></div><div class="faq-answer">1 человек = 1 заявка. Несколько заявок от одного лица не принимаются.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">8</span><span>Как получить приз?</span></div><div class="faq-answer">Организатор связывается с вами и запрашивает реквизиты карты или СБП. Выплата в течение 10 дней.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">9</span><span>Что такое этапы? Как они работают?</span></div><div class="faq-answer">5 этапов. Если вы не выиграли в одном этапе, вы продолжаете участвовать в следующих.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleAnswer(this)"><span class="q-icon">10</span><span>Кто организатор?</span></div><div class="faq-answer">Организатор — Корпорация SMOLENSK. Все вопросы можно задать в поддержку (контакты в Google-форме).</div></div>
         </div>
 
-        <!-- ФИНАЛЬНАЯ ФРАЗА И ТУЧКИ -->
+        <!-- ТРИ ТУЧКИ -->
         <div class="footer-block">
             <div class="footer-phrase">ЖДЁМ НА РОЗЫГРЫШЕ</div>
             <div class="footer-row">
-                <div class="footer-cloud" id="partnerCloud">
-                    <span>Генеральный партнёр</span>
-                    <div class="cloud-title">KIIT3K</div>
-                </div>
-                <div class="footer-cloud" id="faqCloud">
-                    <span>FAQ</span>
-                    <div class="cloud-title">Полный регламент</div>
-                </div>
+                <div class="footer-cloud" id="partnerCloud"><span>Генеральный партнёр</span><div class="cloud-title">KIIT3K</div></div>
+                <div class="footer-cloud" id="faqCloud"><span>ПОЛНЫЙ РЕГЛАМЕНТ</span><div class="cloud-title">Подробнее</div></div>
+            </div>
+            <div class="footer-single">
+                <div class="footer-cloud-center" id="reviewsCloud"><span>ОТЗЫВЫ</span><div class="cloud-title">Победители</div></div>
             </div>
         </div>
+        <div class="footer-note">Лето 2026 · Розыгрыш</div>
+    </div>
+</div>
 
-        <div class="footer-note">
-            Лето 2026 · Розыгрыш
+<!-- МОДАЛЬНОЕ ОКНО ОТЗЫВОВ -->
+<div id="reviewsModal" class="reviews-modal">
+    <div class="reviews-container">
+        <div class="reviews-header">
+            <h2>ОТЗЫВЫ ПОБЕДИТЕЛЕЙ</h2>
+            <button class="close-reviews-btn" onclick="closeReviews()">✕ ЗАКРЫТЬ</button>
         </div>
+        <div class="review-card"><div class="review-title">Анна К.</div><div class="review-content">«Участвовала в прошлом году, выиграла 700 ₽ на 4 этапе! Всё честно, деньги пришли на карту через 3 дня.»</div><div class="review-link"><a href="#">📸 Фото выигрыша</a></div></div>
+        <div class="review-card"><div class="review-title">Михаил С.</div><div class="review-content">«Решил попробовать, заплатил 100₽ и забыл. Через неделю приходит уведомление — я выиграл 500₽!»</div><div class="review-link"><a href="#">📸 Скриншот выплаты</a></div></div>
+        <div class="review-card"><div class="review-title">Екатерина М.</div><div class="review-content">«Выиграла 300 ₽ на 2 этапе. Деньги пришли на СБП через 2 дня. Организаторы молодцы!»</div><div class="review-link"><a href="#">📸 Фото отзыва</a></div></div>
     </div>
 </div>
 
 <script>
-    // ФУНКЦИЯ ДЛЯ РАСКРЫТИЯ ОТВЕТОВ
     function toggleAnswer(element) {
         const answer = element.nextElementSibling;
         answer.classList.toggle('show');
     }
-
-    // НАЗАД НА ГЛАВНУЮ
-    function goToHome() {
-        window.location.href = 'index.html';
-    }
-
-    // КНОПКА УЧАСТВОВАТЬ
-    document.getElementById('joinButton').addEventListener('click', () => {
-        window.open('https://forms.gle/8aEpityWJpQz1yNm6', '_blank');
-    });
-
-    // ДРОПДАУН ДЛЯ ПЕРЕХОДА
-    const dropdown = document.getElementById('dropdownFaq');
-    const dropdownBtn = document.getElementById('dropdownBtn');
-
-    dropdownBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.classList.toggle('open');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove('open');
-        }
-    });
-
-    // ССЫЛКА НА ПОЛНЫЙ РЕГЛАМЕНТ (Google Docs) — ЗАМЕНИТЕ НА ВАШУ ССЫЛКУ
-    document.getElementById('faqFullRulesLink').addEventListener('click', () => {
-        window.open('https://docs.google.com/document/d/1NZQgeRPRPwgW9YAt7NAf-sRtLMg0Cn45p-03-_7_gUU/edit?usp=sharing', '_blank');
-    });
-
-    // ТУЧКА "FAQ" (ПОЛНЫЙ РЕГЛАМЕНТ) — ТА ЖЕ ССЫЛКА
-    document.getElementById('faqCloud').addEventListener('click', () => {
-        window.open('https://docs.google.com/document/d/1NZQgeRPRPwgW9YAt7NAf-sRtLMg0Cn45p-03-_7_gUU/edit?usp=sharing', '_blank');
-    });
-
-    // ТУЧКА "ГЕНЕРАЛЬНЫЙ ПАРТНЁР" (ЗАМЕНИТЕ ССЫЛКУ)
-    document.getElementById('partnerCloud').addEventListener('click', () => {
-        window.open('https://www.youtube.com/@KIIT3K', '_blank');
-    });
-</script>
-// Фоновая музыка (одинаково для всех страниц)
-const audio = new Audio('summer-beat.mp3');
-audio.loop = true;
-audio.volume = 0.3;
-
-let musicStarted = false;
-
-function startMusic() {
-    if (musicStarted) return;
-    audio.play().then(() => {
-        musicStarted = true;
-    }).catch(e => console.log("Автозапуск заблокирован, нужен клик"));
-}
-
-// Запуск при первом клике/касании на странице
-document.body.addEventListener('click', startMusic, { once: true });
-document.body.addEventListener('touchstart', startMusic, { once: true });
-
-// Заодно при клике на любые интерактивные элементы
-const interactiveElements = document.querySelectorAll('button, .footer-cloud, .dropdown-btn, .info-btn, .join-btn, .footer-cloud-center');
-interactiveElements.forEach(el => {
-    el.addEventListener('click', startMusic, { once: true });
-});
+    function goToHome() { window.location.href = 'index.html'; }
+    document.getElementById('joinButton').addEventListener('click', () => { window.open('https://forms.gle/8aEpityWJpQz1yNm6', '_blank'); });
+    document.getElementById('faqCloud').addEventListener('click', () => { window.open('https://docs.google.com/document/d/ВАША_ССЫЛКА/edit', '_blank'); });
+    document.getElementById('partnerCloud').addEventListener('click', () => { window.open('https://www.youtube.com/@KIIT3K', '_blank'); });
+    
+    // ОТЗЫВЫ
+    const reviewsModal = document.getElementById('reviewsModal');
+    const reviewsCloud = document.getElementById('reviewsCloud');
+    if (reviewsCloud) { reviewsCloud.addEventListener('click', () => { reviewsModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }); }
+    window.closeReviews = function() { reviewsModal.style.display = 'none'; document.body.style.overflow = 'auto'; };
+    if (reviewsModal) { reviewsModal.addEventListener('click', (e) => { if (e.target === reviewsModal) window.closeReviews(); }); }
 </script>
