@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Лето 2026 · 5 ЭТАП</title>
     
-        <!-- ИКОНКА САЙТА -->
+    <!-- ИКОНКА САЙТА -->
     <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
     <link rel="apple-touch-icon" sizes="512x512" href="favicon.png">
     
@@ -23,16 +23,6 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-        }
-
-        .outer-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #1a8cff 0%, #0066cc 50%, #004099 100%);
-            z-index: 0;
         }
 
         .phone-frame {
@@ -389,7 +379,7 @@
             margin-top: 20px;
         }
         .footer-phrase {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             color: #FFFFFF;
             letter-spacing: 2px;
@@ -399,49 +389,134 @@
         .footer-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            gap: 15px;
+            gap: 12px;
+            margin-bottom: 15px;
         }
         .footer-cloud {
             background: white;
             border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
-            padding: 10px 16px;
+            padding: 10px 8px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: 0.2s;
             flex: 1;
             cursor: pointer;
         }
-        .footer-cloud:first-child { transform: rotate(-2deg); }
-        .footer-cloud:last-child { transform: rotate(3deg); }
         .footer-cloud:hover {
-            transform: scale(1.02) rotate(0deg);
+            transform: scale(1.02);
             border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
         }
         .footer-cloud span {
+            font-size: 9px;
+            font-weight: 600;
+            color: #ff7700;
+            letter-spacing: 0.5px;
+        }
+        .footer-cloud .cloud-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #0a0a1a;
+            margin-top: 4px;
+        }
+        .footer-single {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .footer-cloud-center {
+            background: white;
+            border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+            padding: 10px 24px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.2s;
+            transform: rotate(-1deg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .footer-cloud-center:hover {
+            transform: scale(1.02) rotate(0deg);
+            border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+        }
+        .footer-cloud-center span {
             font-size: 10px;
             font-weight: 600;
             color: #ff7700;
             letter-spacing: 1px;
         }
-        .footer-cloud .cloud-title {
+        .footer-cloud-center .cloud-title {
             font-size: 14px;
             font-weight: 800;
             color: #0a0a1a;
             margin-top: 4px;
         }
-
         .footer-note {
             text-align: center;
             font-size: 9px;
             color: rgba(255,255,255,0.5);
-            margin-top: 25px;
+            margin-top: 20px;
+        }
+
+        .reviews-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 50px 20px;
+        }
+        .reviews-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #0a1f2a;
+            border-radius: 48px;
+            padding: 28px 22px;
+            border: 1px solid #FFD966;
+        }
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .reviews-header h2 {
+            color: #FFE484;
+            font-size: 24px;
+        }
+        .close-reviews-btn {
+            background: #ef4444;
+            border: none;
+            border-radius: 40px;
+            padding: 6px 18px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .review-card {
+            background: rgba(255,255,240,0.1);
+            border-radius: 32px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+        .review-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #FFD966;
+        }
+        .review-content {
+            margin-top: 10px;
+            color: #FFF;
+            font-size: 14px;
+            line-height: 1.4;
         }
     </style>
 </head>
 <body>
-
-<div class="outer-bg"></div>
 
 <div class="phone-frame">
     <div class="inner-bg">
@@ -476,26 +551,11 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <div class="stage-item" data-stage="1">
-                            <span class="stage-name-drop">1 ЭТАП</span>
-                            <span class="stage-date-drop">1 ИЮЛЯ</span>
-                        </div>
-                        <div class="stage-item" data-stage="2">
-                            <span class="stage-name-drop">2 ЭТАП</span>
-                            <span class="stage-date-drop">8 ИЮЛЯ</span>
-                        </div>
-                        <div class="stage-item" data-stage="3">
-                            <span class="stage-name-drop">3 ЭТАП</span>
-                            <span class="stage-date-drop">16 ИЮЛЯ</span>
-                        </div>
-                        <div class="stage-item" data-stage="4">
-                            <span class="stage-name-drop">4 ЭТАП</span>
-                            <span class="stage-date-drop">24 ИЮЛЯ</span>
-                        </div>
-                        <div class="stage-item active" data-stage="5">
-                            <span class="stage-name-drop">5 ЭТАП</span>
-                            <span class="stage-date-drop">31 ИЮЛЯ</span>
-                        </div>
+                        <div class="stage-item" data-stage="1"><span class="stage-name-drop">1 ЭТАП</span><span class="stage-date-drop">1 ИЮЛЯ</span></div>
+                        <div class="stage-item" data-stage="2"><span class="stage-name-drop">2 ЭТАП</span><span class="stage-date-drop">8 ИЮЛЯ</span></div>
+                        <div class="stage-item" data-stage="3"><span class="stage-name-drop">3 ЭТАП</span><span class="stage-date-drop">16 ИЮЛЯ</span></div>
+                        <div class="stage-item" data-stage="4"><span class="stage-name-drop">4 ЭТАП</span><span class="stage-date-drop">24 ИЮЛЯ</span></div>
+                        <div class="stage-item active" data-stage="5"><span class="stage-name-drop">5 ЭТАП</span><span class="stage-date-drop">31 ИЮЛЯ</span></div>
                     </div>
                 </div>
             </div>
@@ -527,34 +587,45 @@
 
         <div class="winners-block">
             <div class="winners-title">ПОБЕДИТЕЛИ 5 ЭТАПА</div>
-            <div class="winner-row">
-                <span class="winner-place">1 место</span>
-                <span class="winner-name">Победитель 1</span>
-                <span class="winner-prize">300 ₽</span>
-            </div>
-            <div class="winner-row">
-                <span class="winner-place">2 место</span>
-                <span class="winner-name">Победитель 2</span>
-                <span class="winner-prize">300 ₽</span>
-            </div>
+            <div class="winner-row"><span class="winner-place">1 место</span><span class="winner-name">Победитель 1</span><span class="winner-prize">300 ₽</span></div>
+            <div class="winner-row"><span class="winner-place">2 место</span><span class="winner-name">Победитель 2</span><span class="winner-prize">300 ₽</span></div>
         </div>
 
         <div class="footer-block">
             <div class="footer-phrase">УВИДИМСЯ НА 5 ЭТАПЕ</div>
             <div class="footer-row">
-                <div class="footer-cloud" id="partnerCloud">
-                    <span>Генеральный партнёр</span>
-                    <div class="cloud-title">KIIT3K</div>
-                </div>
-                <div class="footer-cloud" id="rulesCloud">
-                    <span>Правила участия</span>
-                    <div class="cloud-title">Подробнее</div>
-                </div>
+                <div class="footer-cloud" id="partnerCloud"><span>Генеральный партнёр</span><div class="cloud-title">KIIT3K</div></div>
+                <div class="footer-cloud" id="rulesCloud"><span>Правила участия</span><div class="cloud-title">Подробнее</div></div>
+            </div>
+            <div class="footer-single">
+                <div class="footer-cloud-center" id="reviewsCloud"><span>ОТЗЫВЫ</span><div class="cloud-title">Победители</div></div>
             </div>
         </div>
+        <div class="footer-note">Лето 2026 · Розыгрыш</div>
+    </div>
+</div>
 
-        <div class="footer-note">
-            Лето 2026 · Розыгрыш
+<div id="reviewsModal" class="reviews-modal">
+    <div class="reviews-container">
+        <div class="reviews-header">
+            <h2>ОТЗЫВЫ ПОБЕДИТЕЛЕЙ</h2>
+            <button class="close-reviews-btn" onclick="closeReviews()">✕ ЗАКРЫТЬ</button>
+        </div>
+        <div class="review-card">
+            <div class="review-title">Лолик Индусов</div>
+            <div class="review-content">«Очень рад, сомневался, но выиграл во время доставки»</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title">Карнэлия</div>
+            <div class="review-content">«Всё отлично, деньги пришли сразу»</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title">юра24_04</div>
+            <div class="review-content">«Каждый раз выигрываю и радуюсь, всем советую»</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title">КИТЗК</div>
+            <div class="review-content">«Призы классные, условия простые, спасибо за эмоции»</div>
         </div>
     </div>
 </div>
@@ -598,16 +669,12 @@
 
     const dropdown = document.getElementById('dropdownStages');
     const dropdownBtn = document.getElementById('dropdownBtn');
-
     dropdownBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         dropdown.classList.toggle('open');
     });
-
     document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove('open');
-        }
+        if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
     });
 
     document.querySelectorAll('.stage-item').forEach(item => {
@@ -632,30 +699,22 @@
     document.getElementById('partnerCloud').addEventListener('click', () => {
         window.open('https://www.youtube.com/@KIIT3K', '_blank');
     });
-
-    document.title = `Лето 2026 · 5 ЭТАП`;
-</script>
-// Фоновая музыка (одинаково для всех страниц)
-const audio = new Audio('summer-beat.mp3');
-audio.loop = true;
-audio.volume = 0.3;
-
-let musicStarted = false;
-
-function startMusic() {
-    if (musicStarted) return;
-    audio.play().then(() => {
-        musicStarted = true;
-    }).catch(e => console.log("Автозапуск заблокирован, нужен клик"));
-}
-
-// Запуск при первом клике/касании на странице
-document.body.addEventListener('click', startMusic, { once: true });
-document.body.addEventListener('touchstart', startMusic, { once: true });
-
-// Заодно при клике на любые интерактивные элементы
-const interactiveElements = document.querySelectorAll('button, .footer-cloud, .dropdown-btn, .info-btn, .join-btn, .footer-cloud-center');
-interactiveElements.forEach(el => {
-    el.addEventListener('click', startMusic, { once: true });
-});
+    
+    const reviewsModal = document.getElementById('reviewsModal');
+    const reviewsCloud = document.getElementById('reviewsCloud');
+    if (reviewsCloud) {
+        reviewsCloud.addEventListener('click', () => {
+            reviewsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    window.closeReviews = function() {
+        reviewsModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+    if (reviewsModal) {
+        reviewsModal.addEventListener('click', (e) => {
+            if (e.target === reviewsModal) window.closeReviews();
+        });
+    }
 </script>
