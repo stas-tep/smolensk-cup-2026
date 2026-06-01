@@ -730,3 +730,27 @@
         });
     }
 </script>
+    
+    <!-- ========== ФОНОВАЯ МУЗЫКА ========== -->
+    <script>
+        const audio = new Audio('summer-beat.mp3');
+        audio.loop = true;
+        audio.volume = 0.3;
+        
+        let musicStarted = false;
+        
+        function startStageMusic() {
+            if (musicStarted) return;
+            audio.play().then(() => {
+                musicStarted = true;
+            }).catch(e => console.log("Автозапуск заблокирован"));
+        }
+        
+        document.body.addEventListener('click', startStageMusic, { once: true });
+        document.body.addEventListener('touchstart', startStageMusic, { once: true });
+        
+        const interactiveElements = document.querySelectorAll('button, .back-btn, .join-btn, .dropdown-btn, .footer-cloud, .footer-cloud-center, .stage-item');
+        interactiveElements.forEach(el => {
+            el.addEventListener('click', startStageMusic, { once: true });
+        });
+    </script>
