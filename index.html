@@ -2,7 +2,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Анонс · Лето 2026</title>
+    <title>Лето 2026</title>
+    
+    <!-- ИКОНКА САЙТА -->
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="favicon.png">
+    
     <style>
         * {
             margin: 0;
@@ -11,7 +16,7 @@
         }
 
         body {
-            background: linear-gradient(145deg, #1a2a3a 0%, #0f1a24 50%, #0a121a 100%);
+            background: linear-gradient(145deg, #1a8cff 0%, #0066cc 50%, #004099 100%);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             min-height: 100vh;
             display: flex;
@@ -20,12 +25,22 @@
             padding: 20px;
         }
 
+        .outer-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #1a8cff 0%, #0066cc 50%, #004099 100%);
+            z-index: 0;
+        }
+
         .phone-frame {
             width: 375px;
             height: 812px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.05);
             border-radius: 44px;
-            box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.4);
             position: relative;
             overflow-y: auto;
             overflow-x: hidden;
@@ -44,27 +59,29 @@
             padding-bottom: 40px;
         }
 
-        /* СТИЛЬ ДЛЯ ЗАЦЕНЗУРЕННЫХ БЛОКОВ — СЕРАЯ ПОЛОСА */
-        .censored-gray {
-            background: #4a4a4a;
-            border-radius: 20px;
-            color: transparent;
-            text-shadow: none;
-            display: inline-block;
+        .inner-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 44px;
         }
-        .censored-block {
-            background: #3a3a3a;
-            border-radius: 16px;
-            height: 24px;
-            width: 120px;
-        }
-        .censored-date-block {
-            background: #4a4a4a;
-            border-radius: 20px;
-            height: 16px;
-            width: 80px;
-            display: inline-block;
-        }
+        .inner-bg .emoji-1 { position: absolute; bottom: 15%; right: 5%; font-size: 52px; opacity: 0.4; transform: rotate(-15deg); }
+        .inner-bg .emoji-2 { position: absolute; top: 20%; left: 3%; font-size: 48px; opacity: 0.35; transform: rotate(10deg); }
+        .inner-bg .emoji-3 { position: absolute; top: 45%; right: 2%; font-size: 45px; opacity: 0.35; transform: rotate(5deg); }
+        .inner-bg .emoji-4 { position: absolute; bottom: 30%; left: 2%; font-size: 50px; opacity: 0.35; transform: rotate(-8deg); }
+        .inner-bg .emoji-5 { position: absolute; top: 60%; right: 8%; font-size: 42px; opacity: 0.35; transform: rotate(12deg); }
+        .inner-bg .emoji-6 { position: absolute; top: 75%; left: 8%; font-size: 44px; opacity: 0.35; transform: rotate(-5deg); }
+        .inner-bg .emoji-7 { position: absolute; top: 10%; right: 12%; font-size: 40px; opacity: 0.35; transform: rotate(20deg); }
+        .inner-bg .emoji-8 { position: absolute; bottom: 50%; left: 12%; font-size: 40px; opacity: 0.35; transform: rotate(-25deg); }
+        .inner-bg .emoji-center-1 { position: absolute; top: 35%; left: 25%; font-size: 38px; opacity: 0.3; transform: rotate(-10deg); }
+        .inner-bg .emoji-center-2 { position: absolute; top: 50%; right: 25%; font-size: 36px; opacity: 0.3; transform: rotate(15deg); }
+        .inner-bg .emoji-center-3 { position: absolute; top: 65%; left: 35%; font-size: 34px; opacity: 0.3; transform: rotate(-5deg); }
+        .inner-bg .emoji-center-4 { position: absolute; top: 25%; right: 35%; font-size: 35px; opacity: 0.3; transform: rotate(8deg); }
 
         .sticky-header {
             position: sticky;
@@ -74,27 +91,27 @@
             margin-bottom: 20px;
         }
         .header-bar {
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.5);
             backdrop-filter: blur(12px);
             border-radius: 60px;
             padding: 10px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         .dropdown-stages {
             position: relative;
             z-index: 200;
         }
         .dropdown-btn {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,200,80,0.3);
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,200,80,0.5);
             border-radius: 50px;
             padding: 8px 20px;
             font-size: 14px;
             font-weight: 700;
-            color: #aaa;
+            color: #0066cc;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -105,10 +122,10 @@
             top: 100%;
             left: 0;
             margin-top: 8px;
-            background: rgba(0,0,0,0.95);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(8px);
             border-radius: 24px;
-            border: 1px solid #333;
+            border: 1px solid #0066cc;
             min-width: 200px;
             overflow: hidden;
             opacity: 0;
@@ -117,6 +134,7 @@
             transition: 0.2s;
             z-index: 300;
             pointer-events: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         .dropdown-stages.open .dropdown-menu {
             opacity: 1;
@@ -126,41 +144,40 @@
         .stage-item {
             padding: 12px 18px;
             cursor: pointer;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        .stage-item:hover {
+            background: rgba(0,102,204,0.15);
+        }
         .stage-item .stage-name-drop {
             font-weight: 700;
-            color: #ccc;
+            color: #003366;
             font-size: 14px;
         }
         .stage-item .stage-date-drop {
             font-size: 12px;
-            color: #888;
+            color: #0066cc;
             font-weight: 500;
         }
-        .censored-date-small {
-            background: #4a4a4a;
-            border-radius: 12px;
-            height: 14px;
-            width: 70px;
-            display: inline-block;
-        }
 
-        /* КНОПКА УЧАСТВОВАТЬ — ОРИГИНАЛЬНЫЙ СТИЛЬ, НО СЕРАЯ (неактивная) */
         .join-btn {
-            background: linear-gradient(95deg, #6b7280, #4b5563);
+            background: linear-gradient(95deg, #ef4444, #f97316);
             border: none;
             border-radius: 50px;
             padding: 8px 24px;
             font-size: 14px;
             font-weight: 800;
-            color: #d1d5db;
-            cursor: default;
-            box-shadow: 0 2px 0 #374151;
-            transition: none;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 0 #a16207;
+        }
+        .join-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 0 #a16207;
         }
 
         .hero-title {
@@ -168,49 +185,30 @@
             margin-bottom: 35px;
             position: relative;
             z-index: 5;
+            transform: rotate(-2deg);
+            background: transparent;
         }
         .hero-title h1 {
             font-size: 56px;
             font-weight: 900;
-            background: linear-gradient(135deg, #888, #555);
+            background: linear-gradient(135deg, #FFF5E0, #FFDD88, #FF8844);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             letter-spacing: -1px;
+            transform: skewX(-3deg);
         }
         .year-box {
             display: inline-block;
             margin-top: 5px;
             padding: 6px 18px;
-            border: 2px solid #555;
+            border: 2px solid #FFAA44;
             border-radius: 40px;
             font-size: 18px;
             font-weight: 700;
-            color: #aaa;
-            background: rgba(0,0,0,0.5);
-        }
-
-        /* ПЛАШКА АНОНСА (НЕ ТРОГАТЬ) */
-        .announce-badge {
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(8px);
-            border-radius: 30px;
-            padding: 14px 20px;
-            text-align: center;
-            margin-bottom: 30px;
-            border: 1px dashed #ffaa33;
-        }
-        .announce-badge p {
-            color: #ffaa66;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        .announce-badge .big-text {
-            font-size: 20px;
-            font-weight: 800;
-            margin-top: 8px;
-            color: #ffcc88;
+            color: #FFFFFF;
+            background: rgba(0,0,0,0.3);
+            transform: rotate(1deg);
         }
 
         .stages-list {
@@ -218,37 +216,44 @@
             flex-direction: column;
             gap: 12px;
             margin-bottom: 35px;
+            position: relative;
+            z-index: 5;
         }
         .stage-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
         }
         .stage-left {
             display: flex;
             flex-direction: column;
-            gap: 6px;
         }
         .stage-number {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 800;
-            color: #ccc;
+            color: #FFFFFF;
         }
-        .stage-date-censored {
-            margin-top: 2px;
+        .stage-date {
+            font-size: 12px;
+            color: #FFD966;
         }
-        .info-btn-censored {
-            background: #333;
+        .info-btn {
+            background: #ef4444;
             border: none;
             border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 12px;
+            padding: 8px 20px;
+            font-size: 13px;
             font-weight: 600;
-            color: #888;
-            cursor: default;
-            box-shadow: none;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 0 #991b1b;
+        }
+        .info-btn:hover {
+            background: #dc2626;
+            transform: scale(1.02);
         }
 
         .footer-block {
@@ -256,53 +261,189 @@
             margin-top: 20px;
         }
         .footer-phrase {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
-            color: #777;
+            color: #FFFFFF;
             text-align: center;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .footer-year {
+            font-size: 26px;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
         }
         .footer-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             gap: 15px;
+            margin-bottom: 15px;
         }
         .footer-cloud {
-            background: #222;
+            background: white;
             border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
             padding: 10px 16px;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: 0.2s;
             flex: 1;
-            cursor: default;
+            cursor: pointer;
+        }
+        .footer-cloud:first-child { transform: rotate(-2deg); }
+        .footer-cloud:last-child { transform: rotate(3deg); }
+        .footer-cloud:hover {
+            transform: scale(1.02) rotate(0deg);
+            border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
         }
         .footer-cloud span {
             font-size: 10px;
             font-weight: 600;
-            color: #666;
+            color: #ff7700;
+            letter-spacing: 1px;
         }
         .footer-cloud .cloud-title {
             font-size: 14px;
             font-weight: 800;
-            color: #888;
+            color: #0a0a1a;
             margin-top: 4px;
         }
+        
+        /* ТРЕТЬЯ ТУЧКА (отзывы) */
+        .footer-single {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .footer-cloud-center {
+            background: white;
+            border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+            padding: 10px 24px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.2s;
+            transform: rotate(-1deg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .footer-cloud-center:hover {
+            transform: scale(1.02) rotate(0deg);
+            border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+        }
+        .footer-cloud-center span {
+            font-size: 10px;
+            font-weight: 600;
+            color: #ff7700;
+            letter-spacing: 1px;
+        }
+        .footer-cloud-center .cloud-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #0a0a1a;
+            margin-top: 4px;
+        }
+
         .footer-note {
             text-align: center;
             font-size: 9px;
-            color: rgba(255,255,255,0.3);
-            margin-top: 25px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 20px;
         }
-
-        /* ДОПОЛНИТЕЛЬНЫЕ СЕРЫЕ БЛОКИ */
-        .spacer-censored {
-            margin: 10px 0;
+        
+        /* МОДАЛЬНОЕ ОКНО ОТЗЫВОВ */
+        .reviews-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 50px 20px;
+        }
+        .reviews-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #0a1f2a;
+            border-radius: 48px;
+            padding: 28px 22px;
+            border: 1px solid #FFD966;
+        }
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .reviews-header h2 {
+            color: #FFE484;
+            font-size: 24px;
+        }
+        .close-reviews-btn {
+            background: #ef4444;
+            border: none;
+            border-radius: 40px;
+            padding: 6px 18px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .review-card {
+            background: rgba(255,255,240,0.1);
+            border-radius: 32px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+        .review-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #FFD966;
+        }
+        .review-content {
+            margin-top: 10px;
+            color: #FFF;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .review-link a {
+            color: #FFB347;
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .review-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
+<div class="outer-bg"></div>
+
 <div class="phone-frame">
+    <div class="inner-bg">
+        <div class="emoji-1">🍔</div>
+        <div class="emoji-2">🎧</div>
+        <div class="emoji-3">💵</div>
+        <div class="emoji-4">🎮</div>
+        <div class="emoji-5">🏆</div>
+        <div class="emoji-6">⭐</div>
+        <div class="emoji-7">🔥</div>
+        <div class="emoji-8">🎉</div>
+        <div class="emoji-center-1">🎈</div>
+        <div class="emoji-center-2">✨</div>
+        <div class="emoji-center-3">💎</div>
+        <div class="emoji-center-4">🌈</div>
+    </div>
+
     <div class="screen">
         <div class="sticky-header">
             <div class="header-bar">
@@ -312,30 +453,14 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <div class="stage-item" data-stage="1">
-                            <span class="stage-name-drop">1 ЭТАП</span>
-                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
-                        </div>
-                        <div class="stage-item" data-stage="2">
-                            <span class="stage-name-drop">2 ЭТАП</span>
-                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
-                        </div>
-                        <div class="stage-item" data-stage="3">
-                            <span class="stage-name-drop">3 ЭТАП</span>
-                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
-                        </div>
-                        <div class="stage-item" data-stage="4">
-                            <span class="stage-name-drop">4 ЭТАП</span>
-                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
-                        </div>
-                        <div class="stage-item" data-stage="5">
-                            <span class="stage-name-drop">5 ЭТАП</span>
-                            <span class="stage-date-drop"><span class="censored-date-small"></span></span>
-                        </div>
+                        <div class="stage-item" data-stage="1"><span class="stage-name-drop">1 ЭТАП</span><span class="stage-date-drop">1 ИЮЛЯ</span></div>
+                        <div class="stage-item" data-stage="2"><span class="stage-name-drop">2 ЭТАП</span><span class="stage-date-drop">8 ИЮЛЯ</span></div>
+                        <div class="stage-item" data-stage="3"><span class="stage-name-drop">3 ЭТАП</span><span class="stage-date-drop">16 ИЮЛЯ</span></div>
+                        <div class="stage-item" data-stage="4"><span class="stage-name-drop">4 ЭТАП</span><span class="stage-date-drop">24 ИЮЛЯ</span></div>
+                        <div class="stage-item" data-stage="5"><span class="stage-name-drop">5 ЭТАП</span><span class="stage-date-drop">31 ИЮЛЯ</span></div>
                     </div>
                 </div>
-                <!-- КНОПКА УЧАСТВОВАТЬ — ОРИГИНАЛЬНЫЙ СТИЛЬ, НО СЕРАЯ -->
-                <button class="join-btn" id="joinButton">УЧАСТВОВАТЬ</button>
+                <button class="join-btn" id="joinButtonMain">УЧАСТВОВАТЬ</button>
             </div>
         </div>
 
@@ -344,76 +469,82 @@
             <div class="year-box">2026</div>
         </div>
 
-        <!-- ПЛАШКА АНОНСА (НЕ ТРОГАЛИ) -->
-        <div class="announce-badge">
-            <p>⚡ ОФИЦИАЛЬНЫЙ АНОНС СКОРО ⚡</p>
-            <div class="big-text">ДАТЫ И ПРИЗЫ БУДУТ ОБЪЯВЛЕНЫ</div>
-            <div style="margin-top: 12px;"><span class="censored-block" style="width: 120px; height: 12px;"></span></div>
-        </div>
-
-        <!-- СПИСОК ЭТАПОВ — ДАТЫ ЗАМАЗАНЫ -->
         <div class="stages-list">
-            <div class="stage-row">
-                <div class="stage-left">
-                    <div class="stage-number">1 ЭТАП</div>
-                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
-                </div>
-                <button class="info-btn-censored">СКОРО</button>
-            </div>
-            <div class="stage-row">
-                <div class="stage-left">
-                    <div class="stage-number">2 ЭТАП</div>
-                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
-                </div>
-                <button class="info-btn-censored">СКОРО</button>
-            </div>
-            <div class="stage-row">
-                <div class="stage-left">
-                    <div class="stage-number">3 ЭТАП</div>
-                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
-                </div>
-                <button class="info-btn-censored">СКОРО</button>
-            </div>
-            <div class="stage-row">
-                <div class="stage-left">
-                    <div class="stage-number">4 ЭТАП</div>
-                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
-                </div>
-                <button class="info-btn-censored">СКОРО</button>
-            </div>
-            <div class="stage-row">
-                <div class="stage-left">
-                    <div class="stage-number">5 ЭТАП</div>
-                    <div class="stage-date-censored"><span class="censored-date-block"></span></div>
-                </div>
-                <button class="info-btn-censored">СКОРО</button>
-            </div>
+            <div class="stage-row"><div class="stage-left"><div class="stage-number">1 ЭТАП</div><div class="stage-date">1 ИЮЛЯ</div></div><button class="info-btn" data-stage="1">ИНФОРМАЦИЯ</button></div>
+            <div class="stage-row"><div class="stage-left"><div class="stage-number">2 ЭТАП</div><div class="stage-date">8 ИЮЛЯ</div></div><button class="info-btn" data-stage="2">ИНФОРМАЦИЯ</button></div>
+            <div class="stage-row"><div class="stage-left"><div class="stage-number">3 ЭТАП</div><div class="stage-date">16 ИЮЛЯ</div></div><button class="info-btn" data-stage="3">ИНФОРМАЦИЯ</button></div>
+            <div class="stage-row"><div class="stage-left"><div class="stage-number">4 ЭТАП</div><div class="stage-date">24 ИЮЛЯ</div></div><button class="info-btn" data-stage="4">ИНФОРМАЦИЯ</button></div>
+            <div class="stage-row"><div class="stage-left"><div class="stage-number">5 ЭТАП</div><div class="stage-date">31 ИЮЛЯ</div></div><button class="info-btn" data-stage="5">ИНФОРМАЦИЯ</button></div>
         </div>
-
-        <!-- ПРИЗОВОЙ ФОНД И ПОБЕДИТЕЛИ ПОЛНОСТЬЮ УБРАНЫ -->
 
         <div class="footer-block">
-            <div class="footer-phrase">ДО СТАРТА ОСТАЛОСЬ НЕДОЛГО</div>
+            <div class="footer-phrase">УВИДИМСЯ НА РОЗЫГРЫШЕ</div>
+            <div class="footer-year">2026</div>
             <div class="footer-row">
-                <div class="footer-cloud">
-                    <span>Генеральный партнёр</span>
-                    <div class="cloud-title">KIIT3K</div>
-                </div>
-                <div class="footer-cloud">
-                    <span>Правила участия</span>
-                    <div class="cloud-title">СКОРО</div>
+                <div class="footer-cloud" id="partnerCloud"><span>Генеральный партнёр</span><div class="cloud-title">KIIT3K</div></div>
+                <div class="footer-cloud" id="rulesCloud"><span>Правила участия</span><div class="cloud-title">Подробнее</div></div>
+            </div>
+            <!-- ТРЕТЬЯ ТУЧКА (ОТЗЫВЫ) -->
+            <div class="footer-single">
+                <div class="footer-cloud-center" id="reviewsCloud">
+                    <span>ОТЗЫВЫ</span>
+                    <div class="cloud-title">Победители</div>
                 </div>
             </div>
         </div>
+        <div class="footer-note">Лето 2026 · Розыгрыш</div>
+    </div>
+</div>
 
-        <div class="footer-note">
-            🔒 Информация засекречена до официального анонса 🔒
+<!-- МОДАЛЬНОЕ ОКНО С ОТЗЫВАМИ -->
+<div id="reviewsModal" class="reviews-modal">
+    <div class="reviews-container">
+        <div class="reviews-header">
+            <h2>ОТЗЫВЫ ПОБЕДИТЕЛЕЙ</h2>
+            <button class="close-reviews-btn" onclick="closeReviews()">✕ ЗАКРЫТЬ</button>
+        </div>
+        <div class="review-card">
+            <div class="review-title"> Лолик Индусов</div>
+            <div class="review-content">Я очень рад, сильно сомневался, что выиграю, но надеялся на лучшее — и вот, когда шёл доставлять заказ, всё равно не верил, но я действительно выиграл!</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title"> Карнэлия</div>
+            <div class="review-content">Всё отлично, деньги пришли сразу — просто всё хорошо, без проблем.</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title"> юра24_04</div>
+            <div class="review-content">Ребята, советую — каждый раз выигрываю и радуюсь, всем советую!</div>
+        </div>
+        <div class="review-card">
+            <div class="review-title"> KIIT3K</div>
+            <div class="review-content">Спасибо, что дарите эмоции и подарки: призы классные, условия простые, рад, что есть такие щедрые и открытые люди — пусть всё хорошее возвращается вам бумерангом!</div>
         </div>
     </div>
 </div>
 
 <script>
-    // ДРОПДАУН (чисто визуально)
+    // ========== ФОНОВАЯ МУЗЫКА (АВТОЗАПУСК ПРИ ПЕРВОМ КАСАНИИ) ==========
+    const audio = new Audio('summer-beat.mp3');
+    audio.loop = true;
+    audio.volume = 0.3;
+    
+    let musicStarted = false;
+    
+    function startMusic() {
+        if (musicStarted) return;
+        audio.play().then(() => {
+            musicStarted = true;
+        }).catch(e => console.log("Ошибка запуска музыки:", e));
+    }
+    
+    document.body.addEventListener('click', startMusic, { once: true });
+    document.body.addEventListener('touchstart', startMusic, { once: true });
+    const interactiveElements = document.querySelectorAll('button, .footer-cloud, .dropdown-btn, .info-btn, .join-btn, .footer-cloud-center');
+    interactiveElements.forEach(el => {
+        el.addEventListener('click', startMusic, { once: true });
+    });
+    
+    // ========== ДРОПДАУН ==========
     const dropdown = document.getElementById('dropdownStages');
     const dropdownBtn = document.getElementById('dropdownBtn');
     if (dropdownBtn) {
@@ -421,36 +552,57 @@
             e.stopPropagation();
             dropdown.classList.toggle('open');
         });
-    }
-    document.addEventListener('click', (e) => {
-        if (dropdown && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('open');
-        }
-    });
-
-    // ВСЕ КНОПКИ НЕАКТИВНЫ (только визуал)
-    const joinBtn = document.getElementById('joinButton');
-    if (joinBtn) {
-        joinBtn.addEventListener('click', () => {
-            alert('🔒 Регистрация временно закрыта. Следите за анонсом!');
+        document.addEventListener('click', (e) => {
+            if (dropdown && !dropdown.contains(e.target)) dropdown.classList.remove('open');
         });
     }
-    const infoBtns = document.querySelectorAll('.info-btn-censored');
-    infoBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('📅 Информация об этапе появится после официального анонса.');
-        });
-    });
-    const stageItemsDropdown = document.querySelectorAll('.stage-item');
-    stageItemsDropdown.forEach(item => {
+    
+    // КЛИК ПО ЭТАПАМ В ДРОПДАУНЕ
+    document.querySelectorAll('.stage-item').forEach(item => {
         item.addEventListener('click', () => {
-            alert('⏳ Даты этапов будут объявлены позже.');
+            const stageNum = item.getAttribute('data-stage');
+            window.location.href = `stage${stageNum}.html`;
         });
     });
-    const rulesCloud = document.querySelector('.footer-cloud:last-child');
-    if (rulesCloud) {
-        rulesCloud.addEventListener('click', () => {
-            alert('📜 Правила участия появятся вместе со стартом регистрации.');
+    
+    // КНОПКИ ИНФОРМАЦИЯ
+    document.querySelectorAll('.info-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const stage = btn.getAttribute('data-stage');
+            window.location.href = `stage${stage}.html`;
+        });
+    });
+    
+    // КНОПКА УЧАСТВОВАТЬ
+    const joinMainBtn = document.getElementById('joinButtonMain');
+    if (joinMainBtn) {
+        joinMainBtn.addEventListener('click', () => {
+            window.open('https://forms.gle/8aEpityWJpQz1yNm6', '_blank');
+        });
+    }
+    
+    // ТУЧКИ
+    const partnerCloud = document.getElementById('partnerCloud');
+    if (partnerCloud) partnerCloud.addEventListener('click', () => window.open('https://www.youtube.com/@KIIT3K', '_blank'));
+    const rulesCloud = document.getElementById('rulesCloud');
+    if (rulesCloud) rulesCloud.addEventListener('click', () => window.open('rules.html', '_blank'));
+    
+    // ОТЗЫВЫ (третья тучка)
+    const reviewsModal = document.getElementById('reviewsModal');
+    const reviewsCloudBtn = document.getElementById('reviewsCloud');
+    if (reviewsCloudBtn) {
+        reviewsCloudBtn.addEventListener('click', () => {
+            reviewsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    window.closeReviews = function() {
+        reviewsModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+    if (reviewsModal) {
+        reviewsModal.addEventListener('click', (e) => {
+            if (e.target === reviewsModal) window.closeReviews();
         });
     }
 </script>
