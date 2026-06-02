@@ -155,6 +155,15 @@
             font-weight: 500;
         }
 
+        /* СТИЛЬ ДЛЯ АКЦИИ В ДРОПДАУНЕ */
+        .stage-item.promo-item .stage-name-drop {
+            color: #ef4444;
+        }
+        .stage-item.promo-item .stage-date-drop {
+            color: #f97316;
+            font-weight: 700;
+        }
+
         .join-btn {
             background: linear-gradient(95deg, #ef4444, #f97316);
             border: none;
@@ -247,6 +256,18 @@
         .info-btn:hover {
             background: #dc2626;
             transform: scale(1.02);
+        }
+
+        /* СТИЛЬ ДЛЯ СТРОКИ АКЦИИ В ОСНОВНОМ СПИСКЕ */
+        .stage-row.promo-row .stage-number {
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stage-row.promo-row .info-btn {
+            background: linear-gradient(95deg, #ef4444, #f97316);
+            box-shadow: 0 2px 0 #a16207;
         }
 
         /* ФУТЕР С ТУЧКАМИ */
@@ -438,11 +459,31 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <div class="stage-item" data-stage="1"><span class="stage-name-drop">1 ЭТАП</span><span class="stage-date-drop">1 ИЮЛЯ</span></div>
-                        <div class="stage-item" data-stage="2"><span class="stage-name-drop">2 ЭТАП</span><span class="stage-date-drop">8 ИЮЛЯ</span></div>
-                        <div class="stage-item" data-stage="3"><span class="stage-name-drop">3 ЭТАП</span><span class="stage-date-drop">16 ИЮЛЯ</span></div>
-                        <div class="stage-item" data-stage="4"><span class="stage-name-drop">4 ЭТАП</span><span class="stage-date-drop">24 ИЮЛЯ</span></div>
-                        <div class="stage-item" data-stage="5"><span class="stage-name-drop">5 ЭТАП</span><span class="stage-date-drop">31 ИЮЛЯ</span></div>
+                        <!-- АКЦИЯ ПЕРЕД 1 ЭТАПОМ -->
+                        <div class="stage-item promo-item" data-page="promo">
+                            <span class="stage-name-drop">⚡ АКЦИЯ ⚡</span>
+                            <span class="stage-date-drop">-30%</span>
+                        </div>
+                        <div class="stage-item" data-stage="1">
+                            <span class="stage-name-drop">1 ЭТАП</span>
+                            <span class="stage-date-drop">1 ИЮЛЯ</span>
+                        </div>
+                        <div class="stage-item" data-stage="2">
+                            <span class="stage-name-drop">2 ЭТАП</span>
+                            <span class="stage-date-drop">8 ИЮЛЯ</span>
+                        </div>
+                        <div class="stage-item" data-stage="3">
+                            <span class="stage-name-drop">3 ЭТАП</span>
+                            <span class="stage-date-drop">16 ИЮЛЯ</span>
+                        </div>
+                        <div class="stage-item" data-stage="4">
+                            <span class="stage-name-drop">4 ЭТАП</span>
+                            <span class="stage-date-drop">24 ИЮЛЯ</span>
+                        </div>
+                        <div class="stage-item" data-stage="5">
+                            <span class="stage-name-drop">5 ЭТАП</span>
+                            <span class="stage-date-drop">31 ИЮЛЯ</span>
+                        </div>
                     </div>
                 </div>
                 <button class="join-btn" id="joinButtonMain">УЧАСТВОВАТЬ</button>
@@ -455,13 +496,52 @@
             <div class="year-box">2026</div>
         </div>
 
-        <!-- СПИСОК ЭТАПОВ -->
+        <!-- СПИСОК ЭТАПОВ + АКЦИЯ ПЕРВОЙ -->
         <div class="stages-list">
-            <div class="stage-row"><div class="stage-left"><div class="stage-number">1 ЭТАП</div><div class="stage-date">1 ИЮЛЯ</div></div><button class="info-btn" data-stage="1">ИНФОРМАЦИЯ</button></div>
-            <div class="stage-row"><div class="stage-left"><div class="stage-number">2 ЭТАП</div><div class="stage-date">8 ИЮЛЯ</div></div><button class="info-btn" data-stage="2">ИНФОРМАЦИЯ</button></div>
-            <div class="stage-row"><div class="stage-left"><div class="stage-number">3 ЭТАП</div><div class="stage-date">16 ИЮЛЯ</div></div><button class="info-btn" data-stage="3">ИНФОРМАЦИЯ</button></div>
-            <div class="stage-row"><div class="stage-left"><div class="stage-number">4 ЭТАП</div><div class="stage-date">24 ИЮЛЯ</div></div><button class="info-btn" data-stage="4">ИНФОРМАЦИЯ</button></div>
-            <div class="stage-row"><div class="stage-left"><div class="stage-number">5 ЭТАП</div><div class="stage-date">31 ИЮЛЯ</div></div><button class="info-btn" data-stage="5">ИНФОРМАЦИЯ</button></div>
+            <!-- АКЦИЯ -->
+            <div class="stage-row promo-row" data-page="promo">
+                <div class="stage-left">
+                    <div class="stage-number">⚡ АКЦИЯ ⚡</div>
+                    <div class="stage-date">2 ЧЕЛОВЕКА = -30%</div>
+                </div>
+                <button class="info-btn" id="promoBtn">ИНФОРМАЦИЯ</button>
+            </div>
+            <!-- 1 ЭТАП -->
+            <div class="stage-row">
+                <div class="stage-left">
+                    <div class="stage-number">1 ЭТАП</div>
+                    <div class="stage-date">1 ИЮЛЯ</div>
+                </div>
+                <button class="info-btn" data-stage="1">ИНФОРМАЦИЯ</button>
+            </div>
+            <div class="stage-row">
+                <div class="stage-left">
+                    <div class="stage-number">2 ЭТАП</div>
+                    <div class="stage-date">8 ИЮЛЯ</div>
+                </div>
+                <button class="info-btn" data-stage="2">ИНФОРМАЦИЯ</button>
+            </div>
+            <div class="stage-row">
+                <div class="stage-left">
+                    <div class="stage-number">3 ЭТАП</div>
+                    <div class="stage-date">16 ИЮЛЯ</div>
+                </div>
+                <button class="info-btn" data-stage="3">ИНФОРМАЦИЯ</button>
+            </div>
+            <div class="stage-row">
+                <div class="stage-left">
+                    <div class="stage-number">4 ЭТАП</div>
+                    <div class="stage-date">24 ИЮЛЯ</div>
+                </div>
+                <button class="info-btn" data-stage="4">ИНФОРМАЦИЯ</button>
+            </div>
+            <div class="stage-row">
+                <div class="stage-left">
+                    <div class="stage-number">5 ЭТАП</div>
+                    <div class="stage-date">31 ИЮЛЯ</div>
+                </div>
+                <button class="info-btn" data-stage="5">ИНФОРМАЦИЯ</button>
+            </div>
         </div>
 
         <!-- ТРИ ТУЧКИ -->
@@ -536,7 +616,12 @@
     document.querySelectorAll('.stage-item').forEach(item => {
         item.addEventListener('click', () => {
             const stageNum = item.getAttribute('data-stage');
-            window.location.href = `stage${stageNum}.html`;
+            const page = item.getAttribute('data-page');
+            if (page === 'promo') {
+                window.location.href = 'promo.html';
+            } else if (stageNum) {
+                window.location.href = `stage${stageNum}.html`;
+            }
         });
     });
 
@@ -544,9 +629,19 @@
     document.querySelectorAll('.info-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const stage = btn.getAttribute('data-stage');
-            window.location.href = `stage${stage}.html`;
+            if (stage) {
+                window.location.href = `stage${stage}.html`;
+            }
         });
     });
+
+    // КНОПКА АКЦИЯ (отдельная)
+    const promoBtn = document.getElementById('promoBtn');
+    if (promoBtn) {
+        promoBtn.addEventListener('click', () => {
+            window.location.href = 'promo.html';
+        });
+    }
 
     // КНОПКА УЧАСТВОВАТЬ
     const joinBtn = document.getElementById('joinButtonMain');
@@ -564,7 +659,7 @@
     const rulesCloud = document.getElementById('rulesCloud');
     if (rulesCloud) rulesCloud.addEventListener('click', () => window.open('rules.html', '_blank'));
 
-    // ОТЗЫВЫ (третья тучка)
+    // ОТЗЫВЫ
     const reviewsModal = document.getElementById('reviewsModal');
     const reviewsCloudBtn = document.getElementById('reviewsCloud');
     if (reviewsCloudBtn) {
