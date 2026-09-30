@@ -13,7 +13,6 @@
 html,body{height:100%;overscroll-behavior:none}
 body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:100vh;min-height:100dvh;display:flex;justify-content:center;align-items:center;padding:20px;color:#fff}
 
-/* ===== РАМКА ТЕЛЕФОНА ===== */
 .phone-frame{
     width:375px;height:812px;
     background:linear-gradient(160deg,#0a1030 0%,#0d1440 50%,#080c28 100%);
@@ -33,10 +32,9 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 @media (max-width:360px){
     .title-main{font-size:64px;letter-spacing:-2px}
     .stage-name{font-size:18px}
-    .gift{font-size:40px}
+    .gift{font-size:68px}
 }
 
-/* ===== ФОН: AURORA ===== */
 .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .aurora-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
 .blob-1{width:280px;height:280px;background:radial-gradient(circle,#3b82f6 0%,transparent 70%);top:-80px;left:-80px;animation:float1 18s ease-in-out infinite}
@@ -46,16 +44,13 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 @keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-40px) scale(1.1)}}
 @keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-50px) scale(1.2)}}
 
-/* ===== ФОН: СНЕГ ===== */
 .snow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
 .snowflake{position:absolute;top:-20px;color:#fff;user-select:none;pointer-events:none;animation:fall linear infinite;opacity:0}
 @keyframes fall{0%{transform:translateY(-20px) translateX(0) rotate(0deg);opacity:0}10%{opacity:var(--opacity,.7)}90%{opacity:var(--opacity,.7)}100%{transform:translateY(880px) translateX(var(--drift,0)) rotate(360deg);opacity:0}}
 
-/* ===== ЭКРАН ===== */
 .screen{position:relative;z-index:3;height:100%;overflow-y:auto;padding:50px 18px 220px;display:flex;flex-direction:column;-webkit-overflow-scrolling:touch}
 .screen::-webkit-scrollbar{display:none}.screen{scrollbar-width:none}
 
-/* ===== ЗАГОЛОВОК ===== */
 .title-section{text-align:center;margin-bottom:40px;position:relative;z-index:3}
 .title-label{font-size:10px;text-transform:uppercase;letter-spacing:5px;color:rgba(147,197,253,.75);font-weight:700;margin-bottom:14px;position:relative;display:inline-block;padding:0 30px}
 .title-label::before,.title-label::after{content:'';position:absolute;top:50%;width:20px;height:1px;background:linear-gradient(90deg,transparent,rgba(147,197,253,.5),transparent)}
@@ -64,7 +59,6 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 @keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
 .title-sub{font-size:12px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:3px;text-transform:uppercase}
 
-/* ===== ЭТАПЫ ===== */
 .stages-list{display:flex;flex-direction:column;gap:0;margin-bottom:26px;position:relative;z-index:3}
 .stage-row{display:flex;justify-content:space-between;align-items:center;padding:18px 4px;cursor:pointer;transition:.25s;text-decoration:none;color:inherit}
 .stage-row:hover{padding-left:10px}
@@ -76,21 +70,17 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .stage-date{font-size:11px;font-weight:600;color:rgba(147,197,253,.7);letter-spacing:1.5px;text-transform:uppercase}
 .stage-info-btn{font-size:10px;font-weight:800;color:rgba(147,197,253,.9);letter-spacing:1.5px;text-transform:uppercase;padding:7px 14px;background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.3);border-radius:100px;transition:.25s;white-space:nowrap}
 
-/* ===== ПОДАРКИ-ИКОНКИ ===== */
-.gifts-row{display:flex;justify-content:space-between;align-items:center;padding:0 30px;margin-bottom:20px;position:relative;z-index:3}
-.gift{font-size:46px;line-height:1;display:block;filter:drop-shadow(0 8px 12px rgba(0,0,0,.6)) drop-shadow(0 0 20px rgba(147,197,253,.5));transform-style:preserve-3d;animation:giftFloat 3s ease-in-out infinite;cursor:pointer;transition:.25s;user-select:none}
+.gifts-row{display:flex;justify-content:space-between;align-items:center;padding:0 18px;margin-bottom:20px;position:relative;z-index:3}
+.gift{font-size:80px;line-height:1;display:block;filter:drop-shadow(0 8px 12px rgba(0,0,0,.6)) drop-shadow(0 0 20px rgba(147,197,253,.5));transform-style:preserve-3d;animation:giftFloat 3s ease-in-out infinite;cursor:pointer;transition:.25s;user-select:none}
 .gift-left{transform:rotate(-18deg) rotateY(15deg)}
-.gift-right{transform:rotate(18deg) rotateY(-15deg);animation:giftFloat 3s ease-in-out infinite,hourglassFlip 10s ease-in-out infinite}
+.gift-right{transform:rotate(18deg) rotateY(-15deg)}
 .gift-left:hover,.gift-left:active{filter:drop-shadow(0 12px 18px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(147,197,253,.9));transform:rotate(-18deg) rotateY(15deg) scale(1.1)}
 .gift-right:hover,.gift-right:active{filter:drop-shadow(0 12px 18px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(250,204,21,.9));transform:rotate(18deg) rotateY(-15deg) scale(1.1)}
 @keyframes giftFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
-@keyframes hourglassFlip{0%,45%{rotate:0deg}50%,95%{rotate:180deg}100%{rotate:360deg}}
 
-/* ===== СУГРОБ СНИЗУ ===== */
 .snowdrift{position:absolute;bottom:0;left:0;right:0;height:200px;z-index:5;pointer-events:none;overflow:hidden}
 .snowdrift-svg{position:absolute;bottom:0;left:0;width:100%;height:100%;display:block;pointer-events:none}
 
-/* ===== КНОПКИ ВНИЗУ ===== */
 .drift-buttons{position:absolute;bottom:35px;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:9px;padding:0 26px;z-index:50;pointer-events:none}
 .drift-btn{flex:1;max-width:96px;padding:13px 6px;background:rgba(255,255,255,.98);border-radius:16px;text-align:center;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;box-shadow:0 8px 20px rgba(0,0,0,.35),0 0 0 1px rgba(147,197,253,.4),inset 0 -3px 0 rgba(147,197,253,.3);position:relative;user-select:none;pointer-events:auto;touch-action:manipulation;-webkit-user-select:none;-webkit-touch-callout:none}
 @media (hover:hover){
@@ -109,19 +99,17 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .drift-btn-main .drift-btn-icon{font-size:17px}
 .drift-btn-main .drift-btn-title{color:#fff;font-size:12px}
 
-/* ===== ПАНЕЛИ ===== */
 .panel-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:100;opacity:0;visibility:hidden;transition:.3s;border-radius:46px}
 .panel-overlay.active{opacity:1;visibility:visible}
-.panel{position:absolute;left:16px;right:16px;bottom:0;max-height:85%;background:linear-gradient(180deg,#101838 0%,#0a1030 100%);border-radius:32px 32px 46px 46px;border-top:1px solid rgba(147,197,253,.3);padding:20px 20px 40px;z-index:101;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.2,.64,1);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.panel{position:absolute;left:16px;right:16px;bottom:0;max-height:85%;background:linear-gradient(180deg,#101838 0%,#0a1030 100%);border-radius:32px 32px 46px 46px;border-top:1px solid rgba(147,197,253,.3);padding:20px 20px 40px;z-index:101;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.2,.64,1);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .panel.active{transform:translateY(0)}
 .panel::-webkit-scrollbar{display:none}.panel{scrollbar-width:none}
-.panel-handle{width:40px;height:4px;background:rgba(147,197,253,.3);border-radius:2px;margin:0 auto 18px}
+.panel-handle{width:40px;height:4px;background:rgba(147,197,253,.3);border-radius:2px;margin:0 auto 18px;cursor:grab;touch-action:none}
 .panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .panel-title{font-size:16px;font-weight:900;letter-spacing:1px;color:#fff}
 .panel-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(147,197,253,.2);display:flex;justify-content:center;align-items:center;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:.2s;touch-action:manipulation}
 .panel-close:hover{background:rgba(239,68,68,.3);border-color:rgba(239,68,68,.5);color:#fff}
 
-/* ===== ПРОВЕРКА УЧАСТНИКА ===== */
 .check-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:18px;text-align:center}
 .input-group{margin-bottom:12px}
 .input-label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(147,197,253,.8);margin-bottom:6px;padding-left:4px}
@@ -156,7 +144,6 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .result-error-text{font-size:13px;font-weight:700;color:#f87171;margin-bottom:4px}
 .result-error-desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5}
 
-/* ===== FAQ ===== */
 .faq-item{background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.12);border-radius:18px;padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:.25s;touch-action:manipulation}
 .faq-item:hover{background:rgba(147,197,253,.1);border-color:rgba(147,197,253,.3)}
 .faq-question{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;font-weight:800;color:#fff;line-height:1.4;pointer-events:none}
@@ -165,14 +152,12 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease,margin-top .3s ease;font-size:12.5px;color:rgba(255,255,255,.65);line-height:1.5}
 .faq-item.open .faq-answer{max-height:300px;margin-top:12px}
 
-/* ===== ОТЗЫВЫ ===== */
 .review-item{background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.12);border-radius:18px;padding:14px 16px;margin-bottom:10px}
 .review-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .review-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;justify-content:center;align-items:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0}
 .review-name{font-size:13px;font-weight:800;color:#fff}
 .review-text{font-size:12.5px;color:rgba(255,255,255,.65);line-height:1.5}
 
-/* ===== КОЛЕСО ===== */
 .wheel-desc{font-size:12px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:18px;text-align:center}
 .wheel-desc strong{color:#facc15;font-weight:800}
 .wheel-form{margin-bottom:16px}
@@ -182,8 +167,6 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .wheel{position:relative;width:100%;height:100%;border-radius:50%;background:conic-gradient(#3b82f6 0deg 45deg,#8b5cf6 45deg 90deg,#06b6d4 90deg 135deg,#ec4899 135deg 180deg,#22c55e 180deg 225deg,#f59e0b 225deg 270deg,#ef4444 270deg 315deg,#facc15 315deg 360deg);box-shadow:0 0 0 6px rgba(255,255,255,.15),0 0 0 10px rgba(15,23,42,.8),0 15px 40px rgba(0,0,0,.6),inset 0 0 60px rgba(0,0,0,.3);transition:transform 5s cubic-bezier(.15,.9,.25,1);transform:rotate(0deg)}
 .wheel-segment{position:absolute;top:50%;left:50%;width:90px;height:24px;margin-left:-45px;margin-top:-12px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.5);pointer-events:none;transform-origin:45px 12px;white-space:nowrap}
 .wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#0a1030 0%,#101838 100%);border:3px solid rgba(255,255,255,.9);display:flex;justify-content:center;align-items:center;font-size:30px;z-index:5;box-shadow:0 6px 15px rgba(0,0,0,.5),inset 0 2px 4px rgba(255,255,255,.15)}
-.wheel-center .hg{display:inline-block;animation:hourglassRotate 10s ease-in-out infinite}
-@keyframes hourglassRotate{0%,45%{rotate:0deg}50%,95%{rotate:180deg}100%{rotate:360deg}}
 .wheel-spin-btn{display:block;width:100%;padding:15px;background:linear-gradient(135deg,#f59e0b 0%,#ef4444 100%);border:none;border-radius:14px;font-family:inherit;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#fff;cursor:pointer;box-shadow:0 10px 25px rgba(245,158,11,.45),inset 0 1px 0 rgba(255,255,255,.2);transition:.2s;margin-top:6px;touch-action:manipulation}
 .wheel-spin-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 15px 30px rgba(245,158,11,.6),inset 0 1px 0 rgba(255,255,255,.3)}
 .wheel-spin-btn:active:not(:disabled){transform:translateY(0)}
@@ -226,15 +209,15 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 </div>
 
 <div class="stages-list">
-<a href="stage 1.html" class="stage-row">
+<a href="stage1.html" class="stage-row">
 <div class="stage-left"><div class="stage-name">1 ЭТАП</div><div class="stage-date">5 января · 20:00 МСК</div></div>
 <div class="stage-info-btn">Информация</div>
 </a>
-<a href="stage 2.html" class="stage-row">
+<a href="stage2.html" class="stage-row">
 <div class="stage-left"><div class="stage-name">2 ЭТАП</div><div class="stage-date">15 января · 20:00 МСК</div></div>
 <div class="stage-info-btn">Информация</div>
 </a>
-<a href="stage 3.html" class="stage-row">
+<a href="stage3.html" class="stage-row">
 <div class="stage-left"><div class="stage-name">3 ЭТАП</div><div class="stage-date">25 января · 20:00 МСК</div></div>
 <div class="stage-info-btn">Информация</div>
 </a>
@@ -242,7 +225,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 
 <div class="gifts-row">
 <div class="gift gift-left" onclick="openPanel('reviews')">💬</div>
-<div class="gift gift-right" onclick="openPanel('wheel')">⏳</div>
+<div class="gift gift-right" onclick="openPanel('wheel')">🎟️</div>
 </div>
 </div>
 
@@ -263,7 +246,6 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="drift-btn" onclick="openPanel('faq')"><span class="drift-btn-icon">❓</span><div class="drift-btn-title">FAQ</div></div>
 </div>
 
-<!-- ПРОВЕРКА -->
 <div class="panel-overlay" id="overlay-check" onclick="closePanel('check')"></div>
 <div class="panel" id="panel-check">
 <div class="panel-handle"></div>
@@ -274,7 +256,6 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="result-area" id="resultArea"></div>
 </div>
 
-<!-- FAQ -->
 <div class="panel-overlay" id="overlay-faq" onclick="closePanel('faq')"></div>
 <div class="panel" id="panel-faq">
 <div class="panel-handle"></div>
@@ -288,7 +269,6 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Можно ли подать несколько заявок?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">1 человек = 1 заявка. Несколько заявок от одного лица не принимаются.</div></div>
 </div>
 
-<!-- ОТЗЫВЫ -->
 <div class="panel-overlay" id="overlay-reviews" onclick="closePanel('reviews')"></div>
 <div class="panel" id="panel-reviews">
 <div class="panel-handle"></div>
@@ -299,7 +279,6 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="review-item"><div class="review-head"><div class="review-avatar">К</div><div class="review-name">КИТЗК</div></div><div class="review-text">Призы классные, условия простые, спасибо за эмоции</div></div>
 </div>
 
-<!-- КОЛЕСО -->
 <div class="panel-overlay" id="overlay-wheel" onclick="closePanel('wheel')"></div>
 <div class="panel" id="panel-wheel">
 <div class="panel-handle"></div>
@@ -321,7 +300,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="wheel-wrapper" id="wheelWrapper">
 <div class="wheel-pointer"></div>
 <div class="wheel" id="wheel"></div>
-<div class="wheel-center"><span class="hg">⏳</span></div>
+<div class="wheel-center"><span>🎟️</span></div>
 </div>
 
 <button class="wheel-spin-btn" id="spinBtn" onclick="spinWheel()">КРУТИТЬ</button>
@@ -330,14 +309,8 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 </div>
 
 <script>
-/* ============================================================
-   URL GOOGLE APPS SCRIPT
-   ============================================================ */
 const API_URL = 'https://script.google.com/macros/s/AKfycbxuLISgO1iyCr-RyyqZx_o8biUuagmVPj1XstRAnsNxRCZrSYRyqBEPaDRh5H9X0L9wSg/exec';
 
-/* ============================================================
-   УЧАСТНИКИ
-   ============================================================ */
 const participantsData = [
     {
         static: "111-111", name: "Тест",
@@ -349,9 +322,6 @@ const participantsData = [
     },
 ];
 
-/* ============================================================
-   ПРИЗЫ КОЛЕСА
-   ============================================================ */
 const wheelPrizes = [
     { label: "50 ₽",  emoji: "💰" },
     { label: "Пусто", emoji: "❄️" },
@@ -363,14 +333,10 @@ const wheelPrizes = [
     { label: "Пусто", emoji: "❄️" }
 ];
 
-/* ============================================================
-   РАСПИСАНИЕ: СРЕДА 15:00–18:00 МСК
-   ============================================================ */
 const DROP_DAY = 3;
 const DROP_START_HOUR = 15;
 const DROP_END_HOUR = 18;
 
-/* ========== СНЕГОПАД ========== */
 (function(){
     const c = document.getElementById('snow');
     const f = ['❄','❅','❆','•','·'];
@@ -388,7 +354,6 @@ const DROP_END_HOUR = 18;
     }
 })();
 
-/* ========== ПАНЕЛИ ========== */
 function openPanel(name){
     document.getElementById('overlay-'+name).classList.add('active');
     document.getElementById('panel-'+name).classList.add('active');
@@ -399,7 +364,42 @@ function closePanel(name){
     document.getElementById('panel-'+name).classList.remove('active');
 }
 
-/* ========== МАСКА СТАТИКА XXX-XXX ========== */
+/* ========== СВАЙП ВНИЗ ПО ПАНЕЛИ ========== */
+(function(){
+    document.querySelectorAll('.panel').forEach(panel => {
+        let startY = 0, deltaY = 0, dragging = false;
+        panel.addEventListener('touchstart', e => {
+            if(panel.scrollTop > 0) return;
+            startY = e.touches[0].clientY;
+            deltaY = 0;
+            dragging = true;
+            panel.style.transition = 'none';
+        }, {passive:true});
+        panel.addEventListener('touchmove', e => {
+            if(!dragging) return;
+            deltaY = e.touches[0].clientY - startY;
+            if(deltaY < 0) deltaY = 0;
+            panel.style.transform = `translateY(${deltaY}px)`;
+        }, {passive:true});
+        panel.addEventListener('touchend', () => {
+            if(!dragging) return;
+            dragging = false;
+            panel.style.transition = '';
+            panel.style.transform = '';
+            if(deltaY > 80){
+                const name = panel.id.replace('panel-','');
+                closePanel(name);
+            }
+        });
+        panel.addEventListener('touchcancel', () => {
+            if(!dragging) return;
+            dragging = false;
+            panel.style.transition = '';
+            panel.style.transform = '';
+        });
+    });
+})();
+
 function applyMask(input){
     input.addEventListener('input', e=>{
         let v = e.target.value.replace(/\D/g,'');
@@ -409,9 +409,6 @@ function applyMask(input){
 }
 applyMask(document.getElementById('inputStatic'));
 
-/* ============================================================
-   ПРОВЕРКА УЧАСТНИКА
-   ============================================================ */
 function checkParticipant(){
     const staticVal = document.getElementById('inputStatic').value.trim();
     const resultArea = document.getElementById('resultArea');
@@ -485,9 +482,6 @@ function checkParticipant(){
     resultArea.classList.add('show');
 }
 
-/* ============================================================
-   КОЛЕСО
-   ============================================================ */
 const wheel = document.getElementById('wheel');
 const spinBtn = document.getElementById('spinBtn');
 const wheelResult = document.getElementById('wheelResult');
@@ -546,7 +540,6 @@ function getFormattedTime(msk){
            String(msk.getSeconds()).padStart(2,'0');
 }
 
-/* ========== ГЕНЕРАЦИЯ КОДА (6 СИМВОЛОВ) ========== */
 function generateCode(){
     const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
     let code = '';
@@ -554,7 +547,6 @@ function generateCode(){
     return code;
 }
 
-/* ========== РИСУЕМ СЕКТОРА КОЛЕСА ========== */
 (function(){
     const a = 360 / wheelPrizes.length;
     wheelPrizes.forEach((p, i)=>{
@@ -566,7 +558,6 @@ function generateCode(){
     });
 })();
 
-/* ========== ПРОВЕРКА СТАТИКА НА СЕРВЕРЕ ========== */
 async function checkStaticOnServer(staticVal){
     if(staticVal.length !== 7) return;
     spinBtn.textContent = 'ПРОВЕРКА...';
@@ -584,7 +575,6 @@ async function checkStaticOnServer(staticVal){
     }
 }
 
-/* ========== ОБНОВЛЕНИЕ UI КОЛЕСА ========== */
 function updateWheelUI(){
     if(!isDropTime()){
         wheelForm.classList.add('hidden');
@@ -632,7 +622,6 @@ function updateWheelUI(){
     spinBtn.textContent = 'КРУТИТЬ';
 }
 
-/* ========== ВВОД СТАТИКА ДЛЯ КОЛЕСА (маска + проверка) ========== */
 wheelStaticInput.addEventListener('input', function(e){
     let v = e.target.value.replace(/\D/g,'');
     if(v.length>3) v = v.slice(0,3)+'-'+v.slice(3,6);
@@ -649,7 +638,6 @@ wheelStaticInput.addEventListener('input', function(e){
     }
 });
 
-/* ========== КРУЧЕНИЕ КОЛЕСА ========== */
 async function spinWheel(){
     if(isSpinning) return;
     if(!isDropTime()) return;
@@ -677,7 +665,6 @@ async function spinWheel(){
     const winTime = getFormattedTime(msk);
     const code = isEmpty ? null : generateCode();
 
-    /* Запись в Google Sheets (не ждём ответа) */
     try {
         await fetch(API_URL, {
             method: 'POST',
