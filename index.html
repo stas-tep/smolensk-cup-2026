@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<title>Зима 2026 · Розыгрыш</title>
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;color:#fff}
+
+.phone-frame{width:375px;height:812px;background:linear-gradient(160deg,#0a1030 0%,#0d1440 50%,#080c28 100%);border-radius:46px;box-shadow:0 0 0 2px rgba(147,197,253,.15),0 0 0 8px rgba(0,0,0,.6),0 40px 80px rgba(0,0,0,.7),0 0 100px rgba(59,130,246,.15);position:relative;overflow:hidden}
+
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aurora-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.blob-1{width:280px;height:280px;background:radial-gradient(circle,#3b82f6 0%,transparent 70%);top:-80px;left:-80px;animation:float1 18s ease-in-out infinite}
+.blob-2{width:320px;height:320px;background:radial-gradient(circle,#8b5cf6 0%,transparent 70%);top:300px;right:-120px;animation:float2 22s ease-in-out infinite}
+.blob-3{width:260px;height:260px;background:radial-gradient(circle,#06b6d4 0%,transparent 70%);bottom:-60px;left:20%;animation:float3 20s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,60px) scale(1.15)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-40px) scale(1.1)}}
+@keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-50px) scale(1.2)}}
+
+.snow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.snowflake{position:absolute;top:-20px;color:#fff;user-select:none;pointer-events:none;animation:fall linear infinite;opacity:0}
+@keyframes fall{0%{transform:translateY(-20px) translateX(0) rotate(0deg);opacity:0}10%{opacity:var(--opacity,.7)}90%{opacity:var(--opacity,.7)}100%{transform:translateY(830px) translateX(var(--drift,0)) rotate(360deg);opacity:0}}
+
+.screen{position:relative;z-index:2;height:100%;overflow-y:auto;padding:50px 18px 220px;display:flex;flex-direction:column}
+.screen::-webkit-scrollbar{display:none}.screen{scrollbar-width:none}
+
+.title-section{text-align:center;margin-bottom:40px;position:relative;z-index:3}
+.title-label{font-size:10px;text-transform:uppercase;letter-spacing:5px;color:rgba(147,197,253,.75);font-weight:700;margin-bottom:14px;position:relative;display:inline-block;padding:0 30px}
+.title-label::before,.title-label::after{content:'';position:absolute;top:50%;width:20px;height:1px;background:linear-gradient(90deg,transparent,rgba(147,197,253,.5),transparent)}
+.title-label::before{left:0}.title-label::after{right:0}
+.title-main{font-size:76px;font-weight:900;line-height:.9;letter-spacing:-3px;background:linear-gradient(110deg,#fff 0%,#bfdbfe 25%,#93c5fd 50%,#fff 75%,#bfdbfe 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 6s linear infinite;filter:drop-shadow(0 6px 40px rgba(147,197,253,.5));margin-bottom:16px}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.title-sub{font-size:12px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:3px;text-transform:uppercase}
+
+.stages-list{display:flex;flex-direction:column;gap:0;margin-bottom:26px;position:relative;z-index:3}
+.stage-row{display:flex;justify-content:space-between;align-items:center;padding:18px 4px;cursor:pointer;transition:.25s;text-decoration:none;color:inherit}
+.stage-row:hover{padding-left:10px}
+.stage-row:hover .stage-name{color:#93c5fd;text-shadow:0 0 20px rgba(147,197,253,.6)}
+.stage-row:hover .stage-info-btn{background:rgba(147,197,253,.2);border-color:rgba(147,197,253,.6);color:#fff}
+.stage-left{display:flex;flex-direction:column;gap:4px}
+.stage-name{font-size:20px;font-weight:900;color:#fff;letter-spacing:1px;text-transform:uppercase;transition:.25s}
+.stage-date{font-size:11px;font-weight:600;color:rgba(147,197,253,.7);letter-spacing:1.5px;text-transform:uppercase}
+.stage-info-btn{font-size:10px;font-weight:800;color:rgba(147,197,253,.9);letter-spacing:1.5px;text-transform:uppercase;padding:7px 14px;background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.3);border-radius:100px;transition:.25s;white-space:nowrap}
+
+.candy-divider{display:flex;align-items:center;justify-content:center;height:24px;pointer-events:none}
+.candy-divider::before,.candy-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(147,197,253,.2),transparent)}
+.candy-icon{font-size:18px;margin:0 12px;filter:drop-shadow(0 0 8px rgba(239,68,68,.5));animation:candySpin 8s linear infinite;display:inline-block;line-height:1}
+@keyframes candySpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+
+.gifts-row{display:flex;justify-content:space-between;align-items:center;padding:0 30px;margin-bottom:20px;position:relative;z-index:3}
+.gift{font-size:46px;line-height:1;display:block;filter:drop-shadow(0 8px 12px rgba(0,0,0,.6)) drop-shadow(0 0 20px rgba(147,197,253,.5));transform-style:preserve-3d;animation:giftFloat 3s ease-in-out infinite;cursor:pointer;transition:.25s;user-select:none}
+.gift-left{transform:rotate(-18deg) rotateY(15deg)}
+.gift-right{transform:rotate(18deg) rotateY(-15deg);animation:giftFloat 3s ease-in-out infinite,hourglassFlip 10s ease-in-out infinite}
+.gift-left:hover{filter:drop-shadow(0 12px 18px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(147,197,253,.9));transform:rotate(-18deg) rotateY(15deg) scale(1.1)}
+.gift-right:hover{filter:drop-shadow(0 12px 18px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(250,204,21,.9));transform:rotate(18deg) rotateY(-15deg) scale(1.1)}
+@keyframes giftFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes hourglassFlip{0%,45%{rotate:0deg}50%,95%{rotate:180deg}100%{rotate:360deg}}
+
+.snowdrift{position:absolute;bottom:0;left:0;right:0;height:200px;z-index:5;pointer-events:none;overflow:hidden}
+.snowdrift-svg{position:absolute;bottom:0;left:0;width:100%;height:100%;display:block}
+
+.drift-buttons{position:absolute;bottom:35px;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:9px;padding:0 26px;pointer-events:auto;z-index:10}
+.drift-btn{flex:1;max-width:96px;padding:13px 6px;background:rgba(255,255,255,.98);border-radius:16px;text-align:center;cursor:pointer;transition:.3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 20px rgba(0,0,0,.35),0 0 0 1px rgba(147,197,253,.4),inset 0 -3px 0 rgba(147,197,253,.3);position:relative;user-select:none}
+.drift-btn:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 15px 30px rgba(59,130,246,.5),0 0 0 2px rgba(147,197,253,.8),inset 0 -3px 0 rgba(147,197,253,.5)}
+.drift-btn:active{transform:translateY(-2px) scale(1.02)}
+.drift-btn-icon{font-size:15px;display:block;margin-bottom:4px}
+.drift-btn-title{font-size:11px;font-weight:900;color:#0a1030;letter-spacing:.3px}
+.drift-btn-main{max-width:108px;padding:14px 6px;background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);box-shadow:0 10px 25px rgba(59,130,246,.55),0 0 0 2px rgba(255,255,255,.9),inset 0 -3px 0 rgba(0,0,0,.15),inset 0 2px 0 rgba(255,255,255,.25);animation:mainPulse 2.5s ease-in-out infinite}
+@keyframes mainPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.drift-btn-main::before{content:'';position:absolute;inset:-5px;border-radius:22px;background:radial-gradient(circle,rgba(59,130,246,.35) 0%,transparent 70%);z-index:-1;animation:mainGlow 2.5s ease-in-out infinite}
+@keyframes mainGlow{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.1)}}
+.drift-btn-main:hover{transform:translateY(-5px) scale(1.08);box-shadow:0 20px 40px rgba(59,130,246,.7),0 0 0 2px rgba(255,255,255,1),inset 0 -3px 0 rgba(0,0,0,.15)}
+.drift-btn-main:active{transform:translateY(-2px) scale(1.02)}
+.drift-btn-main .drift-btn-icon{font-size:17px}
+.drift-btn-main .drift-btn-title{color:#fff;font-size:12px}
+
+.panel-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:100;opacity:0;visibility:hidden;transition:.3s;border-radius:46px}
+.panel-overlay.active{opacity:1;visibility:visible}
+.panel{position:absolute;left:16px;right:16px;bottom:0;max-height:85%;background:linear-gradient(180deg,#101838 0%,#0a1030 100%);border-radius:32px 32px 46px 46px;border-top:1px solid rgba(147,197,253,.3);padding:20px 20px 40px;z-index:101;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.2,.64,1);overflow-y:auto}
+.panel.active{transform:translateY(0)}
+.panel::-webkit-scrollbar{display:none}.panel{scrollbar-width:none}
+.panel-handle{width:40px;height:4px;background:rgba(147,197,253,.3);border-radius:2px;margin:0 auto 18px}
+.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.panel-title{font-size:16px;font-weight:900;letter-spacing:1px;color:#fff}
+.panel-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(147,197,253,.2);display:flex;justify-content:center;align-items:center;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:.2s}
+.panel-close:hover{background:rgba(239,68,68,.3);border-color:rgba(239,68,68,.5);color:#fff}
+
+.check-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:18px;text-align:center}
+.input-group{margin-bottom:12px}
+.input-label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(147,197,253,.8);margin-bottom:6px;padding-left:4px}
+.input-field{width:100%;padding:14px 16px;background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.2);border-radius:14px;color:#fff;font-size:15px;font-weight:700;font-family:inherit;letter-spacing:1px;transition:.2s;outline:none}
+.input-field::placeholder{color:rgba(255,255,255,.3);font-weight:600}
+.input-field:focus{border-color:rgba(147,197,253,.6);background:rgba(147,197,253,.1);box-shadow:0 0 0 3px rgba(147,197,253,.15)}
+
+.check-btn{width:100%;padding:15px;background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);border:none;border-radius:14px;font-family:inherit;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#fff;cursor:pointer;box-shadow:0 10px 25px rgba(59,130,246,.45),inset 0 1px 0 rgba(255,255,255,.2);transition:.2s;margin-top:6px}
+.check-btn:hover{transform:translateY(-2px);box-shadow:0 15px 30px rgba(59,130,246,.6),inset 0 1px 0 rgba(255,255,255,.3)}
+.check-btn:active{transform:translateY(0)}
+
+.result-area{margin-top:18px;display:none}
+.result-area.show{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.result-header{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(147,197,253,.08);border:1px solid rgba(147,197,253,.2);border-radius:18px;margin-bottom:12px}
+.result-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;justify-content:center;align-items:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0}
+.result-info{display:flex;flex-direction:column;gap:3px;text-align:left}
+.result-name{font-size:15px;font-weight:900;color:#fff}
+.result-static{font-size:11px;font-weight:700;color:rgba(147,197,253,.8);letter-spacing:1px;font-family:'Courier New',monospace}
+
+.result-stage{padding:12px 14px;background:rgba(147,197,253,.05);border:1px solid rgba(147,197,253,.12);border-radius:14px;margin-bottom:8px}
+.result-stage-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.result-stage-name{font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px}
+.result-stage-status{font-size:10px;font-weight:800;padding:3px 10px;border-radius:100px;letter-spacing:.8px}
+.status-playing{background:rgba(59,130,246,.2);color:#93c5fd;border:1px solid rgba(59,130,246,.4)}
+.status-won{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.4)}
+.status-lost{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.4)}
+.status-waiting{background:rgba(147,197,253,.15);color:#93c5fd;border:1px solid rgba(147,197,253,.3)}
+
+.result-stage-info{font-size:11px;color:rgba(255,255,255,.55);line-height:1.5}
+.result-stage-info strong{color:#facc15;font-weight:800}
+.result-stage-info .paid{color:#4ade80;font-weight:800}
+
+.result-error{padding:16px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:18px;text-align:center}
+.result-error-icon{font-size:32px;margin-bottom:8px}
+.result-error-text{font-size:13px;font-weight:700;color:#f87171;margin-bottom:4px}
+.result-error-desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5}
+
+.faq-item{background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.12);border-radius:18px;padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:.25s}
+.faq-item:hover{background:rgba(147,197,253,.1);border-color:rgba(147,197,253,.3)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;font-weight:800;color:#fff;line-height:1.4}
+.faq-arrow{color:rgba(147,197,253,.7);font-size:16px;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease,margin-top .3s ease;font-size:12.5px;color:rgba(255,255,255,.65);line-height:1.5}
+.faq-item.open .faq-answer{max-height:300px;margin-top:12px}
+
+.review-item{background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.12);border-radius:18px;padding:14px 16px;margin-bottom:10px}
+.review-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.review-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;justify-content:center;align-items:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0}
+.review-name{font-size:13px;font-weight:800;color:#fff}
+.review-text{font-size:12.5px;color:rgba(255,255,255,.65);line-height:1.5}
+
+.wheel-wrapper{position:relative;width:260px;height:260px;margin:0 auto 20px}
+.wheel-pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:24px solid #facc15;z-index:10;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5))}
+.wheel{position:relative;width:100%;height:100%;border-radius:50%;background:conic-gradient(#3b82f6 0deg 45deg,#8b5cf6 45deg 90deg,#06b6d4 90deg 135deg,#ec4899 135deg 180deg,#22c55e 180deg 225deg,#f59e0b 225deg 270deg,#ef4444 270deg 315deg,#facc15 315deg 360deg);box-shadow:0 0 0 6px rgba(255,255,255,.15),0 0 0 10px rgba(15,23,42,.8),0 15px 40px rgba(0,0,0,.6),inset 0 0 60px rgba(0,0,0,.3);transition:transform 5s cubic-bezier(.15,.9,.25,1);transform:rotate(0deg)}
+.wheel-segment{position:absolute;top:50%;left:50%;width:90px;height:24px;margin-left:-45px;margin-top:-12px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.5);pointer-events:none;transform-origin:45px 12px;white-space:nowrap}
+.wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#0a1030 0%,#101838 100%);border:3px solid rgba(255,255,255,.9);display:flex;justify-content:center;align-items:center;font-size:30px;z-index:5;box-shadow:0 6px 15px rgba(0,0,0,.5),inset 0 2px 4px rgba(255,255,255,.15)}
+.wheel-center .hg{display:inline-block;animation:hourglassRotate 10s ease-in-out infinite}
+@keyframes hourglassRotate{0%,45%{rotate:0deg}50%,95%{rotate:180deg}100%{rotate:360deg}}
+
+.wheel-form{margin-bottom:16px}
+.wheel-form.hidden{display:none}
+.wheel-spin-btn{display:block;width:100%;padding:15px;background:linear-gradient(135deg,#f59e0b 0%,#ef4444 100%);border:none;border-radius:14px;font-family:inherit;font-size:13px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#fff;cursor:pointer;box-shadow:0 10px 25px rgba(245,158,11,.45),inset 0 1px 0 rgba(255,255,255,.2);transition:.2s;margin-top:6px}
+.wheel-spin-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 15px 30px rgba(245,158,11,.6),inset 0 1px 0 rgba(255,255,255,.3)}
+.wheel-spin-btn:active:not(:disabled){transform:translateY(0)}
+.wheel-spin-btn:disabled{opacity:.5;cursor:not-allowed;background:linear-gradient(135deg,#6b7280 0%,#4b5563 100%);box-shadow:none}
+
+.wheel-locked{text-align:center;padding:22px 16px;background:rgba(147,197,253,.06);border:1px dashed rgba(147,197,253,.3);border-radius:16px;margin-bottom:16px}
+.wheel-locked.hidden{display:none}
+.wheel-locked-icon{font-size:42px;margin-bottom:12px}
+.wheel-locked-text{font-size:13px;font-weight:900;color:#93c5fd;margin-bottom:8px;letter-spacing:.5px;line-height:1.4}
+.wheel-locked-sub{font-size:11.5px;color:rgba(255,255,255,.65);line-height:1.6}
+.wheel-locked-sub strong{color:#facc15;font-weight:800}
+.wheel-locked-static{display:inline-block;margin-top:10px;padding:6px 14px;background:rgba(147,197,253,.1);border:1px solid rgba(147,197,253,.3);border-radius:100px;font-family:'Courier New',monospace;font-size:12px;font-weight:800;color:#93c5fd;letter-spacing:1.5px}
+
+.wheel-result{margin-top:18px;padding:18px 16px;background:linear-gradient(135deg,rgba(250,204,21,.15) 0%,rgba(245,158,11,.1) 100%);border:1px solid rgba(250,204,21,.4);border-radius:18px;text-align:center;display:none;animation:resultPop .5s cubic-bezier(.34,1.56,.64,1)}
+.wheel-result.show{display:block}
+@keyframes resultPop{0%{opacity:0;transform:scale(.7)}100%{opacity:1;transform:scale(1)}}
+.wheel-result-icon{font-size:42px;margin-bottom:8px}
+.wheel-result-text{font-size:20px;font-weight:900;color:#facc15;margin-bottom:4px;letter-spacing:1px}
+.wheel-result-desc{font-size:12px;color:rgba(255,255,255,.7);line-height:1.5;margin-bottom:14px}
+
+.win-info{padding:16px 14px;background:rgba(0,0,0,.45);border:2px dashed rgba(250,204,21,.6);border-radius:16px;margin-top:10px;text-align:left}
+.win-info-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(250,204,21,.8);margin-bottom:12px;text-align:center}
+.win-info-code{font-family:'Courier New',monospace;font-size:26px;font-weight:900;color:#facc15;letter-spacing:4px;text-shadow:0 0 20px rgba(250,204,21,.7);user-select:all;text-align:center;margin-bottom:14px;padding:10px;background:rgba(250,204,21,.08);border-radius:10px}
+.win-info-rows{display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px dashed rgba(255,255,255,.15)}
+.win-info-row{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.win-info-row .label{color:rgba(255,255,255,.55);font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:10px}
+.win-info-row .value{color:#fff;font-weight:900;font-family:'Courier New',monospace;letter-spacing:1px;font-size:13px}
+.win-info-hint{margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.15);font-size:10px;color:rgba(255,255,255,.6);line-height:1.4;text-align:center}
+.win-info-hint strong{color:#facc15;font-weight:800}
+
+.wheel-desc{font-size:12px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:18px;text-align:center}
+.wheel-desc strong{color:#facc15;font-weight:800}
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+<div class="aurora"><div class="aurora-blob blob-1"></div><div class="aurora-blob blob-2"></div><div class="aurora-blob blob-3"></div></div>
+<div class="snow" id="snow"></div>
+
+<div class="screen">
+<div class="title-section">
+<div class="title-label">Розыгрыш призов</div>
+<div class="title-main">ЗИМА</div>
+<div class="title-sub">Небольшой зимний розыгрыш</div>
+</div>
+
+<div class="stages-list">
+<a href="stage.html?n=1" class="stage-row">
+<div class="stage-left"><div class="stage-name">1 ЭТАП</div><div class="stage-date">5 января · 20:00 МСК</div></div>
+<div class="stage-info-btn">Информация</div>
+</a>
+<div class="candy-divider"><span class="candy-icon">🍬</span></div>
+<a href="stage.html?n=2" class="stage-row">
+<div class="stage-left"><div class="stage-name">2 ЭТАП</div><div class="stage-date">15 января · 20:00 МСК</div></div>
+<div class="stage-info-btn">Информация</div>
+</a>
+<div class="candy-divider"><span class="candy-icon">🍬</span></div>
+<a href="stage.html?n=3" class="stage-row">
+<div class="stage-left"><div class="stage-name">3 ЭТАП</div><div class="stage-date">25 января · 20:00 МСК</div></div>
+<div class="stage-info-btn">Информация</div>
+</a>
+</div>
+
+<div class="gifts-row">
+<div class="gift gift-left" onclick="openPanel('reviews')">💬</div>
+<div class="gift gift-right" onclick="openPanel('wheel')">⏳</div>
+</div>
+</div>
+
+<div class="snowdrift">
+<svg class="snowdrift-svg" viewBox="0 0 375 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="snowGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="60%" stop-color="#e0ecff"/><stop offset="100%" stop-color="#bfdbfe"/></linearGradient>
+<linearGradient id="snowGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#dbeafe"/></linearGradient>
+</defs>
+<path d="M0,100 C60,60 120,90 180,70 C240,50 300,80 375,60 L375,200 L0,200 Z" fill="url(#snowGrad2)" opacity=".7"/>
+<path d="M0,120 C50,95 110,130 180,110 C250,90 310,120 375,105 L375,200 L0,200 Z" fill="url(#snowGrad)"/>
+</svg>
+
+<div class="drift-buttons">
+<div class="drift-btn" onclick="openPanel('check')"><span class="drift-btn-icon">🔍</span><div class="drift-btn-title">Проверить</div></div>
+<div class="drift-btn drift-btn-main" onclick="window.open('https://forms.gle/8aEpityWJpQz1yNm6','_blank')"><span class="drift-btn-icon">▶</span><div class="drift-btn-title">Играть</div></div>
+<div class="drift-btn" onclick="openPanel('faq')"><span class="drift-btn-icon">❓</span><div class="drift-btn-title">FAQ</div></div>
+</div>
+</div>
+
+<!-- ПРОВЕРКА -->
+<div class="panel-overlay" id="overlay-check" onclick="closePanel('check')"></div>
+<div class="panel" id="panel-check">
+<div class="panel-handle"></div>
+<div class="panel-header"><div class="panel-title">ПРОВЕРКА УЧАСТНИКА</div><div class="panel-close" onclick="closePanel('check')">✕</div></div>
+<div class="check-desc">Введите свой статик, чтобы узнать статус участия</div>
+<div class="input-group"><label class="input-label">Статик</label><input type="text" class="input-field" id="inputStatic" placeholder="XXX-XXX" maxlength="7" inputmode="numeric" autocomplete="off"></div>
+<button class="check-btn" onclick="checkParticipant()">Проверить</button>
+<div class="result-area" id="resultArea"></div>
+</div>
+
+<!-- FAQ -->
+<div class="panel-overlay" id="overlay-faq" onclick="closePanel('faq')"></div>
+<div class="panel" id="panel-faq">
+<div class="panel-handle"></div>
+<div class="panel-header"><div class="panel-title">ЧАСТЫЕ ВОПРОСЫ</div><div class="panel-close" onclick="closePanel('faq')">✕</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Сколько стоит участие?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Стоимость участия — 100 ₽ за одну заявку. Сумма может повышаться ближе к дате проведения этапа.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Какой призовой фонд?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Общий призовой фонд — 2 500 ₽. Разыгрывается на 3 этапах.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Когда проходят розыгрыши?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">5, 15 и 25 января 2026 года в 20:00 МСК.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Когда работает колесо фортуны?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Колесо доступно только по средам с 15:00 до 18:00 (МСК). Крутить можно один раз за это время.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Как работает колесо фортуны?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Введите свой статик и крутите колесо. При выигрыше вы получите уникальный код — сделайте скриншот и отправьте модератору.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Как получить приз?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Организатор связывается с вами и запрашивает реквизиты карты или СБП. Выплата в течение 10 дней.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Можно ли подать несколько заявок?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">1 человек = 1 заявка. Несколько заявок от одного лица не принимаются.</div></div>
+</div>
+
+<!-- ОТЗЫВЫ -->
+<div class="panel-overlay" id="overlay-reviews" onclick="closePanel('reviews')"></div>
+<div class="panel" id="panel-reviews">
+<div class="panel-handle"></div>
+<div class="panel-header"><div class="panel-title">ОТЗЫВЫ</div><div class="panel-close" onclick="closePanel('reviews')">✕</div></div>
+<div class="review-item"><div class="review-head"><div class="review-avatar">Л</div><div class="review-name">Лолик Индусов</div></div><div class="review-text">Очень рад, сомневался, но выиграл во время доставки</div></div>
+<div class="review-item"><div class="review-head"><div class="review-avatar">К</div><div class="review-name">Карнэлия</div></div><div class="review-text">Всё отлично, деньги пришли сразу</div></div>
+<div class="review-item"><div class="review-head"><div class="review-avatar">Ю</div><div class="review-name">юра24_04</div></div><div class="review-text">Каждый раз выигрываю и радуюсь, всем советую</div></div>
+<div class="review-item"><div class="review-head"><div class="review-avatar">К</div><div class="review-name">КИТЗК</div></div><div class="review-text">Призы классные, условия простые, спасибо за эмоции</div></div>
+</div>
+
+<!-- КОЛЕСО -->
+<div class="panel-overlay" id="overlay-wheel" onclick="closePanel('wheel')"></div>
+<div class="panel" id="panel-wheel">
+<div class="panel-handle"></div>
+<div class="panel-header"><div class="panel-title">КОЛЕСО ФОРТУНЫ</div><div class="panel-close" onclick="closePanel('wheel')">✕</div></div>
+
+<div class="wheel-desc">Колесо работает <strong>по средам с 15:00 до 18:00</strong> (МСК)</div>
+
+<div class="wheel-form" id="wheelForm">
+<div class="input-group"><label class="input-label">Ваш статик</label><input type="text" class="input-field" id="wheelStaticInput" placeholder="XXX-XXX" maxlength="7" inputmode="numeric" autocomplete="off"></div>
+</div>
+
+<div class="wheel-locked hidden" id="wheelLocked">
+<div class="wheel-locked-icon" id="wheelLockedIcon">🕐</div>
+<div class="wheel-locked-text" id="wheelLockedText">КОЛЕСО ДОСТУПНО ПО СРЕДАМ</div>
+<div class="wheel-locked-sub" id="wheelLockedSub"></div>
+<div class="wheel-locked-static" id="wheelLockedStatic" style="display:none;">XXX-XXX</div>
+</div>
+
+<div class="wheel-wrapper" id="wheelWrapper">
+<div class="wheel-pointer"></div>
+<div class="wheel" id="wheel"></div>
+<div class="wheel-center"><span class="hg">⏳</span></div>
+</div>
+
+<button class="wheel-spin-btn" id="spinBtn" onclick="spinWheel()">КРУТИТЬ</button>
+<div class="wheel-result" id="wheelResult"></div>
+</div>
+</div>
+
+<script>
+/* ============================================================
+   URL GOOGLE APPS SCRIPT
+   ============================================================ */
+const API_URL = 'https://script.google.com/macros/s/AKfycbxuLISgO1iyCr-RyyqZx_o8biUuagmVPj1XstRAnsNxRCZrSYRyqBEPaDRh5H9X0L9wSg/exec';
+
+/* ============================================================
+   УЧАСТНИКИ (ты сам заносишь сюда)
+   ============================================================ */
+const participantsData = [
+    {
+        static: "111-111", name: "Тест",
+        stages: [
+            { stage: 1, playing: true, won: false, note: "Не выиграл, участвует дальше" },
+            { stage: 2, playing: true, won: true, prize: "800 ₽", paid: true, paidDate: "20.01.2026" },
+            { stage: 3, playing: true, won: false, note: "Розыгрыш впереди" }
+        ]
+    },
+    {
+];
+
+/* ============================================================
+   ПРИЗЫ КОЛЕСА
+   ============================================================ */
+const wheelPrizes = [
+    { label: "50 ₽",  emoji: "💰" },
+    { label: "Пусто", emoji: "❄️" },
+    { label: "100 ₽", emoji: "💵" },
+    { label: "Пусто", emoji: "❄️" },
+    { label: "200 ₽", emoji: "🎁" },
+    { label: "Пусто", emoji: "❄️" },
+    { label: "300 ₽", emoji: "💎" },
+    { label: "Пусто", emoji: "❄️" }
+];
+
+/* ============================================================
+   РАСПИСАНИЕ: СРЕДА 15:00–18:00 МСК
+   ============================================================ */
+const DROP_DAY = 3;
+const DROP_START_HOUR = 15;
+const DROP_END_HOUR = 18;
+
+/* ========== СНЕГОПАД ========== */
+(function(){
+    const c = document.getElementById('snow');
+    const f = ['❄','❅','❆','•','·'];
+    for(let i=0;i<35;i++){
+        const el=document.createElement('div');
+        el.className='snowflake';
+        el.textContent=f[Math.floor(Math.random()*f.length)];
+        el.style.left=Math.random()*100+'%';
+        el.style.fontSize=(Math.random()*10+8)+'px';
+        el.style.animationDuration=(Math.random()*8+6)+'s';
+        el.style.animationDelay=(Math.random()*8)+'s';
+        el.style.setProperty('--opacity',(Math.random()*0.5+0.3).toFixed(2));
+        el.style.setProperty('--drift',(Math.random()*80-40)+'px');
+        c.appendChild(el);
+    }
+})();
+
+/* ========== ПЛАШКИ ========== */
+function openPanel(name){
+    document.getElementById('overlay-'+name).classList.add('active');
+    document.getElementById('panel-'+name).classList.add('active');
+    if(name==='wheel') updateWheelUI();
+}
+function closePanel(name){
+    document.getElementById('overlay-'+name).classList.remove('active');
+    document.getElementById('panel-'+name).classList.remove('active');
+}
+
+/* ========== МАСКА ========== */
+function applyMask(input){
+    input.addEventListener('input', e=>{
+        let v = e.target.value.replace(/\D/g,'');
+        if(v.length>3) v = v.slice(0,3)+'-'+v.slice(3,6);
+        e.target.value = v;
+    });
+}
+applyMask(document.getElementById('inputStatic'));
+applyMask(document.getElementById('wheelStaticInput'));
+
+/* ============================================================
+   ПРОВЕРКА УЧАСТНИКА (локальные данные)
+   ============================================================ */
+function checkParticipant(){
+    const staticVal = document.getElementById('inputStatic').value.trim();
+    const resultArea = document.getElementById('resultArea');
+
+    const showError = (icon, title, desc) => {
+        resultArea.innerHTML = `
+            <div class="result-error">
+                <div class="result-error-icon">${icon}</div>
+                <div class="result-error-text">${title}</div>
+                <div class="result-error-desc">${desc}</div>
+            </div>`;
+        resultArea.classList.add('show');
+    };
+
+    if(!staticVal) return showError('⚠️', 'Введите статик', 'Формат: XXX-XXX');
+    if(staticVal.length < 7) return showError('⚠️', 'Неверный формат статика', 'Формат: XXX-XXX');
+
+    const participant = participantsData.find(p => p.static === staticVal);
+    if(!participant){
+        return showError('🔍', 'Участник не найден',
+            'Проверьте правильность статика.<br>Если данные верны — возможно, ваша заявка ещё не одобрена.');
+    }
+
+    const firstLetter = participant.name.charAt(0).toUpperCase();
+    let stagesHtml = '';
+
+    participant.stages.forEach(stage => {
+        let statusClass = 'status-waiting';
+        let statusText = 'Ожидание';
+
+        if(stage.won === true){
+            statusClass = 'status-won'; statusText = '🏆 Выиграл';
+        } else if(stage.playing === true){
+            statusClass = 'status-playing'; statusText = '🎯 Участвует';
+        } else if(stage.playing === false && stage.won === false){
+            statusClass = 'status-lost'; statusText = '❌ Не выиграл';
+        }
+
+        let info = '';
+        if(stage.won === true && stage.prize){
+            info = `
+                <div class="result-stage-info">
+                    Приз: <strong>${stage.prize}</strong>
+                    ${stage.paid
+                        ? `<br>Выплата: <span class="paid">✅ ${stage.paidDate || 'Выплачено'}</span>`
+                        : `<br>Выплата: <span style="color:#facc15;">⏳ Ожидается</span>`}
+                </div>`;
+        } else {
+            info = `<div class="result-stage-info">${stage.note || 'Розыгрыш впереди'}</div>`;
+        }
+
+        stagesHtml += `
+            <div class="result-stage">
+                <div class="result-stage-top">
+                    <div class="result-stage-name">Этап ${stage.stage}</div>
+                    <div class="result-stage-status ${statusClass}">${statusText}</div>
+                </div>
+                ${info}
+            </div>`;
+    });
+
+    resultArea.innerHTML = `
+        <div class="result-header">
+            <div class="result-avatar">${firstLetter}</div>
+            <div class="result-info">
+                <div class="result-name">${participant.name}</div>
+                <div class="result-static">${participant.static}</div>
+            </div>
+        </div>
+        ${stagesHtml}`;
+    resultArea.classList.add('show');
+}
+
+/* ============================================================
+   КОЛЕСО
+   ============================================================ */
+const wheel = document.getElementById('wheel');
+const spinBtn = document.getElementById('spinBtn');
+const wheelResult = document.getElementById('wheelResult');
+const wheelForm = document.getElementById('wheelForm');
+const wheelLocked = document.getElementById('wheelLocked');
+const wheelLockedIcon = document.getElementById('wheelLockedIcon');
+const wheelLockedText = document.getElementById('wheelLockedText');
+const wheelLockedSub = document.getElementById('wheelLockedSub');
+const wheelLockedStatic = document.getElementById('wheelLockedStatic');
+const wheelStaticInput = document.getElementById('wheelStaticInput');
+const wheelWrapper = document.getElementById('wheelWrapper');
+
+let isSpinning = false;
+let currentRotation = 0;
+let currentCheck = { static:'', alreadySpun:false };
+let checkTimeout = null;
+
+function getMskDate(){
+    const n = new Date();
+    return new Date(n.getTime() + (n.getTimezoneOffset()*60000) + 3*3600000);
+}
+function isDropTime(){
+    const m = getMskDate();
+    return m.getDay() === DROP_DAY && m.getHours() >= DROP_START_HOUR && m.getHours() < DROP_END_HOUR;
+}
+function getNextDropDay(){
+    const m = getMskDate();
+    const t = m.getDay();
+    let d = (DROP_DAY - t + 7) % 7;
+    if(d === 0 && m.getHours() >= DROP_END_HOUR) d = 7;
+    const n = new Date(m);
+    n.setDate(n.getDate() + d);
+    return String(n.getDate()).padStart(2,'0') + '.' + String(n.getMonth()+1).padStart(2,'0');
+}
+function getTimeUntilDrop(){
+    const m = getMskDate();
+    const t = m.getDay(), h = m.getHours();
+    if(t === DROP_DAY && h < DROP_START_HOUR){
+        const diff = (DROP_START_HOUR*60) - (h*60 + m.getMinutes());
+        return `сегодня через <strong>${Math.floor(diff/60)} ч ${diff%60} мин</strong>`;
+    }
+    let d = (DROP_DAY - t + 7) % 7;
+    if(d === 0 && h >= DROP_END_HOUR) d = 7;
+    if(d === 1) return 'завтра';
+    if(d >= 2 && d <= 4) return `через <strong>${d} дня</strong>`;
+    return `через <strong>${d} дней</strong>`;
+}
+function getFormattedDate(msk){
+    return String(msk.getDate()).padStart(2,'0') + '.' +
+           String(msk.getMonth()+1).padStart(2,'0') + '.' +
+           msk.getFullYear();
+}
+function getFormattedTime(msk){
+    return String(msk.getHours()).padStart(2,'0') + ':' +
+           String(msk.getMinutes()).padStart(2,'0') + ':' +
+           String(msk.getSeconds()).padStart(2,'0');
+}
+
+/* ========== ГЕНЕРАЦИЯ КОДА (6 СИМВОЛОВ) ========== */
+function generateCode(){
+    const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+    let code = '';
+    for(let i=0;i<6;i++){
+        code += chars[Math.floor(Math.random()*chars.length)];
+    }
+    return code;
+}
+
+/* ========== СЕКТОРА ========== */
+(function(){
+    const a = 360 / wheelPrizes.length;
+    wheelPrizes.forEach((p, i)=>{
+        const s = document.createElement('div');
+        s.className = 'wheel-segment';
+        s.style.transform = `rotate(${i*a + a/2}deg) translateY(-95px)`;
+        s.textContent = p.label;
+        wheel.appendChild(s);
+    });
+})();
+
+/* ========== ПРОВЕРКА ЧЕРЕЗ СЕРВЕР ========== */
+async function checkStaticOnServer(staticVal){
+    if(staticVal.length !== 7) return;
+    spinBtn.textContent = 'ПРОВЕРКА...';
+    spinBtn.disabled = true;
+    try {
+        const url = `${API_URL}?action=check&static=${encodeURIComponent(staticVal)}&t=${Date.now()}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        currentCheck = { static: staticVal, alreadySpun: data.alreadySpun || false };
+        updateWheelUI();
+    } catch(e){
+        console.error(e);
+        currentCheck = { static: staticVal, alreadySpun: false };
+        updateWheelUI();
+    }
+}
+
+/* ========== ОБНОВЛЕНИЕ UI ========== */
+function updateWheelUI(){
+    if(!isDropTime()){
+        wheelForm.classList.add('hidden');
+        wheelLocked.classList.remove('hidden');
+        wheelWrapper.style.display = 'none';
+        spinBtn.style.display = 'none';
+        wheelResult.classList.remove('show');
+        wheelLockedIcon.textContent = '🕐';
+        wheelLockedText.textContent = 'КОЛЕСО ДОСТУПНО ПО СРЕДАМ';
+        wheelLockedSub.innerHTML = `с <strong>15:00</strong> до <strong>18:00</strong> (МСК)<br>Следующая среда: <strong>${getNextDropDay()}</strong><br><span style="opacity:0.7;font-size:10.5px;">Откроется ${getTimeUntilDrop()}</span>`;
+        wheelLockedStatic.style.display = 'none';
+        return;
+    }
+
+    wheelWrapper.style.display = '';
+    spinBtn.style.display = '';
+    wheelLockedStatic.style.display = 'inline-block';
+
+    const staticVal = wheelStaticInput.value.trim();
+    const hasStatic = staticVal.length === 7;
+
+    if(!hasStatic){
+        wheelForm.classList.remove('hidden');
+        wheelLocked.classList.add('hidden');
+        wheelResult.classList.remove('show');
+        spinBtn.disabled = true;
+        spinBtn.textContent = 'ВВЕДИТЕ СТАТИК';
+        return;
+    }
+
+    if(currentCheck.alreadySpun && currentCheck.static === staticVal){
+        wheelForm.classList.add('hidden');
+        wheelLocked.classList.remove('hidden');
+        wheelLockedStatic.textContent = staticVal;
+        wheelLockedIcon.textContent = '🔒';
+        wheelLockedText.textContent = 'ВЫ УЖЕ КРУТИЛИ';
+        wheelLockedSub.innerHTML = `Возвращайтесь в следующую среду!<br>Следующий дроп: <strong>${getNextDropDay()}</strong>`;
+        return;
+    }
+
+    wheelForm.classList.remove('hidden');
+    wheelLocked.classList.add('hidden');
+    wheelResult.classList.remove('show');
+    spinBtn.disabled = false;
+    spinBtn.textContent = 'КРУТИТЬ';
+}
+
+/* ========== ВВОД ========== */
+wheelStaticInput.addEventListener('input', function(e){
+    let v = e.target.value.replace(/\D/g,'');
+    if(v.length>3) v = v.slice(0,3)+'-'+v.slice(3,6);
+    e.target.value = v;
+    updateWheelUI();
+
+    clearTimeout(checkTimeout);
+    if(v.length === 7){
+        spinBtn.textContent = 'ПРОВЕРКА...';
+        spinBtn.disabled = true;
+        checkTimeout = setTimeout(()=> checkStaticOnServer(v), 400);
+    } else {
+        currentCheck = { static:'', alreadySpun:false };
+    }
+});
+
+/* ========== КРУЧЕНИЕ ========== */
+async function spinWheel(){
+    if(isSpinning) return;
+    if(!isDropTime()) return;
+
+    const staticVal = wheelStaticInput.value.trim();
+    if(staticVal.length !== 7) return;
+    if(currentCheck.alreadySpun && currentCheck.static === staticVal) return;
+
+    isSpinning = true;
+    spinBtn.disabled = true;
+    wheelResult.classList.remove('show');
+
+    const prizeIndex = Math.floor(Math.random() * wheelPrizes.length);
+    const prize = wheelPrizes[prizeIndex];
+    const isEmpty = prize.label === "Пусто";
+
+    const segAngle = 360 / wheelPrizes.length;
+    const targetAngle = 360 * 8 - (prizeIndex * segAngle + segAngle / 2);
+    const randomOffset = (Math.random() - 0.5) * (segAngle - 10);
+    currentRotation += targetAngle + randomOffset;
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+    const msk = getMskDate();
+    const winDate = getFormattedDate(msk);
+    const winTime = getFormattedTime(msk);
+    const code = isEmpty ? null : generateCode();
+
+    // Записываем в Google Sheets (не ждём ответа)
+    try {
+        await fetch(API_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                static: staticVal,
+                prize: isEmpty ? 'Пусто' : prize.label,
+                code: code || ''
+            })
+        });
+    } catch(e){
+        console.error('Ошибка записи:', e);
+    }
+
+    currentCheck = { static: staticVal, alreadySpun: true };
+
+    setTimeout(()=>{
+        isSpinning = false;
+        wheelResult.innerHTML = `
+            <div class="wheel-result-icon">${isEmpty ? '😔' : prize.emoji}</div>
+            <div class="wheel-result-text">${isEmpty ? 'Пусто' : prize.label}</div>
+            <div class="wheel-result-desc">
+                ${isEmpty ? 'В следующий раз обязательно повезёт!' : 'Ваш приз ждёт подтверждения!'}
+            </div>
+            ${!isEmpty ? `
+                <div class="win-info">
+                    <div class="win-info-label">🏆 ВЫ ВЫИГРАЛИ</div>
+                    <div class="win-info-code">${code}</div>
+                    <div class="win-info-rows">
+                        <div class="win-info-row">
+                            <span class="label">Статик</span>
+                            <span class="value">${staticVal}</span>
+                        </div>
+                        <div class="win-info-row">
+                            <span class="label">Дата</span>
+                            <span class="value">${winDate}</span>
+                        </div>
+                        <div class="win-info-row">
+                            <span class="label">Время</span>
+                            <span class="value">${winTime}</span>
+                        </div>
+                    </div>
+                    <div class="win-info-hint">
+                        <strong>Сделайте скриншот</strong> этого экрана<br>и отправьте модератору
+                    </div>
+                </div>` : ''}`;
+        wheelResult.classList.add('show');
+        updateWheelUI();
+    }, 5100);
+}
+</script>
+</body>
+</html>
