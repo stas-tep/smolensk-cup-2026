@@ -1,15 +1,45 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#05060f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
 <title>Зима 2026 · Розыгрыш</title>
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;color:#fff}
+html,body{height:100%;overscroll-behavior:none}
+body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:100vh;min-height:100dvh;display:flex;justify-content:center;align-items:center;padding:20px;color:#fff}
 
-.phone-frame{width:375px;height:812px;background:linear-gradient(160deg,#0a1030 0%,#0d1440 50%,#080c28 100%);border-radius:46px;box-shadow:0 0 0 2px rgba(147,197,253,.15),0 0 0 8px rgba(0,0,0,.6),0 40px 80px rgba(0,0,0,.7),0 0 100px rgba(59,130,246,.15);position:relative;overflow:hidden}
+/* ===== РАМКА ТЕЛЕФОНА (только для десктопа) ===== */
+.phone-frame{
+    width:375px;
+    height:812px;
+    background:linear-gradient(160deg,#0a1030 0%,#0d1440 50%,#080c28 100%);
+    border-radius:46px;
+    box-shadow:0 0 0 2px rgba(147,197,253,.15),0 0 0 8px rgba(0,0,0,.6),0 40px 80px rgba(0,0,0,.7),0 0 100px rgba(59,130,246,.15);
+    position:relative;
+    overflow:hidden;
+}
+
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+@media (max-width: 480px), (max-height: 900px) and (orientation: portrait) {
+    body{padding:0;align-items:stretch;min-height:100dvh;height:100dvh}
+    .phone-frame{width:100%;height:100dvh;min-height:100dvh;border-radius:0;box-shadow:none;padding-top:env(safe-area-inset-top)}
+    .panel-overlay{border-radius:0}
+    .panel{left:0;right:0;border-radius:28px 28px 0 0;padding-bottom:calc(40px + env(safe-area-inset-bottom));max-height:88dvh}
+    .screen{padding:24px 18px 240px;padding-top:calc(24px + env(safe-area-inset-top))}
+    .drift-buttons{bottom:calc(20px + env(safe-area-inset-bottom))}
+    .snowdrift{height:180px}
+}
+
+@media (max-width: 360px) {
+    .title-main{font-size:64px;letter-spacing:-2px}
+    .stage-name{font-size:18px}
+    .gift{font-size:40px}
+}
 
 .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .aurora-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
@@ -20,11 +50,136 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 @keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-40px) scale(1.1)}}
 @keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-50px) scale(1.2)}}
 
-.snow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.snowflake{position:absolute;top:-20px;color:#fff;user-select:none;pointer-events:none;animation:fall linear infinite;opacity:0}
-@keyframes fall{0%{transform:translateY(-20px) translateX(0) rotate(0deg);opacity:0}10%{opacity:var(--opacity,.7)}90%{opacity:var(--opacity,.7)}100%{transform:translateY(830px) translateX(var(--drift,0)) rotate(360deg);opacity:0}}
+/* ===== ЁЛКА НА ФОНЕ ===== */
+.xmas-tree-bg{
+    position:absolute;
+    bottom:110px;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:340px;
+    height:auto;
+    z-index:1;
+    pointer-events:none;
+    opacity:.5;
+    filter:drop-shadow(0 0 40px rgba(34,197,94,.35)) drop-shadow(0 0 80px rgba(59,130,246,.25));
+    animation:treeGlow 5s ease-in-out infinite;
+}
+@keyframes treeGlow{
+    0%,100%{filter:drop-shadow(0 0 40px rgba(34,197,94,.35)) drop-shadow(0 0 80px rgba(59,130,246,.25))}
+    50%{filter:drop-shadow(0 0 55px rgba(34,197,94,.55)) drop-shadow(0 0 100px rgba(250,204,21,.35))}
+}
+.tree-star{
+    transform-origin:center;
+    animation:starPulse 2s ease-in-out infinite;
+    transform-box:fill-box;
+}
+@keyframes starPulse{
+    0%,100%{transform:scale(1);opacity:.9}
+    50%{transform:scale(1.3);opacity:1}
+}
+.tree-light{animation:lightBlink 1.5s ease-in-out infinite}
+.tree-light:nth-child(odd){animation-delay:.4s}
+.tree-light:nth-child(3n){animation-delay:.8s}
+@keyframes lightBlink{
+    0%,100%{opacity:.4}
+    50%{opacity:1}
+}
+.tree-ornament{animation:ornamentShine 3s ease-in-out infinite}
+@keyframes ornamentShine{
+    0%,100%{filter:brightness(1)}
+    50%{filter:brightness(1.6)}
+}
 
-.screen{position:relative;z-index:2;height:100%;overflow-y:auto;padding:50px 18px 220px;display:flex;flex-direction:column}
+/* ===== ЗВЁЗДЫ ===== */
+.stars{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;box-shadow:0 0 6px 1px rgba(255,255,255,.8),0 0 12px rgba(147,197,253,.6);animation:starTwinkle 3s ease-in-out infinite}
+@keyframes starTwinkle{
+    0%,100%{opacity:.2;transform:scale(.7)}
+    50%{opacity:1;transform:scale(1.4)}
+}
+
+/* ===== ГИРЛЯНДА СВЕРХУ ===== */
+.garland{
+    position:absolute;
+    top:0;left:0;right:0;
+    height:60px;
+    z-index:4;
+    pointer-events:none;
+    overflow:hidden;
+}
+.garland-wire{
+    position:absolute;
+    top:-30px;left:-5%;right:-5%;
+    height:60px;
+    border-bottom:2px solid rgba(147,197,253,.4);
+    border-radius:0 0 50% 50%/0 0 100% 100%;
+    box-shadow:0 4px 20px rgba(147,197,253,.2);
+}
+.bulb{
+    position:absolute;
+    width:10px;height:14px;
+    border-radius:50% 50% 50% 50%/40% 40% 60% 60%;
+    top:8px;
+    animation:bulbGlow 2s ease-in-out infinite;
+    transform-origin:top center;
+}
+.bulb::before{
+    content:'';
+    position:absolute;
+    top:-3px;left:50%;
+    transform:translateX(-50%);
+    width:6px;height:4px;
+    background:rgba(80,90,120,.9);
+    border-radius:2px;
+}
+.bulb-red{background:radial-gradient(circle at 50% 30%,#ff8a8a,#ef4444);box-shadow:0 0 12px #ef4444,0 0 24px rgba(239,68,68,.6)}
+.bulb-gold{background:radial-gradient(circle at 50% 30%,#ffe9a3,#facc15);box-shadow:0 0 12px #facc15,0 0 24px rgba(250,204,21,.6)}
+.bulb-green{background:radial-gradient(circle at 50% 30%,#9df5b2,#22c55e);box-shadow:0 0 12px #22c55e,0 0 24px rgba(34,197,94,.6)}
+.bulb-blue{background:radial-gradient(circle at 50% 30%,#a5c8ff,#3b82f6);box-shadow:0 0 12px #3b82f6,0 0 24px rgba(59,130,246,.6)}
+.bulb-purple{background:radial-gradient(circle at 50% 30%,#d4b3ff,#8b5cf6);box-shadow:0 0 12px #8b5cf6,0 0 24px rgba(139,92,246,.6)}
+@keyframes bulbGlow{
+    0%,100%{opacity:.55;transform:scale(.9)}
+    50%{opacity:1;transform:scale(1.15)}
+}
+
+/* ===== ПОДАРКИ ВБОКУ ===== */
+.side-gift{
+    position:absolute;
+    font-size:36px;
+    z-index:4;
+    pointer-events:none;
+    filter:drop-shadow(0 8px 12px rgba(0,0,0,.5)) drop-shadow(0 0 15px rgba(250,204,21,.4));
+    animation:sideGiftFloat 4s ease-in-out infinite;
+}
+.side-gift-1{bottom:230px;left:8px;animation-delay:0s}
+.side-gift-2{bottom:250px;right:8px;animation-delay:1.5s}
+@keyframes sideGiftFloat{
+    0%,100%{transform:translateY(0) rotate(-5deg)}
+    50%{transform:translateY(-10px) rotate(5deg)}
+}
+
+/* ===== ИСКРЫ ===== */
+.sparkle{
+    position:absolute;
+    color:#facc15;
+    font-size:14px;
+    pointer-events:none;
+    z-index:4;
+    animation:sparkleAnim 4s ease-in-out infinite;
+    filter:drop-shadow(0 0 8px rgba(250,204,21,.9));
+    user-select:none;
+}
+@keyframes sparkleAnim{
+    0%,100%{opacity:0;transform:scale(.4) rotate(0deg)}
+    50%{opacity:1;transform:scale(1.2) rotate(180deg)}
+}
+
+.snow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.snowflake{position:absolute;top:-20px;color:#fff;user-select:none;pointer-events:none;animation:fall linear infinite;opacity:0}
+@keyframes fall{0%{transform:translateY(-20px) translateX(0) rotate(0deg);opacity:0}10%{opacity:var(--opacity,.7)}90%{opacity:var(--opacity,.7)}100%{transform:translateY(880px) translateX(var(--drift,0)) rotate(360deg);opacity:0}}
+
+.screen{position:relative;z-index:3;height:100%;overflow-y:auto;padding:50px 18px 220px;display:flex;flex-direction:column;-webkit-overflow-scrolling:touch}
 .screen::-webkit-scrollbar{display:none}.screen{scrollbar-width:none}
 
 .title-section{text-align:center;margin-bottom:40px;position:relative;z-index:3}
@@ -40,6 +195,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .stage-row:hover{padding-left:10px}
 .stage-row:hover .stage-name{color:#93c5fd;text-shadow:0 0 20px rgba(147,197,253,.6)}
 .stage-row:hover .stage-info-btn{background:rgba(147,197,253,.2);border-color:rgba(147,197,253,.6);color:#fff}
+.stage-row:active{padding-left:8px}
 .stage-left{display:flex;flex-direction:column;gap:4px}
 .stage-name{font-size:20px;font-weight:900;color:#fff;letter-spacing:1px;text-transform:uppercase;transition:.25s}
 .stage-date{font-size:11px;font-weight:600;color:rgba(147,197,253,.7);letter-spacing:1.5px;text-transform:uppercase}
@@ -54,8 +210,8 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .gift{font-size:46px;line-height:1;display:block;filter:drop-shadow(0 8px 12px rgba(0,0,0,.6)) drop-shadow(0 0 20px rgba(147,197,253,.5));transform-style:preserve-3d;animation:giftFloat 3s ease-in-out infinite;cursor:pointer;transition:.25s;user-select:none}
 .gift-left{transform:rotate(-18deg) rotateY(15deg)}
 .gift-right{transform:rotate(18deg) rotateY(-15deg);animation:giftFloat 3s ease-in-out infinite,hourglassFlip 10s ease-in-out infinite}
-.gift-left:hover{filter:drop-shadow(0 12px 18px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(147,197,253,.9));transform:rotate(-18deg) rotateY(15deg) scale(1.1)}
-.gift-right:hover{filter:drop-shadow(0 12px 18px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(250,204,21,.9));transform:rotate(18deg) rotateY(-15deg) scale(1.1)}
+.gift-left:hover,.gift-left:active{filter:drop-shadow(0 12px 18px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(147,197,253,.9));transform:rotate(-18deg) rotateY(15deg) scale(1.1)}
+.gift-right:hover,.gift-right:active{filter:drop-shadow(0 12px 18px rgba(0,0,0,.7)) drop-shadow(0 0 30px rgba(250,204,21,.9));transform:rotate(18deg) rotateY(-15deg) scale(1.1)}
 @keyframes giftFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
 @keyframes hourglassFlip{0%,45%{rotate:0deg}50%,95%{rotate:180deg}100%{rotate:360deg}}
 
@@ -79,7 +235,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 
 .panel-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:100;opacity:0;visibility:hidden;transition:.3s;border-radius:46px}
 .panel-overlay.active{opacity:1;visibility:visible}
-.panel{position:absolute;left:16px;right:16px;bottom:0;max-height:85%;background:linear-gradient(180deg,#101838 0%,#0a1030 100%);border-radius:32px 32px 46px 46px;border-top:1px solid rgba(147,197,253,.3);padding:20px 20px 40px;z-index:101;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.2,.64,1);overflow-y:auto}
+.panel{position:absolute;left:16px;right:16px;bottom:0;max-height:85%;background:linear-gradient(180deg,#101838 0%,#0a1030 100%);border-radius:32px 32px 46px 46px;border-top:1px solid rgba(147,197,253,.3);padding:20px 20px 40px;z-index:101;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.2,.64,1);overflow-y:auto;-webkit-overflow-scrolling:touch}
 .panel.active{transform:translateY(0)}
 .panel::-webkit-scrollbar{display:none}.panel{scrollbar-width:none}
 .panel-handle{width:40px;height:4px;background:rgba(147,197,253,.3);border-radius:2px;margin:0 auto 18px}
@@ -91,7 +247,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .check-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:18px;text-align:center}
 .input-group{margin-bottom:12px}
 .input-label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(147,197,253,.8);margin-bottom:6px;padding-left:4px}
-.input-field{width:100%;padding:14px 16px;background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.2);border-radius:14px;color:#fff;font-size:15px;font-weight:700;font-family:inherit;letter-spacing:1px;transition:.2s;outline:none}
+.input-field{width:100%;padding:14px 16px;background:rgba(147,197,253,.06);border:1px solid rgba(147,197,253,.2);border-radius:14px;color:#fff;font-size:16px;font-weight:700;font-family:inherit;letter-spacing:1px;transition:.2s;outline:none}
 .input-field::placeholder{color:rgba(255,255,255,.3);font-weight:600}
 .input-field:focus{border-color:rgba(147,197,253,.6);background:rgba(147,197,253,.1);box-shadow:0 0 0 3px rgba(147,197,253,.15)}
 
@@ -189,6 +345,109 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 
 <div class="phone-frame">
 <div class="aurora"><div class="aurora-blob blob-1"></div><div class="aurora-blob blob-2"></div><div class="aurora-blob blob-3"></div></div>
+
+<!-- ЗВЁЗДЫ -->
+<div class="stars" id="stars"></div>
+
+<!-- ЁЛКА НА ФОНЕ -->
+<svg class="xmas-tree-bg" viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="treeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#22c55e"/>
+            <stop offset="100%" stop-color="#065f46"/>
+        </linearGradient>
+        <linearGradient id="treeGrad2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#16a34a"/>
+            <stop offset="100%" stop-color="#064e3b"/>
+        </linearGradient>
+        <radialGradient id="starGold" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff9c4"/>
+            <stop offset="60%" stop-color="#facc15"/>
+            <stop offset="100%" stop-color="#ca8a04"/>
+        </radialGradient>
+    </defs>
+
+    <!-- Ствол -->
+    <rect x="140" y="330" width="20" height="40" fill="#78350f" rx="3"/>
+
+    <!-- Нижний ярус -->
+    <path d="M150 200 L40 330 L260 330 Z" fill="url(#treeGrad2)" stroke="#065f46" stroke-width="1"/>
+    <!-- Средний ярус -->
+    <path d="M150 130 L70 250 L230 250 Z" fill="url(#treeGrad)"/>
+    <!-- Верхний ярус -->
+    <path d="M150 60 L95 175 L205 175 Z" fill="url(#treeGrad)"/>
+
+    <!-- Гирлянда на ярусах -->
+    <path d="M55 315 Q100 290 150 305 Q200 320 245 300" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity="0.7"/>
+    <path d="M85 235 Q120 215 150 228 Q180 240 215 220" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity="0.7"/>
+    <path d="M108 165 Q130 150 150 160 Q170 170 192 158" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity="0.7"/>
+
+    <!-- Лампочки -->
+    <circle class="tree-light" cx="70" cy="305" r="3.5" fill="#ef4444"/>
+    <circle class="tree-light" cx="100" cy="295" r="3.5" fill="#facc15"/>
+    <circle class="tree-light" cx="130" cy="303" r="3.5" fill="#3b82f6"/>
+    <circle class="tree-light" cx="160" cy="308" r="3.5" fill="#22c55e"/>
+    <circle class="tree-light" cx="190" cy="305" r="3.5" fill="#facc15"/>
+    <circle class="tree-light" cx="220" cy="298" r="3.5" fill="#8b5cf6"/>
+
+    <circle class="tree-light" cx="95" cy="228" r="3" fill="#facc15"/>
+    <circle class="tree-light" cx="125" cy="220" r="3" fill="#ef4444"/>
+    <circle class="tree-light" cx="150" cy="225" r="3" fill="#3b82f6"/>
+    <circle class="tree-light" cx="175" cy="232" r="3" fill="#22c55e"/>
+    <circle class="tree-light" cx="205" cy="222" r="3" fill="#facc15"/>
+
+    <circle class="tree-light" cx="115" cy="160" r="2.5" fill="#facc15"/>
+    <circle class="tree-light" cx="140" cy="156" r="2.5" fill="#ef4444"/>
+    <circle class="tree-light" cx="165" cy="162" r="2.5" fill="#3b82f6"/>
+    <circle class="tree-light" cx="188" cy="158" r="2.5" fill="#8b5cf6"/>
+
+    <!-- Шары-игрушки -->
+    <circle class="tree-ornament" cx="85" cy="270" r="6" fill="#ef4444" stroke="#7f1d1d" stroke-width="1"/>
+    <circle class="tree-ornament" cx="215" cy="280" r="6" fill="#facc15" stroke="#a16207" stroke-width="1"/>
+    <circle class="tree-ornament" cx="130" cy="200" r="5" fill="#8b5cf6" stroke="#4c1d95" stroke-width="1"/>
+    <circle class="tree-ornament" cx="175" cy="195" r="5" fill="#3b82f6" stroke="#1e3a8a" stroke-width="1"/>
+    <circle class="tree-ornament" cx="120" cy="280" r="5.5" fill="#22c55e" stroke="#14532d" stroke-width="1"/>
+    <circle class="tree-ornament" cx="185" cy="265" r="5.5" fill="#facc15" stroke="#a16207" stroke-width="1"/>
+    <circle class="tree-ornament" cx="150" cy="105" r="4" fill="#ef4444" stroke="#7f1d1d" stroke-width="1"/>
+
+    <!-- Звезда на верхушке -->
+    <g class="tree-star" transform="translate(150 55)">
+        <path d="M0 -22 L6 -7 L22 -7 L9 3 L14 19 L0 9 L-14 19 L-9 3 L-22 -7 L-6 -7 Z"
+              fill="url(#starGold)" stroke="#fbbf24" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M0 -14 L3 -4 L13 -4 L5 2 L8 12 L0 6 L-8 12 L-5 2 L-13 -4 L-3 -4 Z"
+              fill="#fff9c4" opacity="0.6"/>
+    </g>
+</svg>
+
+<!-- ПОДАРКИ ВБОКУ -->
+<div class="side-gift side-gift-1">🎁</div>
+<div class="side-gift side-gift-2">🎀</div>
+
+<!-- ИСКРЫ -->
+<div class="sparkle" style="top:15%;left:8%;animation-delay:0s">✦</div>
+<div class="sparkle" style="top:25%;right:12%;animation-delay:1.2s">✧</div>
+<div class="sparkle" style="top:45%;left:15%;animation-delay:2.5s">✦</div>
+<div class="sparkle" style="top:60%;right:10%;animation-delay:.8s">✧</div>
+<div class="sparkle" style="top:75%;left:20%;animation-delay:3s">✦</div>
+<div class="sparkle" style="top:35%;right:22%;animation-delay:1.8s">✦</div>
+
+<!-- ГИРЛЯНДА СВЕРХУ -->
+<div class="garland">
+    <div class="garland-wire"></div>
+    <div class="bulb bulb-red" style="left:4%;animation-delay:0s"></div>
+    <div class="bulb bulb-gold" style="left:12%;animation-delay:.2s"></div>
+    <div class="bulb bulb-green" style="left:20%;animation-delay:.4s"></div>
+    <div class="bulb bulb-blue" style="left:28%;animation-delay:.6s"></div>
+    <div class="bulb bulb-purple" style="left:36%;animation-delay:.8s"></div>
+    <div class="bulb bulb-red" style="left:44%;animation-delay:1s"></div>
+    <div class="bulb bulb-gold" style="left:52%;animation-delay:1.2s"></div>
+    <div class="bulb bulb-green" style="left:60%;animation-delay:1.4s"></div>
+    <div class="bulb bulb-blue" style="left:68%;animation-delay:1.6s"></div>
+    <div class="bulb bulb-purple" style="left:76%;animation-delay:1.8s"></div>
+    <div class="bulb bulb-red" style="left:84%;animation-delay:0s"></div>
+    <div class="bulb bulb-gold" style="left:92%;animation-delay:.3s"></div>
+</div>
+
 <div class="snow" id="snow"></div>
 
 <div class="screen">
@@ -311,7 +570,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 const API_URL = 'https://script.google.com/macros/s/AKfycbxuLISgO1iyCr-RyyqZx_o8biUuagmVPj1XstRAnsNxRCZrSYRyqBEPaDRh5H9X0L9wSg/exec';
 
 /* ============================================================
-   УЧАСТНИКИ (ты сам заносишь сюда)
+   УЧАСТНИКИ
    ============================================================ */
 const participantsData = [
     {
@@ -322,7 +581,6 @@ const participantsData = [
             { stage: 3, playing: true, won: false, note: "Розыгрыш впереди" }
         ]
     },
-    {
 ];
 
 /* ============================================================
@@ -339,23 +597,37 @@ const wheelPrizes = [
     { label: "Пусто", emoji: "❄️" }
 ];
 
-/* ============================================================
-   РАСПИСАНИЕ: СРЕДА 15:00–18:00 МСК
-   ============================================================ */
 const DROP_DAY = 3;
 const DROP_START_HOUR = 15;
 const DROP_END_HOUR = 18;
 
+/* ========== ЗВЁЗДЫ НА ФОНЕ ========== */
+(function(){
+    const c = document.getElementById('stars');
+    for(let i=0;i<40;i++){
+        const s = document.createElement('div');
+        s.className='star';
+        s.style.left = Math.random()*100+'%';
+        s.style.top = Math.random()*100+'%';
+        s.style.animationDelay = (Math.random()*3)+'s';
+        s.style.animationDuration = (Math.random()*2+2)+'s';
+        const size = Math.random()*1.5+1.5;
+        s.style.width = size+'px';
+        s.style.height = size+'px';
+        c.appendChild(s);
+    }
+})();
+
 /* ========== СНЕГОПАД ========== */
 (function(){
     const c = document.getElementById('snow');
-    const f = ['❄','❅','❆','•','·'];
-    for(let i=0;i<35;i++){
+    const f = ['❄','❅','❆','•','·','❉','❊'];
+    for(let i=0;i<60;i++){
         const el=document.createElement('div');
         el.className='snowflake';
         el.textContent=f[Math.floor(Math.random()*f.length)];
         el.style.left=Math.random()*100+'%';
-        el.style.fontSize=(Math.random()*10+8)+'px';
+        el.style.fontSize=(Math.random()*12+8)+'px';
         el.style.animationDuration=(Math.random()*8+6)+'s';
         el.style.animationDelay=(Math.random()*8)+'s';
         el.style.setProperty('--opacity',(Math.random()*0.5+0.3).toFixed(2));
@@ -386,9 +658,7 @@ function applyMask(input){
 applyMask(document.getElementById('inputStatic'));
 applyMask(document.getElementById('wheelStaticInput'));
 
-/* ============================================================
-   ПРОВЕРКА УЧАСТНИКА (локальные данные)
-   ============================================================ */
+/* ========== ПРОВЕРКА УЧАСТНИКА ========== */
 function checkParticipant(){
     const staticVal = document.getElementById('inputStatic').value.trim();
     const resultArea = document.getElementById('resultArea');
@@ -462,9 +732,7 @@ function checkParticipant(){
     resultArea.classList.add('show');
 }
 
-/* ============================================================
-   КОЛЕСО
-   ============================================================ */
+/* ========== КОЛЕСО ========== */
 const wheel = document.getElementById('wheel');
 const spinBtn = document.getElementById('spinBtn');
 const wheelResult = document.getElementById('wheelResult');
@@ -523,17 +791,13 @@ function getFormattedTime(msk){
            String(msk.getSeconds()).padStart(2,'0');
 }
 
-/* ========== ГЕНЕРАЦИЯ КОДА (6 СИМВОЛОВ) ========== */
 function generateCode(){
     const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
     let code = '';
-    for(let i=0;i<6;i++){
-        code += chars[Math.floor(Math.random()*chars.length)];
-    }
+    for(let i=0;i<6;i++) code += chars[Math.floor(Math.random()*chars.length)];
     return code;
 }
 
-/* ========== СЕКТОРА ========== */
 (function(){
     const a = 360 / wheelPrizes.length;
     wheelPrizes.forEach((p, i)=>{
@@ -545,7 +809,6 @@ function generateCode(){
     });
 })();
 
-/* ========== ПРОВЕРКА ЧЕРЕЗ СЕРВЕР ========== */
 async function checkStaticOnServer(staticVal){
     if(staticVal.length !== 7) return;
     spinBtn.textContent = 'ПРОВЕРКА...';
@@ -563,7 +826,6 @@ async function checkStaticOnServer(staticVal){
     }
 }
 
-/* ========== ОБНОВЛЕНИЕ UI ========== */
 function updateWheelUI(){
     if(!isDropTime()){
         wheelForm.classList.add('hidden');
@@ -611,7 +873,6 @@ function updateWheelUI(){
     spinBtn.textContent = 'КРУТИТЬ';
 }
 
-/* ========== ВВОД ========== */
 wheelStaticInput.addEventListener('input', function(e){
     let v = e.target.value.replace(/\D/g,'');
     if(v.length>3) v = v.slice(0,3)+'-'+v.slice(3,6);
@@ -628,7 +889,6 @@ wheelStaticInput.addEventListener('input', function(e){
     }
 });
 
-/* ========== КРУЧЕНИЕ ========== */
 async function spinWheel(){
     if(isSpinning) return;
     if(!isDropTime()) return;
@@ -656,7 +916,6 @@ async function spinWheel(){
     const winTime = getFormattedTime(msk);
     const code = isEmpty ? null : generateCode();
 
-    // Записываем в Google Sheets (не ждём ответа)
     try {
         await fetch(API_URL, {
             method: 'POST',
@@ -709,5 +968,3 @@ async function spinWheel(){
     }, 5100);
 }
 </script>
-</body>
-</html>
