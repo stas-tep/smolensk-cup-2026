@@ -242,7 +242,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 
 <div class="drift-buttons">
 <div class="drift-btn" onclick="openPanel('check')"><span class="drift-btn-icon">🔍</span><div class="drift-btn-title">Проверить</div></div>
-<div class="drift-btn drift-btn-main" onclick="window.open('https://stas-tep.github.io/play/','_blank')"><span class="drift-btn-icon">▶</span><div class="drift-btn-title">Играть</div></div>
+<div class="drift-btn drift-btn-main" onclick="window.location.href='https://stas-tep.github.io/play/'"><span class="drift-btn-icon">🎮</span><div class="drift-btn-title">Игры</div></div>
 <div class="drift-btn" onclick="openPanel('faq')"><span class="drift-btn-icon">❓</span><div class="drift-btn-title">FAQ</div></div>
 </div>
 
@@ -263,7 +263,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Сколько стоит участие?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Стоимость участия — 100 ₽ за одну заявку. Сумма может повышаться ближе к дате проведения этапа.</div></div>
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Какой призовой фонд?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Общий призовой фонд — 2 500 ₽. Разыгрывается на 3 этапах.</div></div>
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Когда проходят розыгрыши?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">5, 15 и 25 января 2026 года в 20:00 МСК.</div></div>
-<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Когда работает колесо фортуны?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Колесо доступно только по средам с 15:00 до 18:00 (МСК). Крутить можно один раз за это время.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Когда работает колесо фортуны?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Сейчас колесо доступно каждый день. Крутить можно один раз в сутки.</div></div>
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Как работает колесо фортуны?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Введите свой статик и крутите колесо. При выигрыше вы получите уникальный код — сделайте скриншот и отправьте модератору.</div></div>
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Как получить приз?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Организатор связывается с вами и запрашивает реквизиты карты или СБП. Выплата в течение 10 дней.</div></div>
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Можно ли подать несколько заявок?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">1 человек = 1 заявка. Несколько заявок от одного лица не принимаются.</div></div>
@@ -284,7 +284,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="panel-handle"></div>
 <div class="panel-header"><div class="panel-title">КОЛЕСО ФОРТУНЫ</div><div class="panel-close" onclick="closePanel('wheel')">✕</div></div>
 
-<div class="wheel-desc">Колесо работает <strong>по средам с 15:00 до 18:00</strong> (МСК)</div>
+<div class="wheel-desc">Колесо работает <strong>каждый день</strong> (временно)</div>
 
 <div class="wheel-form" id="wheelForm">
 <div class="input-group"><label class="input-label">Ваш статик</label><input type="text" class="input-field" id="wheelStaticInput" placeholder="XXX-XXX" maxlength="7" inputmode="numeric" autocomplete="off"></div>
@@ -333,9 +333,9 @@ const wheelPrizes = [
     { label: "Пусто", emoji: "❄️" }
 ];
 
-const DROP_DAY = 6;
+const DROP_DAY = 3;
 const DROP_START_HOUR = 15;
-const DROP_END_HOUR = 23;
+const DROP_END_HOUR = 18;
 
 (function(){
     const c = document.getElementById('snow');
@@ -503,9 +503,9 @@ function getMskDate(){
     const n = new Date();
     return new Date(n.getTime() + (n.getTimezoneOffset()*60000) + 3*3600000);
 }
+/* ВРЕМЕННО: колесо доступно каждый день, без ограничений по дню/времени */
 function isDropTime(){
-    const m = getMskDate();
-    return m.getDay() === DROP_DAY && m.getHours() >= DROP_START_HOUR && m.getHours() < DROP_END_HOUR;
+    return true;
 }
 function getNextDropDay(){
     const m = getMskDate();
@@ -611,7 +611,7 @@ function updateWheelUI(){
         wheelLockedStatic.textContent = staticVal;
         wheelLockedIcon.textContent = '🔒';
         wheelLockedText.textContent = 'ВЫ УЖЕ КРУТИЛИ';
-        wheelLockedSub.innerHTML = `Возвращайтесь в следующую среду!<br>Следующий дроп: <strong>${getNextDropDay()}</strong>`;
+        wheelLockedSub.innerHTML = `Возвращайтесь завтра!<br>Следующая попытка: <strong>завтра</strong>`;
         return;
     }
 
