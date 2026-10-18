@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="format-detection" content="telephone=no">
-<title>Зима 2026 · Розыгрыш</title>
+<title>Зима 2026</title>
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -60,7 +60,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .title-sub{font-size:12px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:3px;text-transform:uppercase}
 
 .stages-list{display:flex;flex-direction:column;gap:0;margin-bottom:26px;position:relative;z-index:3}
-.stage-row{display:flex;justify-content:space-between;align-items:center;padding:18px 4px;cursor:pointer;transition:.25s;text-decoration:none;color:inherit}
+.stage-row{display:flex;justify-content:space-between;align-items:center;padding:18px 4px;cursor:pointer;transition:.25s;text-decoration:none;color:inherit;background:none;border:none;width:100%;font-family:inherit;text-align:left}
 .stage-row:hover{padding-left:10px}
 .stage-row:hover .stage-name{color:#93c5fd;text-shadow:0 0 20px rgba(147,197,253,.6)}
 .stage-row:hover .stage-info-btn{background:rgba(147,197,253,.2);border-color:rgba(147,197,253,.6);color:#fff}
@@ -109,6 +109,49 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 .panel-title{font-size:16px;font-weight:900;letter-spacing:1px;color:#fff}
 .panel-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(147,197,253,.2);display:flex;justify-content:center;align-items:center;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:.2s;touch-action:manipulation}
 .panel-close:hover{background:rgba(239,68,68,.3);border-color:rgba(239,68,68,.5);color:#fff}
+
+/* ===== Инфо о призовом месте ===== */
+.prize-panel-body{display:flex;flex-direction:column;gap:14px}
+.prize-place-badge{display:flex;align-items:center;gap:14px;padding:16px;background:rgba(147,197,253,.08);border:1px solid rgba(147,197,253,.2);border-radius:18px}
+.prize-place-icon{font-size:38px;line-height:1;flex-shrink:0;filter:drop-shadow(0 4px 12px rgba(250,204,21,.4))}
+.prize-place-info{display:flex;flex-direction:column;gap:3px;text-align:left}
+.prize-place-name{font-size:16px;font-weight:900;color:#fff;letter-spacing:.5px;text-transform:uppercase}
+.prize-place-amount{font-size:22px;font-weight:900;color:#facc15;letter-spacing:1px;text-shadow:0 0 20px rgba(250,204,21,.5)}
+.prize-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(147,197,253,.05);border:1px solid rgba(147,197,253,.12);border-radius:14px;gap:12px}
+.prize-row-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(147,197,253,.8);white-space:nowrap}
+.prize-row-value{font-size:14px;font-weight:900;color:#fff;text-align:right}
+.prize-row-value.winner{color:#4ade80}
+.prize-row-value.pending{color:#facc15}
+.prize-note{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;text-align:center;padding:4px 8px}
+
+/* ===== Кнопка трансляции ===== */
+.prize-stream-btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;padding:15px;
+    background:linear-gradient(135deg,#ef4444 0%,#f59e0b 100%);
+    border:none;border-radius:14px;
+    font-family:inherit;font-size:13px;font-weight:900;
+    letter-spacing:1.5px;text-transform:uppercase;color:#fff;
+    cursor:pointer;text-decoration:none;
+    box-shadow:0 10px 25px rgba(239,68,68,.45),inset 0 1px 0 rgba(255,255,255,.25);
+    transition:.2s;touch-action:manipulation;position:relative;
+}
+.prize-stream-btn::before{
+    content:'';width:8px;height:8px;border-radius:50%;
+    background:#fff;box-shadow:0 0 12px #fff;
+    animation:livePulse 1.4s ease-in-out infinite;
+}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.prize-stream-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 30px rgba(239,68,68,.65),inset 0 1px 0 rgba(255,255,255,.35);
+}
+.prize-stream-btn:active{transform:translateY(0)}
+.prize-stream-btn.disabled{
+    background:linear-gradient(135deg,#4b5563 0%,#374151 100%);
+    box-shadow:none;cursor:not-allowed;opacity:.7;
+}
+.prize-stream-btn.disabled::before{display:none}
 
 .check-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;margin-bottom:18px;text-align:center}
 .input-group{margin-bottom:12px}
@@ -209,18 +252,18 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 </div>
 
 <div class="stages-list">
-<a href="stage1.html" class="stage-row">
-<div class="stage-left"><div class="stage-name">1 ЭТАП</div><div class="stage-date">5 января · 20:00 МСК</div></div>
+<button class="stage-row" onclick="openPanel('place1')">
+<div class="stage-left"><div class="stage-name">1 МЕСТО</div><div class="stage-date">ХХ.ХХ.ХХХХ</div></div>
 <div class="stage-info-btn">Информация</div>
-</a>
-<a href="stage2.html" class="stage-row">
-<div class="stage-left"><div class="stage-name">2 ЭТАП</div><div class="stage-date">15 января · 20:00 МСК</div></div>
+</button>
+<button class="stage-row" onclick="openPanel('place2')">
+<div class="stage-left"><div class="stage-name">2 МЕСТО</div><div class="stage-date">ХХ.ХХ.ХХХХ</div></div>
 <div class="stage-info-btn">Информация</div>
-</a>
-<a href="stage3.html" class="stage-row">
-<div class="stage-left"><div class="stage-name">3 ЭТАП</div><div class="stage-date">25 января · 20:00 МСК</div></div>
+</button>
+<button class="stage-row" onclick="openPanel('place3')">
+<div class="stage-left"><div class="stage-name">3 МЕСТО</div><div class="stage-date">ХХ.ХХ.ХХХХ</div></div>
 <div class="stage-info-btn">Информация</div>
-</a>
+</button>
 </div>
 
 <div class="gifts-row">
@@ -242,10 +285,89 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 
 <div class="drift-buttons">
 <div class="drift-btn" onclick="openPanel('check')"><span class="drift-btn-icon">🔍</span><div class="drift-btn-title">Проверить</div></div>
-<div class="drift-btn drift-btn-main" onclick="window.location.href='https://stas-tep.github.io/play/'"><span class="drift-btn-icon">🎮</span><div class="drift-btn-title">Игры</div></div>
+<div class="drift-btn drift-btn-main" onclick="window.open(FORM_URL,'_blank')"><span class="drift-btn-icon">📝</span><div class="drift-btn-title">Заявка</div></div>
 <div class="drift-btn" onclick="openPanel('faq')"><span class="drift-btn-icon">❓</span><div class="drift-btn-title">FAQ</div></div>
 </div>
 
+<!-- ===== Панель: 1 МЕСТО ===== -->
+<div class="panel-overlay" id="overlay-place1" onclick="closePanel('place1')"></div>
+<div class="panel" id="panel-place1">
+<div class="panel-handle"></div>
+<div class="panel-header"><div class="panel-title">1 МЕСТО</div><div class="panel-close" onclick="closePanel('place1')">✕</div></div>
+<div class="prize-panel-body">
+<div class="prize-place-badge">
+<div class="prize-place-icon">🥇</div>
+<div class="prize-place-info">
+<div class="prize-place-name">1 место</div>
+<div class="prize-place-amount">1 000 ₽</div>
+</div>
+</div>
+<div class="prize-row">
+<div class="prize-row-label">Дата проведения</div>
+<div class="prize-row-value pending" id="datePlace1">ХХ.ХХ.ХХХХ</div>
+</div>
+<div class="prize-row">
+<div class="prize-row-label">Победитель</div>
+<div class="prize-row-value pending" id="winnerPlace1">Пока не определён</div>
+</div>
+<a class="prize-stream-btn" id="streamPlace1" href="https://www.twitch.tv/PLACEHOLDER" target="_blank" rel="noopener">Смотреть трансляцию</a>
+<div class="prize-note">Победитель будет объявлен во время трансляции розыгрыша.</div>
+</div>
+</div>
+
+<!-- ===== Панель: 2 МЕСТО ===== -->
+<div class="panel-overlay" id="overlay-place2" onclick="closePanel('place2')"></div>
+<div class="panel" id="panel-place2">
+<div class="panel-handle"></div>
+<div class="panel-header"><div class="panel-title">2 МЕСТО</div><div class="panel-close" onclick="closePanel('place2')">✕</div></div>
+<div class="prize-panel-body">
+<div class="prize-place-badge">
+<div class="prize-place-icon">🥈</div>
+<div class="prize-place-info">
+<div class="prize-place-name">2 место</div>
+<div class="prize-place-amount">800 ₽</div>
+</div>
+</div>
+<div class="prize-row">
+<div class="prize-row-label">Дата проведения</div>
+<div class="prize-row-value pending" id="datePlace2">ХХ.ХХ.ХХХХ</div>
+</div>
+<div class="prize-row">
+<div class="prize-row-label">Победитель</div>
+<div class="prize-row-value pending" id="winnerPlace2">Пока не определён</div>
+</div>
+<a class="prize-stream-btn" id="streamPlace2" href="https://www.twitch.tv/PLACEHOLDER" target="_blank" rel="noopener">Смотреть трансляцию</a>
+<div class="prize-note">Победитель будет объявлен во время трансляции розыгрыша.</div>
+</div>
+</div>
+
+<!-- ===== Панель: 3 МЕСТО ===== -->
+<div class="panel-overlay" id="overlay-place3" onclick="closePanel('place3')"></div>
+<div class="panel" id="panel-place3">
+<div class="panel-handle"></div>
+<div class="panel-header"><div class="panel-title">3 МЕСТО</div><div class="panel-close" onclick="closePanel('place3')">✕</div></div>
+<div class="prize-panel-body">
+<div class="prize-place-badge">
+<div class="prize-place-icon">🥉</div>
+<div class="prize-place-info">
+<div class="prize-place-name">3 место</div>
+<div class="prize-place-amount">700 ₽</div>
+</div>
+</div>
+<div class="prize-row">
+<div class="prize-row-label">Дата проведения</div>
+<div class="prize-row-value pending" id="datePlace3">ХХ.ХХ.ХХХХ</div>
+</div>
+<div class="prize-row">
+<div class="prize-row-label">Победитель</div>
+<div class="prize-row-value pending" id="winnerPlace3">Пока не определён</div>
+</div>
+<a class="prize-stream-btn" id="streamPlace3" href="https://www.twitch.tv/PLACEHOLDER" target="_blank" rel="noopener">Смотреть трансляцию</a>
+<div class="prize-note">Победитель будет объявлен во время трансляции розыгрыша.</div>
+</div>
+</div>
+
+<!-- ===== Проверка участника ===== -->
 <div class="panel-overlay" id="overlay-check" onclick="closePanel('check')"></div>
 <div class="panel" id="panel-check">
 <div class="panel-handle"></div>
@@ -256,19 +378,21 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="result-area" id="resultArea"></div>
 </div>
 
+<!-- ===== FAQ ===== -->
 <div class="panel-overlay" id="overlay-faq" onclick="closePanel('faq')"></div>
 <div class="panel" id="panel-faq">
 <div class="panel-handle"></div>
 <div class="panel-header"><div class="panel-title">ЧАСТЫЕ ВОПРОСЫ</div><div class="panel-close" onclick="closePanel('faq')">✕</div></div>
-<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Сколько стоит участие?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Стоимость участия — 100 ₽ за одну заявку. Сумма может повышаться ближе к дате проведения этапа.</div></div>
-<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Какой призовой фонд?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Общий призовой фонд — 2 500 ₽. Разыгрывается на 3 этапах.</div></div>
-<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Когда проходят розыгрыши?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">5, 15 и 25 января 2026 года в 20:00 МСК.</div></div>
-<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Когда работает колесо фортуны?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Сейчас колесо доступно каждый день. Крутить можно один раз в сутки.</div></div>
-<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Как работает колесо фортуны?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Введите свой статик и крутите колесо. При выигрыше вы получите уникальный код — сделайте скриншот и отправьте модератору.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Сколько стоит участие?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Участие полностью бесплатное. Никаких взносов и платежей.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Когда пройдёт розыгрыш?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Даты пока неизвестны. Следите за обновлениями — информация появится здесь.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Какой призовой фонд?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Общий призовой фонд — 2 500 ₽:<br>🥇 1 место — 1 000 ₽<br>🥈 2 место — 800 ₽<br>🥉 3 место — 700 ₽</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Как подать заявку на участие?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Нажмите кнопку «Заявка» внизу экрана — откроется Google-форма. Заполните её и отправьте.</div></div>
+<div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Как работает колесо фортуны?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Колесо доступно каждые 2 недели по вторникам с 15:00 до 18:00 (МСК). Введите статик и крутите. При выигрыше получите код — сделайте скриншот и отправьте модератору.</div></div>
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Как получить приз?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">Организатор связывается с вами и запрашивает реквизиты карты или СБП. Выплата в течение 10 дней.</div></div>
 <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-question"><span>Можно ли подать несколько заявок?</span><span class="faq-arrow">▼</span></div><div class="faq-answer">1 человек = 1 заявка. Несколько заявок от одного лица не принимаются.</div></div>
 </div>
 
+<!-- ===== Отзывы ===== -->
 <div class="panel-overlay" id="overlay-reviews" onclick="closePanel('reviews')"></div>
 <div class="panel" id="panel-reviews">
 <div class="panel-handle"></div>
@@ -279,12 +403,13 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 <div class="review-item"><div class="review-head"><div class="review-avatar">К</div><div class="review-name">КИТЗК</div></div><div class="review-text">Призы классные, условия простые, спасибо за эмоции</div></div>
 </div>
 
+<!-- ===== Колесо ===== -->
 <div class="panel-overlay" id="overlay-wheel" onclick="closePanel('wheel')"></div>
 <div class="panel" id="panel-wheel">
 <div class="panel-handle"></div>
 <div class="panel-header"><div class="panel-title">КОЛЕСО ФОРТУНЫ</div><div class="panel-close" onclick="closePanel('wheel')">✕</div></div>
 
-<div class="wheel-desc">Колесо работает <strong>каждый день</strong> (временно)</div>
+<div class="wheel-desc">Колесо работает <strong>каждые 2 недели по вторникам</strong> с 15:00 до 18:00 (МСК)</div>
 
 <div class="wheel-form" id="wheelForm">
 <div class="input-group"><label class="input-label">Ваш статик</label><input type="text" class="input-field" id="wheelStaticInput" placeholder="XXX-XXX" maxlength="7" inputmode="numeric" autocomplete="off"></div>
@@ -292,7 +417,7 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 
 <div class="wheel-locked hidden" id="wheelLocked">
 <div class="wheel-locked-icon" id="wheelLockedIcon">🕐</div>
-<div class="wheel-locked-text" id="wheelLockedText">КОЛЕСО ДОСТУПНО ПО СРЕДАМ</div>
+<div class="wheel-locked-text" id="wheelLockedText">КОЛЕСО ДОСТУПНО ПО ВТОРНИКАМ</div>
 <div class="wheel-locked-sub" id="wheelLockedSub"></div>
 <div class="wheel-locked-static" id="wheelLockedStatic" style="display:none;">XXX-XXX</div>
 </div>
@@ -310,6 +435,10 @@ body{background:#05060f;font-family:'Inter',-apple-system,sans-serif;min-height:
 
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbxuLISgO1iyCr-RyyqZx_o8biUuagmVPj1XstRAnsNxRCZrSYRyqBEPaDRh5H9X0L9wSg/exec';
+
+// ===== Ссылка на Google-форму для заявки =====
+// Замени PLACEHOLDER на реальный ID формы
+const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfPLACEHOLDER/viewform';
 
 const participantsData = [
     {
@@ -333,10 +462,15 @@ const wheelPrizes = [
     { label: "Пусто", emoji: "❄️" }
 ];
 
-const DROP_DAY = 3;
-const DROP_START_HOUR = 15;
-const DROP_END_HOUR = 18;
+/* Колесо: каждые 2 недели по вторникам, 15:00–18:00 МСК */
+const WHEEL_DAY = 2;          // вторник
+const WHEEL_START_HOUR = 15;
+const WHEEL_END_HOUR = 18;
+const WHEEL_CYCLE_WEEKS = 2;
+// Опорный вторник, от которого считаем цикл
+const WHEEL_ANCHOR = new Date(2026, 0, 6); // 06.01.2026 — вторник
 
+// ===== Снег =====
 (function(){
     const c = document.getElementById('snow');
     const f = ['❄','❅','❆','•','·'];
@@ -364,7 +498,7 @@ function closePanel(name){
     document.getElementById('panel-'+name).classList.remove('active');
 }
 
-/* ========== СВАЙП ВНИЗ ПО ПАНЕЛИ ========== */
+// ===== Свайп вниз =====
 (function(){
     document.querySelectorAll('.panel').forEach(panel => {
         let startY = 0, deltaY = 0, dragging = false;
@@ -409,6 +543,7 @@ function applyMask(input){
 }
 applyMask(document.getElementById('inputStatic'));
 
+// ===== Проверка участника =====
 function checkParticipant(){
     const staticVal = document.getElementById('inputStatic').value.trim();
     const resultArea = document.getElementById('resultArea');
@@ -482,6 +617,7 @@ function checkParticipant(){
     resultArea.classList.add('show');
 }
 
+// ===== Колесо =====
 const wheel = document.getElementById('wheel');
 const spinBtn = document.getElementById('spinBtn');
 const wheelResult = document.getElementById('wheelResult');
@@ -503,32 +639,63 @@ function getMskDate(){
     const n = new Date();
     return new Date(n.getTime() + (n.getTimezoneOffset()*60000) + 3*3600000);
 }
-/* ВРЕМЕННО: колесо доступно каждый день, без ограничений по дню/времени */
+
+/* ===== Расписание колеса: каждые 2 недели по вторникам, 15:00–18:00 МСК ===== */
 function isDropTime(){
-    return true;
-}
-function getNextDropDay(){
     const m = getMskDate();
-    const t = m.getDay();
-    let d = (DROP_DAY - t + 7) % 7;
-    if(d === 0 && m.getHours() >= DROP_END_HOUR) d = 7;
-    const n = new Date(m);
-    n.setDate(n.getDate() + d);
-    return String(n.getDate()).padStart(2,'0') + '.' + String(n.getMonth()+1).padStart(2,'0');
+    if(m.getDay() !== WHEEL_DAY) return false;
+    const h = m.getHours();
+    if(h < WHEEL_START_HOUR || h >= WHEEL_END_HOUR) return false;
+
+    const anchor = new Date(WHEEL_ANCHOR);
+    const a = new Date(anchor.getFullYear(), anchor.getMonth(), anchor.getDate());
+    const cur = new Date(m.getFullYear(), m.getMonth(), m.getDate());
+    const diffDays = Math.round((cur - a) / 86400000);
+    const weeks = Math.floor(diffDays / 7);
+    return weeks % WHEEL_CYCLE_WEEKS === 0;
 }
+
+// Ближайший вторник, попадающий в цикл (сегодня, если окно ещё не закончилось)
+function getNextDropDate(){
+    const m = getMskDate();
+    const anchor = new Date(WHEEL_ANCHOR);
+    const a = new Date(anchor.getFullYear(), anchor.getMonth(), anchor.getDate());
+
+    for(let i = 0; i < 21; i++){
+        const d = new Date(m.getFullYear(), m.getMonth(), m.getDate() + i);
+        if(d.getDay() !== WHEEL_DAY) continue;
+        const diffDays = Math.round((d - a) / 86400000);
+        const weeks = Math.floor(diffDays / 7);
+        if(weeks % WHEEL_CYCLE_WEEKS !== 0) continue;
+        if(i === 0 && m.getHours() >= WHEEL_END_HOUR) continue;
+        return d;
+    }
+    return null;
+}
+
+function getNextDropDay(){
+    const d = getNextDropDate();
+    if(!d) return '—';
+    return String(d.getDate()).padStart(2,'0') + '.' + String(d.getMonth()+1).padStart(2,'0');
+}
+
 function getTimeUntilDrop(){
     const m = getMskDate();
-    const t = m.getDay(), h = m.getHours();
-    if(t === DROP_DAY && h < DROP_START_HOUR){
-        const diff = (DROP_START_HOUR*60) - (h*60 + m.getMinutes());
-        return `сегодня через <strong>${Math.floor(diff/60)} ч ${diff%60} мин</strong>`;
+    const d = getNextDropDate();
+    if(!d) return '';
+    const today = new Date(m.getFullYear(), m.getMonth(), m.getDate());
+    const diffDays = Math.round((d - today) / 86400000);
+
+    if(diffDays === 0){
+        const diff = (WHEEL_START_HOUR*60) - (m.getHours()*60 + m.getMinutes());
+        if(diff > 0) return `сегодня через <strong>${Math.floor(diff/60)} ч ${diff%60} мин</strong>`;
+        return 'скоро';
     }
-    let d = (DROP_DAY - t + 7) % 7;
-    if(d === 0 && h >= DROP_END_HOUR) d = 7;
-    if(d === 1) return 'завтра';
-    if(d >= 2 && d <= 4) return `через <strong>${d} дня</strong>`;
-    return `через <strong>${d} дней</strong>`;
+    if(diffDays === 1) return 'завтра';
+    if(diffDays >= 2 && diffDays <= 4) return `через <strong>${diffDays} дня</strong>`;
+    return `через <strong>${diffDays} дней</strong>`;
 }
+
 function getFormattedDate(msk){
     return String(msk.getDate()).padStart(2,'0') + '.' +
            String(msk.getMonth()+1).padStart(2,'0') + '.' +
@@ -539,7 +706,6 @@ function getFormattedTime(msk){
            String(msk.getMinutes()).padStart(2,'0') + ':' +
            String(msk.getSeconds()).padStart(2,'0');
 }
-
 function generateCode(){
     const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
     let code = '';
@@ -583,8 +749,8 @@ function updateWheelUI(){
         spinBtn.style.display = 'none';
         wheelResult.classList.remove('show');
         wheelLockedIcon.textContent = '🕐';
-        wheelLockedText.textContent = 'КОЛЕСО ДОСТУПНО ПО СРЕДАМ';
-        wheelLockedSub.innerHTML = `с <strong>15:00</strong> до <strong>18:00</strong> (МСК)<br>Следующая среда: <strong>${getNextDropDay()}</strong><br><span style="opacity:0.7;font-size:10.5px;">Откроется ${getTimeUntilDrop()}</span>`;
+        wheelLockedText.textContent = 'КОЛЕСО ДОСТУПНО ПО ВТОРНИКАМ';
+        wheelLockedSub.innerHTML = `каждые 2 недели · с <strong>15:00</strong> до <strong>18:00</strong> (МСК)<br>Ближайший розыгрыш: <strong>${getNextDropDay()}</strong><br><span style="opacity:0.7;font-size:10.5px;">Откроется ${getTimeUntilDrop()}</span>`;
         wheelLockedStatic.style.display = 'none';
         return;
     }
@@ -611,7 +777,7 @@ function updateWheelUI(){
         wheelLockedStatic.textContent = staticVal;
         wheelLockedIcon.textContent = '🔒';
         wheelLockedText.textContent = 'ВЫ УЖЕ КРУТИЛИ';
-        wheelLockedSub.innerHTML = `Возвращайтесь завтра!<br>Следующая попытка: <strong>завтра</strong>`;
+        wheelLockedSub.innerHTML = `Возвращайтесь в следующий вторник!<br>Ближайший розыгрыш: <strong>${getNextDropDay()}</strong>`;
         return;
     }
 
