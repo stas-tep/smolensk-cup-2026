@@ -1,0 +1,1303 @@
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#05060f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<title>Морозный Кузнец · Зима 2026</title>
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overscroll-behavior:none}
+body{
+    background:#05060f;font-family:'Inter',-apple-system,sans-serif;
+    min-height:100vh;min-height:100dvh;
+    display:flex;justify-content:center;align-items:center;
+    color:#fff;overflow:hidden;-webkit-font-smoothing:antialiased;
+}
+@media (max-width:480px),(max-height:900px) and (orientation:portrait){
+    body{align-items:stretch;min-height:100dvh;height:100dvh}
+}
+
+.phone-frame{
+    width:375px;height:812px;
+    background:linear-gradient(160deg,#0a1030 0%,#0d1440 50%,#080c28 100%);
+    border-radius:46px;
+    box-shadow:0 0 0 2px rgba(147,197,253,.15),0 0 0 8px rgba(0,0,0,.6),0 40px 80px rgba(0,0,0,.7),0 0 100px rgba(59,130,246,.15);
+    position:relative;overflow:hidden;isolation:isolate;z-index:2;
+}
+@media (max-width:480px),(max-height:900px) and (orientation:portrait){
+    .phone-frame{width:100%;height:100dvh;min-height:100dvh;border-radius:0;box-shadow:none;padding-top:env(safe-area-inset-top)}
+    .panel-overlay{border-radius:0}
+    .panel{left:0;right:0;border-radius:28px 28px 0 0;padding-bottom:calc(30px + env(safe-area-inset-bottom))}
+    .screen{padding:22px 18px 80px;padding-top:calc(22px + env(safe-area-inset-top))}
+}
+
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aurora-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.blob-1{width:260px;height:260px;background:radial-gradient(circle,#3b82f6 0%,transparent 70%);top:-80px;left:-80px;animation:float1 18s ease-in-out infinite}
+.blob-2{width:300px;height:300px;background:radial-gradient(circle,#8b5cf6 0%,transparent 70%);top:300px;right:-120px;animation:float2 22s ease-in-out infinite}
+.blob-3{width:240px;height:240px;background:radial-gradient(circle,#06b6d4 0%,transparent 70%);bottom:-80px;left:20%;animation:float3 20s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,60px) scale(1.15)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-40px) scale(1.1)}}
+@keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-50px) scale(1.2)}}
+
+.snow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.snowflake{position:absolute;top:-20px;color:#fff;user-select:none;pointer-events:none;animation:fall linear infinite;opacity:0}
+@keyframes fall{0%{transform:translateY(-20px) translateX(0) rotate(0);opacity:0}10%{opacity:var(--opacity,.7)}90%{opacity:var(--opacity,.7)}100%{transform:translateY(900px) translateX(var(--drift,0)) rotate(360deg);opacity:0}}
+
+.screen{position:relative;z-index:3;height:100%;overflow-y:auto;padding:26px 18px 80px;display:flex;flex-direction:column;-webkit-overflow-scrolling:touch}
+.screen::-webkit-scrollbar{display:none}.screen{scrollbar-width:none}
+
+/* ===== Шапка ===== */
+.header{margin-bottom:20px;text-align:center;position:relative}
+.header-title{
+    font-size:32px;font-weight:900;line-height:1.02;letter-spacing:-1px;
+    background:linear-gradient(110deg,#fff 0%,#bfdbfe 20%,#93c5fd 45%,#fff 70%,#bfdbfe 100%);
+    background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shimmer 6s linear infinite;filter:drop-shadow(0 4px 26px rgba(147,197,253,.45));
+    margin-bottom:8px;text-transform:uppercase;
+}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:220% 50%}}
+.header-divider{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}
+.header-divider::before,.header-divider::after{
+    content:'';width:34px;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(147,197,253,.6),transparent);
+}
+.header-divider span{width:4px;height:4px;border-radius:50%;background:#93c5fd;box-shadow:0 0 10px #93c5fd}
+.header-sub{font-size:10.5px;font-weight:800;color:rgba(147,197,253,.7);letter-spacing:2px;text-transform:uppercase}
+
+/* ===== Слот улучшения ===== */
+.upgrade-zone{margin-bottom:18px}
+.upgrade-slot{
+    position:relative;width:140px;height:140px;margin:0 auto 14px;
+    border-radius:22px;
+    background:radial-gradient(circle at 50% 30%,rgba(59,130,246,.18) 0%,transparent 70%),rgba(147,197,253,.05);
+    border:1px solid rgba(147,197,253,.25);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;
+    cursor:pointer;transition:.22s;overflow:hidden;
+    box-shadow:inset 0 1px 0 rgba(147,197,253,.15),0 10px 30px rgba(59,130,246,.2);
+}
+.upgrade-slot:hover:not(.slot-rolling){
+    background:radial-gradient(circle at 50% 30%,rgba(59,130,246,.3) 0%,transparent 70%),rgba(147,197,253,.1);
+    border-color:rgba(147,197,253,.55);transform:translateY(-2px);
+    box-shadow:inset 0 1px 0 rgba(147,197,253,.25),0 14px 40px rgba(59,130,246,.35);
+}
+.upgrade-slot .empty-icon{font-size:42px;opacity:.35;filter:drop-shadow(0 4px 12px rgba(147,197,253,.3))}
+.upgrade-slot .slot-icon{font-size:48px;line-height:1;margin-bottom:6px;filter:drop-shadow(0 6px 16px rgba(59,130,246,.4));transition:.2s}
+.upgrade-slot .slot-name{font-size:10.5px;font-weight:800;color:#fff;text-align:center;line-height:1.2;padding:0 4px;letter-spacing:.3px}
+.upgrade-slot .slot-meta{
+    position:absolute;bottom:8px;left:8px;right:8px;
+    display:flex;justify-content:space-between;align-items:center;font-size:9px;font-weight:800;
+}
+.upgrade-slot .slot-lvl{padding:2px 7px;border-radius:6px;background:rgba(147,197,253,.2);color:#93c5fd;letter-spacing:.5px}
+.upgrade-slot .slot-price{color:rgba(250,204,21,.8);letter-spacing:.3px}
+
+/* Анимация улучшения прямо в ячейке */
+.upgrade-slot.slot-rolling{
+    pointer-events:none;
+    animation:slotShake 0.5s ease-in-out infinite;
+}
+.upgrade-slot.slot-rolling .slot-icon{
+    animation:slotSpin 0.6s linear infinite;
+}
+@keyframes slotShake{
+    0%,100%{transform:translate(0,0) rotate(0)}
+    25%{transform:translate(-2px,1px) rotate(-2deg)}
+    50%{transform:translate(2px,-1px) rotate(2deg)}
+    75%{transform:translate(-1px,-1px) rotate(-1deg)}
+}
+@keyframes slotSpin{
+    0%{transform:scale(1) rotate(0)}
+    50%{transform:scale(1.12) rotate(180deg)}
+    100%{transform:scale(1) rotate(360deg)}
+}
+.upgrade-slot.slot-rolling::after{
+    content:'';position:absolute;inset:-2px;border-radius:24px;
+    background:conic-gradient(from 0deg,transparent 0%,rgba(147,197,253,.6) 25%,transparent 50%,rgba(139,92,246,.6) 75%,transparent 100%);
+    animation:slotSweep 1.2s linear infinite;
+    z-index:-1;filter:blur(4px);
+}
+@keyframes slotSweep{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+
+/* Вспышка результата */
+.upgrade-slot.slot-flash-up{
+    animation:flashUp .8s ease-out;
+    border-color:rgba(74,222,128,.8)!important;
+}
+.upgrade-slot.slot-flash-down{
+    animation:flashDown .8s ease-out;
+    border-color:rgba(248,113,113,.8)!important;
+}
+.upgrade-slot.slot-flash-stay{
+    animation:flashStay .8s ease-out;
+    border-color:rgba(250,204,21,.8)!important;
+}
+@keyframes flashUp{
+    0%{box-shadow:0 0 0 0 rgba(74,222,128,.9),inset 0 0 40px rgba(74,222,128,.6)}
+    100%{box-shadow:0 0 0 24px rgba(74,222,128,0),inset 0 0 0 rgba(74,222,128,0)}
+}
+@keyframes flashDown{
+    0%{box-shadow:0 0 0 0 rgba(248,113,113,.9),inset 0 0 40px rgba(248,113,113,.6)}
+    100%{box-shadow:0 0 0 24px rgba(248,113,113,0),inset 0 0 0 rgba(248,113,113,0)}
+}
+@keyframes flashStay{
+    0%{box-shadow:0 0 0 0 rgba(250,204,21,.9),inset 0 0 40px rgba(250,204,21,.6)}
+    100%{box-shadow:0 0 0 24px rgba(250,204,21,0),inset 0 0 0 rgba(250,204,21,0)}
+}
+
+.chances-row{
+    display:flex;justify-content:space-between;gap:8px;padding:12px;margin-bottom:12px;
+    background:rgba(147,197,253,.05);border:1px solid rgba(147,197,253,.15);border-radius:16px;
+}
+.chance-chip{text-align:center;flex:1;padding:6px 4px;border-radius:10px}
+.chance-chip .chance-lbl{font-size:9px;color:rgba(147,197,253,.8);font-weight:800;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:5px}
+.chance-chip .chance-val{font-size:17px;font-weight:900;color:#fff;display:block;font-variant-numeric:tabular-nums;letter-spacing:.3px}
+.chance-chip.up .chance-val{color:#4ade80;text-shadow:0 0 12px rgba(74,222,128,.4)}
+.chance-chip.stay .chance-val{color:#facc15;text-shadow:0 0 12px rgba(250,204,21,.4)}
+.chance-chip.down .chance-val{color:#f87171;text-shadow:0 0 12px rgba(248,113,113,.4)}
+
+.upgrade-btn{
+    width:100%;padding:16px;
+    background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);
+    color:#fff;border:none;border-radius:16px;
+    font-family:inherit;font-size:13px;font-weight:900;
+    letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;
+    transition:.22s;touch-action:manipulation;
+    box-shadow:0 10px 25px rgba(59,130,246,.45),inset 0 1px 0 rgba(255,255,255,.2);
+}
+.upgrade-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 15px 35px rgba(59,130,246,.65),inset 0 1px 0 rgba(255,255,255,.3)}
+.upgrade-btn:active:not(:disabled){transform:translateY(0)}
+.upgrade-btn:disabled{background:rgba(147,197,253,.08);color:rgba(147,197,253,.4);cursor:not-allowed;box-shadow:none;transform:none}
+
+.bonus-zone{
+    margin-top:12px;display:flex;align-items:center;gap:10px;
+    padding:10px 12px;
+    background:rgba(147,197,253,.04);border:1px solid rgba(147,197,253,.15);border-radius:14px;
+}
+.bonus-info{flex:1;min-width:0}
+.bonus-title{font-size:11.5px;font-weight:900;color:#fff;letter-spacing:.3px;line-height:1.2}
+.bonus-sub{font-size:10px;font-weight:700;color:rgba(147,197,253,.65);margin-top:2px;font-variant-numeric:tabular-nums;letter-spacing:.3px}
+.bonus-btn{
+    flex-shrink:0;padding:9px 14px;
+    background:linear-gradient(135deg,#f59e0b 0%,#ef4444 100%);
+    color:#fff;border:none;border-radius:11px;
+    font-family:inherit;font-size:10.5px;font-weight:900;
+    letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:.2s;
+    box-shadow:0 6px 16px rgba(245,158,11,.4),inset 0 1px 0 rgba(255,255,255,.25);
+    white-space:nowrap;
+}
+.bonus-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 22px rgba(245,158,11,.55)}
+.bonus-btn:disabled{background:rgba(147,197,253,.08);color:rgba(147,197,253,.4);cursor:not-allowed;box-shadow:none;transform:none}
+.bonus-btn.ready{animation:bonusPulse 1.8s ease-in-out infinite}
+@keyframes bonusPulse{
+    0%,100%{box-shadow:0 6px 16px rgba(245,158,11,.4),inset 0 1px 0 rgba(255,255,255,.25)}
+    50%{box-shadow:0 6px 22px rgba(245,158,11,.8),inset 0 1px 0 rgba(255,255,255,.35)}
+}
+
+.result-banner{
+    margin-top:12px;padding:12px 14px;border-radius:14px;text-align:center;
+    display:none;animation:fadeIn .3s ease;border:1px solid transparent;
+}
+.result-banner.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.result-banner.up{background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.3)}
+.result-banner.down{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)}
+.result-banner.stay{background:rgba(250,204,21,.1);border-color:rgba(250,204,21,.3)}
+.result-text{font-size:13px;font-weight:900;margin-bottom:4px;letter-spacing:.4px;text-transform:uppercase}
+.result-banner.up .result-text{color:#4ade80}
+.result-banner.down .result-text{color:#f87171}
+.result-banner.stay .result-text{color:#facc15}
+.result-desc{font-size:11.5px;color:rgba(255,255,255,.7);line-height:1.45;font-weight:600}
+
+.tabs{
+    display:flex;gap:4px;padding:4px;
+    background:rgba(147,197,253,.06);
+    border:1px solid rgba(147,197,253,.15);
+    border-radius:14px;margin-bottom:16px;position:relative;
+}
+.tab{
+    flex:1;padding:10px 8px;background:transparent;border:none;border-radius:10px;
+    font-family:inherit;font-size:11px;font-weight:800;color:rgba(147,197,253,.65);
+    cursor:pointer;transition:all .25s cubic-bezier(.34,1.2,.64,1);
+    position:relative;display:flex;align-items:center;justify-content:center;gap:5px;
+    letter-spacing:.4px;text-transform:uppercase;white-space:nowrap;
+}
+.tab:hover:not(.active){color:rgba(255,255,255,.85);background:rgba(147,197,253,.06)}
+.tab.active{background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);color:#fff;box-shadow:0 6px 18px rgba(59,130,246,.45),inset 0 1px 0 rgba(255,255,255,.25)}
+.tab .badge{background:#ef4444;color:#fff;font-size:8px;font-weight:900;padding:1px 5px;border-radius:100px;min-width:14px;text-align:center;box-shadow:0 0 8px rgba(239,68,68,.6);line-height:1.2}
+.tab.active .badge{background:#fff;color:#3b82f6;box-shadow:none}
+
+.section-title{
+    font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;
+    color:rgba(147,197,253,.75);margin-bottom:12px;
+    display:flex;justify-content:space-between;align-items:center;
+}
+.section-title .count{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:0;text-transform:none;font-weight:700}
+
+/* ===== Инвентарь ===== */
+.inventory{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.inv-cell{
+    position:relative;aspect-ratio:1;border-radius:14px;
+    background:rgba(147,197,253,.05);
+    border:1px solid rgba(147,197,253,.18);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:8px;cursor:pointer;transition:.22s;overflow:hidden;min-width:0;
+}
+.inv-cell.locked{cursor:not-allowed;background:rgba(147,197,253,.015);border-style:dashed;border-color:rgba(147,197,253,.1)}
+.inv-cell.locked .lock-icon{font-size:22px;opacity:.25}
+.inv-cell.locked .inv-lock-label{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:7px;font-weight:800;letter-spacing:.5px;color:rgba(147,197,253,.4);text-transform:uppercase}
+.inv-cell:not(.locked):not(.empty):hover{background:rgba(147,197,253,.12);border-color:rgba(147,197,253,.4);transform:translateY(-1px);box-shadow:0 6px 18px rgba(59,130,246,.2)}
+.inv-cell.selected{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.7);box-shadow:0 0 0 1px rgba(59,130,246,.5),0 6px 20px rgba(59,130,246,.35)}
+.inv-icon{font-size:26px;line-height:1;margin-bottom:5px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
+.inv-name{font-size:8px;font-weight:700;color:rgba(255,255,255,.85);text-align:center;line-height:1.15;padding:0 2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.inv-meta{position:absolute;bottom:4px;left:4px;right:4px;display:flex;justify-content:space-between;align-items:center;font-size:7.5px;font-weight:800}
+.inv-meta .inv-level{padding:1px 5px;border-radius:4px;background:rgba(147,197,253,.2);color:#93c5fd}
+.inv-meta .inv-level.max{background:#ef4444;color:#fff;box-shadow:0 0 8px rgba(239,68,68,.5)}
+.inv-meta .inv-price{color:rgba(250,204,21,.8)}
+.inv-cell.stack-cell .inv-icon{margin-bottom:2px}
+.inv-cell.stack-cell .inv-count{position:absolute;bottom:4px;right:6px;font-size:9px;font-weight:900;color:#fff;padding:1px 6px;border-radius:5px;background:rgba(147,197,253,.25)}
+
+/* ===== Крафт ===== */
+.craft-panel{display:none}
+.craft-panel.active{display:block}
+.craft-card{background:rgba(147,197,253,.05);border:1px solid rgba(147,197,253,.18);border-radius:18px;padding:16px;margin-bottom:12px}
+.craft-row-head{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(147,197,253,.12);margin-bottom:14px}
+.craft-row-icon{width:42px;height:42px;border-radius:12px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 4px 12px rgba(34,197,94,.2)}
+.craft-row-title{flex:1;min-width:0}
+.craft-row-name{font-size:14px;font-weight:900;color:#fff;letter-spacing:.3px;line-height:1.2}
+.craft-row-have{font-size:12px;font-weight:800;color:#93c5fd;flex-shrink:0;font-variant-numeric:tabular-nums}
+.craft-row-mat{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(147,197,253,.04);border-radius:10px;margin-bottom:14px}
+.craft-row-mat-icon{font-size:16px;flex-shrink:0}
+.craft-row-mat-name{flex:1;font-size:12px;font-weight:700;color:rgba(255,255,255,.75)}
+.craft-row-mat-count{font-size:13px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:.3px}
+.craft-row-mat-count.enough{color:#4ade80;text-shadow:0 0 10px rgba(74,222,128,.4)}
+.craft-row-mat-count.not-enough{color:#f87171}
+.craft-btn{
+    width:100%;padding:13px;
+    background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);
+    color:#fff;border:none;border-radius:12px;
+    font-family:inherit;font-size:12px;font-weight:900;
+    letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s;
+    box-shadow:0 8px 20px rgba(34,197,94,.4),inset 0 1px 0 rgba(255,255,255,.2);
+}
+.craft-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 12px 26px rgba(34,197,94,.55),inset 0 1px 0 rgba(255,255,255,.3)}
+.craft-btn:disabled{background:rgba(147,197,253,.08);color:rgba(147,197,253,.4);cursor:not-allowed;box-shadow:none;transform:none}
+.craft-hint{font-size:10.5px;color:rgba(255,255,255,.45);text-align:center;line-height:1.5;font-weight:600;padding:10px 8px}
+.craft-hint strong{color:rgba(147,197,253,.8);font-weight:800}
+
+/* ===== Задания ===== */
+.tasks-panel{display:none}
+.tasks-panel.active{display:block}
+.task-group{margin-bottom:20px}
+.task-group:last-child{margin-bottom:0}
+.task-group-title{
+    font-size:10px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;
+    color:rgba(147,197,253,.8);margin-bottom:10px;
+    display:flex;align-items:center;justify-content:space-between;gap:8px;white-space:nowrap;
+}
+.task-group-title .task-group-timer{font-size:10px;color:rgba(255,255,255,.6);letter-spacing:.3px;text-transform:none;font-weight:800;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:5px}
+.task-group-title .task-group-timer::before{content:'';width:5px;height:5px;border-radius:50%;background:#3b82f6;box-shadow:0 0 8px #3b82f6;flex-shrink:0;animation:livePulse 1.6s ease-in-out infinite}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:.4}}
+.task-item{display:flex;align-items:center;gap:12px;padding:14px 12px;background:rgba(147,197,253,.05);border:1px solid rgba(147,197,253,.15);border-radius:16px;margin-bottom:8px}
+.task-item.done{background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.25)}
+.task-icon{font-size:20px;flex-shrink:0;opacity:.8}
+.task-item.done .task-icon{opacity:1}
+.task-body{flex:1;min-width:0}
+.task-name{font-size:12.5px;font-weight:800;color:#fff;margin-bottom:3px;letter-spacing:.2px}
+.task-desc{font-size:10.5px;color:rgba(255,255,255,.55);margin-bottom:8px;line-height:1.35;font-weight:600}
+.task-progress{height:3px;background:rgba(147,197,253,.12);overflow:hidden;margin-bottom:7px;border-radius:2px}
+.task-progress-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:2px;transition:width .4s ease;box-shadow:0 0 8px rgba(59,130,246,.6)}
+.task-item.done .task-progress-fill{background:linear-gradient(90deg,#22c55e,#4ade80);box-shadow:0 0 8px rgba(74,222,128,.6)}
+.task-meta{display:flex;justify-content:space-between;font-size:9.5px;color:rgba(255,255,255,.5);font-weight:700;gap:8px}
+.task-reward{color:#facc15;font-weight:900;text-align:right;letter-spacing:.3px}
+.task-claim{
+    padding:9px 14px;border-radius:10px;border:none;
+    font-family:inherit;font-size:10px;font-weight:900;
+    cursor:pointer;transition:.2s;flex-shrink:0;
+    background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;letter-spacing:.5px;text-transform:uppercase;
+    box-shadow:0 6px 16px rgba(59,130,246,.4);
+}
+.task-claim:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 22px rgba(59,130,246,.55)}
+.task-claim:disabled{background:rgba(147,197,253,.1);color:rgba(147,197,253,.35);cursor:not-allowed;box-shadow:none;transform:none}
+.task-claim.claimed{background:transparent;color:rgba(147,197,253,.35);cursor:default;box-shadow:none}
+
+.panel-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:100;opacity:0;visibility:hidden;transition:.3s;border-radius:46px}
+.panel-overlay.active{opacity:1;visibility:visible}
+.panel{
+    position:absolute;left:0;right:0;bottom:0;max-height:78%;
+    background:linear-gradient(180deg,#101838 0%,#0a1030 100%);
+    border-radius:28px 28px 0 0;border-top:1px solid rgba(147,197,253,.35);
+    padding:20px 22px 30px;z-index:101;
+    transform:translateY(100%);
+    transition:transform .4s cubic-bezier(.34,1.2,.64,1);
+    overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+    box-shadow:0 -20px 60px rgba(0,0,0,.6);
+}
+.panel.active{transform:translateY(0)}
+.panel::-webkit-scrollbar{display:none}.panel{scrollbar-width:none}
+.panel-handle{width:40px;height:4px;background:rgba(147,197,253,.3);border-radius:2px;margin:0 auto 18px;cursor:grab;touch-action:none}
+.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.panel-title{font-size:16px;font-weight:900;color:#fff;letter-spacing:1px;text-transform:uppercase}
+.panel-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(147,197,253,.2);display:flex;justify-content:center;align-items:center;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:.2s}
+.panel-close:hover{background:rgba(239,68,68,.3);border-color:rgba(239,68,68,.5);color:#fff}
+.panel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.panel-item{position:relative;aspect-ratio:1;border-radius:14px;background:rgba(147,197,253,.05);border:1px solid rgba(147,197,253,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;cursor:pointer;transition:.2s;overflow:hidden}
+.panel-item:hover{background:rgba(147,197,253,.12);border-color:rgba(147,197,253,.4);transform:translateY(-1px);box-shadow:0 6px 18px rgba(59,130,246,.2)}
+.panel-item-icon{font-size:26px;line-height:1;margin-bottom:5px}
+.panel-item-name{font-size:8.5px;font-weight:700;color:#fff;text-align:center;line-height:1.15}
+.panel-item-lvl{font-size:8px;font-weight:700;color:rgba(250,204,21,.8);margin-top:3px}
+
+.error-toast{
+    position:absolute;top:76px;left:50%;
+    transform:translateX(-50%) translateY(-14px);
+    padding:12px 18px;background:rgba(10,16,48,.98);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    color:#fff;border:1px solid rgba(147,197,253,.25);
+    font-size:12px;font-weight:800;border-radius:12px;z-index:200;
+    opacity:0;pointer-events:none;transition:.28s;
+    max-width:80%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+.error-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.error-toast.error{color:#f87171;border-color:rgba(248,113,113,.4);box-shadow:0 10px 30px rgba(248,113,113,.2)}
+.error-toast.success{color:#4ade80;border-color:rgba(74,222,128,.4);box-shadow:0 10px 30px rgba(74,222,128,.2)}
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+<div class="aurora"><div class="aurora-blob blob-1"></div><div class="aurora-blob blob-2"></div><div class="aurora-blob blob-3"></div></div>
+<div class="snow" id="snow"></div>
+
+<div class="screen">
+
+  <div class="header">
+    <div class="header-title">Морозный<br>Кузнец</div>
+    <div class="header-divider"><span></span></div>
+    <div class="header-sub">Куй предметы · собирай редкости</div>
+  </div>
+
+  <div class="upgrade-zone" id="upgradeZone">
+    <div class="upgrade-slot" id="upgradeSlot" onclick="openPanel('upgrade')">
+      <div class="empty-icon">🔧</div>
+    </div>
+
+    <div class="chances-row">
+      <div class="chance-chip up"><span class="chance-lbl">Вперёд</span><span class="chance-val" id="chanceUp">—</span></div>
+      <div class="chance-chip stay"><span class="chance-lbl">На месте</span><span class="chance-val" id="chanceStay">—</span></div>
+      <div class="chance-chip down"><span class="chance-lbl">Откат</span><span class="chance-val" id="chanceDown">—</span></div>
+    </div>
+
+    <button class="upgrade-btn" id="upgradeBtn" onclick="doUpgrade()" disabled>Выберите предмет</button>
+
+    <div class="bonus-zone">
+      <div class="bonus-info">
+        <div class="bonus-title">Бонус: 3 🔧</div>
+        <div class="bonus-sub" id="bonusSub">Каждые 3 часа</div>
+      </div>
+      <button class="bonus-btn" id="bonusBtn" onclick="claimBonus()" disabled>Забрать</button>
+    </div>
+
+    <div class="result-banner" id="resultBanner"></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" id="tabInv" onclick="switchTab('inv')">Инвентарь</button>
+    <button class="tab" id="tabTasks" onclick="switchTab('tasks')">Задания<span class="badge" id="tasksBadge" style="display:none">0</span></button>
+    <button class="tab" id="tabCraft" onclick="switchTab('craft')">Крафт</button>
+  </div>
+
+  <div id="panelInv">
+    <div class="section-title">
+      <span>Предметы</span>
+      <span class="count" id="invCount">0 / 9</span>
+    </div>
+    <div class="inventory" id="inventory"></div>
+  </div>
+
+  <div id="panelTasks" class="tasks-panel">
+    <div class="section-title"><span>Задания</span></div>
+    <div id="tasksList"></div>
+  </div>
+
+  <div id="panelCraft" class="craft-panel">
+    <div class="section-title"><span>Крафт</span></div>
+
+    <div class="craft-card">
+      <div class="craft-row-head">
+        <div class="craft-row-icon">🔧</div>
+        <div class="craft-row-title">
+          <div class="craft-row-name">Ремкомплект</div>
+        </div>
+        <div class="craft-row-have" id="craftHave">У вас: 0</div>
+      </div>
+
+      <div class="craft-row-mat">
+        <div class="craft-row-mat-icon">🔩</div>
+        <div class="craft-row-mat-name">Детали</div>
+        <div class="craft-row-mat-count" id="matDetails">0 / 5</div>
+      </div>
+
+      <button class="craft-btn" id="craftBtn" onclick="craftRepair()" disabled>Создать</button>
+    </div>
+
+    <div class="craft-hint">
+      Детали выдаются за <strong>задания</strong> и за дубликаты предметов
+    </div>
+  </div>
+
+</div>
+
+<div class="panel-overlay" id="overlay-upgrade" onclick="closePanel('upgrade')"></div>
+<div class="panel" id="panel-upgrade">
+  <div class="panel-handle"></div>
+  <div class="panel-header">
+    <div class="panel-title">Выберите предмет</div>
+    <div class="panel-close" onclick="closePanel('upgrade')">✕</div>
+  </div>
+  <div class="panel-grid" id="panelUpgradeGrid"></div>
+</div>
+
+<div class="error-toast" id="errorToast"></div>
+
+</div>
+
+<script>
+/* ============================================================
+   КОНСТАНТЫ
+   ============================================================ */
+const ITEM_SLOTS = [
+    { id:'snowflake', name:'Снежинка', icon:'❄️', basePrice:10 },
+    { id:'candy',     name:'Конфета',  icon:'🍬', basePrice:12 },
+    { id:'cookie',    name:'Печенье',  icon:'🍪', basePrice:15 },
+    { id:'hotchoc',   name:'Какао',    icon:'☕', basePrice:30 },
+    { id:'scarf',     name:'Шарф',     icon:'🧣', basePrice:35 },
+    { id:'mittens',   name:'Варежки',  icon:'🧤', basePrice:40 },
+    { id:'ornament',  name:'Ёлочный шар', icon:'🎄', basePrice:80 }
+];
+const REPAIR_SLOT = 7;
+const DETAIL_SLOT = 8;
+const REPAIR_ID = 'repair';
+const DETAIL_ID = 'detail';
+
+const MAX_LEVEL = 4;
+const LEVEL_MULT = [1, 1.6, 2.6, 4.2];
+
+const CRAFT_RECIPE = { details: 5 };
+const DETAILS_ON_DUPLICATE = 3;
+
+const BONUS_INTERVAL_MS = 3 * 60 * 60 * 1000;
+const BONUS_REPAIRS = 3;
+
+const STORAGE_KEY = 'winter_upgrade_v16';
+
+function getItemBase(id){ return ITEM_SLOTS.find(s => s.id === id) || null; }
+function getItemData(id, level){
+    const base = getItemBase(id);
+    if(!base) return null;
+    level = Math.max(1, Math.min(MAX_LEVEL, level));
+    return { ...base, level, price: Math.round(base.basePrice * LEVEL_MULT[level - 1]) };
+}
+function findItemSlot(id){
+    return ITEM_SLOTS.findIndex(s => s.id === id);
+}
+
+/* ============================================================
+   ЗВУКИ (Web Audio API)
+   ============================================================ */
+let audioCtx = null;
+function getAudioCtx(){
+    if(!audioCtx){
+        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+        catch(e){ return null; }
+    }
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+}
+function playTone(freq, duration, type, startOffset, gainPeak){
+    const ctx = getAudioCtx();
+    if(!ctx) return;
+    const t0 = ctx.currentTime + (startOffset || 0);
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freq, t0);
+    gain.gain.setValueAtTime(0, t0);
+    gain.gain.linearRampToValueAtTime(gainPeak || 0.18, t0 + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t0);
+    osc.stop(t0 + duration + 0.02);
+}
+const Sfx = {
+    up(){
+        playTone(523.25, 0.12, 'sine', 0, 0.18);
+        playTone(659.25, 0.12, 'sine', 0.08, 0.16);
+        playTone(783.99, 0.16, 'sine', 0.16, 0.18);
+        playTone(1046.5, 0.22, 'sine', 0.24, 0.15);
+    },
+    down(){
+        playTone(392.0, 0.14, 'triangle', 0, 0.16);
+        playTone(329.63, 0.14, 'triangle', 0.1, 0.15);
+        playTone(261.63, 0.2, 'triangle', 0.2, 0.16);
+    },
+    stay(){
+        playTone(440, 0.1, 'square', 0, 0.08);
+        playTone(440, 0.1, 'square', 0.12, 0.08);
+    },
+    craft(){
+        playTone(659.25, 0.08, 'sine', 0, 0.16);
+        playTone(880, 0.14, 'sine', 0.08, 0.18);
+    }
+};
+
+/* ============================================================
+   СОСТОЯНИЕ
+   ============================================================ */
+function defaultState(){
+    const inv = new Array(9).fill(null);
+    inv[0] = { id:'snowflake', level:1 };
+    inv[1] = { id:'candy', level:1 };
+    inv[REPAIR_SLOT] = { id:REPAIR_ID, count:3 };
+    inv[DETAIL_SLOT] = { id:DETAIL_ID, count:0 };
+    return {
+        inventory: inv,
+        brokenItems: [],
+        selectedItemId: null,
+        isRolling: false,
+        daily: { upgrade: 0, win: 0 },
+        weekly: { upgrade: 0, win: 0, upgrade5: 0, win3: 0 },
+        claimed: [],
+        lastDailyReset: null,
+        lastWeeklyReset: null,
+        bonusNextAt: 0
+    };
+}
+
+let state = loadState();
+
+function loadState(){
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(raw){
+            const parsed = JSON.parse(raw);
+            const s = { ...defaultState(), ...parsed };
+            s.selectedItemId = null; s.isRolling = false;
+            const inv = new Array(9).fill(null);
+            if(Array.isArray(s.inventory)){
+                for(let i=0;i<9;i++){
+                    const cell = s.inventory[i];
+                    if(cell && cell.id) inv[i] = cell;
+                }
+            }
+            if(!inv[REPAIR_SLOT] || inv[REPAIR_SLOT].id !== REPAIR_ID){
+                inv[REPAIR_SLOT] = { id:REPAIR_ID, count:0 };
+            }
+            if(!inv[DETAIL_SLOT] || inv[DETAIL_SLOT].id !== DETAIL_ID){
+                inv[DETAIL_SLOT] = { id:DETAIL_ID, count:0 };
+            }
+            s.inventory = inv;
+            if(!Array.isArray(s.brokenItems)) s.brokenItems = [];
+            if(!s.daily) s.daily = { upgrade: 0, win: 0 };
+            if(!s.weekly) s.weekly = { upgrade: 0, win: 0, upgrade5: 0, win3: 0 };
+            if(typeof s.bonusNextAt !== 'number') s.bonusNextAt = 0;
+            return s;
+        }
+    } catch(e){}
+    return defaultState();
+}
+
+function saveState(){
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            inventory: state.inventory,
+            brokenItems: state.brokenItems,
+            daily: state.daily,
+            weekly: state.weekly,
+            claimed: state.claimed,
+            lastDailyReset: state.lastDailyReset,
+            lastWeeklyReset: state.lastWeeklyReset,
+            bonusNextAt: state.bonusNextAt
+        }));
+    } catch(e){}
+}
+
+function checkDailyReset(){
+    const today = new Date().toDateString();
+    if(state.lastDailyReset !== today){
+        state.lastDailyReset = today;
+        state.daily = { upgrade: 0, win: 0 };
+        state.claimed = state.claimed.filter(id => !id.startsWith('d_'));
+        saveState();
+    }
+}
+function checkWeeklyReset(){
+    const now = new Date();
+    const monday = new Date(now);
+    monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+    monday.setHours(0,0,0,0);
+    const weekKey = monday.toDateString();
+    if(state.lastWeeklyReset !== weekKey){
+        state.lastWeeklyReset = weekKey;
+        state.weekly = { upgrade: 0, win: 0, upgrade5: 0, win3: 0 };
+        state.claimed = state.claimed.filter(id => !id.startsWith('w_'));
+        saveState();
+    }
+}
+
+/* ============================================================
+   ХЕЛПЕРЫ ИНВЕНТАРЯ
+   ============================================================ */
+function getRepairCount(){
+    const c = state.inventory[REPAIR_SLOT];
+    return c ? (c.count || 0) : 0;
+}
+function getDetailCount(){
+    const c = state.inventory[DETAIL_SLOT];
+    return c ? (c.count || 0) : 0;
+}
+function addDetails(amount){
+    const c = state.inventory[DETAIL_SLOT];
+    if(!c){ state.inventory[DETAIL_SLOT] = { id:DETAIL_ID, count:amount }; return; }
+    c.count = (c.count || 0) + amount;
+}
+function spendDetails(amount){
+    const c = state.inventory[DETAIL_SLOT];
+    if(!c || (c.count || 0) < amount) return false;
+    c.count -= amount;
+    return true;
+}
+function addRepair(amount){
+    const c = state.inventory[REPAIR_SLOT];
+    if(!c){ state.inventory[REPAIR_SLOT] = { id:REPAIR_ID, count:amount }; return; }
+    c.count = (c.count || 0) + amount;
+}
+function spendRepair(){
+    const c = state.inventory[REPAIR_SLOT];
+    if(!c || (c.count || 0) < 1) return false;
+    c.count -= 1;
+    return true;
+}
+function getItemCell(id){
+    const idx = findItemSlot(id);
+    if(idx === -1) return null;
+    return state.inventory[idx];
+}
+function hasItem(id){
+    const c = getItemCell(id);
+    return !!(c && c.id === id);
+}
+function isItemBroken(id){
+    return state.brokenItems.includes(id);
+}
+
+/* ============================================================
+   БОНУС
+   ============================================================ */
+function isBonusReady(){ return Date.now() >= (state.bonusNextAt || 0); }
+function claimBonus(){
+    if(!isBonusReady()) return;
+    addRepair(BONUS_REPAIRS);
+    state.bonusNextAt = Date.now() + BONUS_INTERVAL_MS;
+    Sfx.craft();
+    renderAll();
+    showSuccess('Бонус получен: +' + BONUS_REPAIRS + ' 🔧');
+}
+function getBonusRemainingMs(){
+    return Math.max(0, (state.bonusNextAt || 0) - Date.now());
+}
+function formatBonusTime(ms){
+    const s = Math.floor(ms / 1000);
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+}
+
+/* ============================================================
+   КРАФТ
+   ============================================================ */
+function canCraftRepair(){ return getDetailCount() >= CRAFT_RECIPE.details; }
+function craftRepair(){
+    if(!canCraftRepair()){ showError('Не хватает деталей'); return; }
+    spendDetails(CRAFT_RECIPE.details);
+    addRepair(1);
+    Sfx.craft();
+    renderAll();
+    showSuccess('Ремкомплект создан');
+}
+
+/* ============================================================
+   ШАНСЫ
+   ============================================================ */
+function getChances(level){
+    const table = {
+        1: { up: 60, stay: 30, down: 10 },
+        2: { up: 45, stay: 30, down: 25 },
+        3: { up: 30, stay: 30, down: 40 },
+        4: { up: 0,  stay: 100, down: 0 }
+    };
+    return table[level] || table[1];
+}
+
+/* ============================================================
+   СНЕГ
+   ============================================================ */
+(function(){
+    const c = document.getElementById('snow');
+    const f = ['❄','❅','❆','•','·'];
+    for(let i=0;i<30;i++){
+        const el=document.createElement('div');
+        el.className='snowflake';
+        el.textContent=f[Math.floor(Math.random()*f.length)];
+        el.style.left=Math.random()*100+'%';
+        el.style.fontSize=(Math.random()*10+8)+'px';
+        el.style.animationDuration=(Math.random()*8+6)+'s';
+        el.style.animationDelay=(Math.random()*8)+'s';
+        el.style.setProperty('--opacity',(Math.random()*0.5+0.3).toFixed(2));
+        el.style.setProperty('--drift',(Math.random()*80-40)+'px');
+        c.appendChild(el);
+    }
+})();
+
+/* ============================================================
+   ВКЛАДКИ
+   ============================================================ */
+function switchTab(tab){
+    document.getElementById('tabInv').classList.toggle('active', tab === 'inv');
+    document.getElementById('tabTasks').classList.toggle('active', tab === 'tasks');
+    document.getElementById('tabCraft').classList.toggle('active', tab === 'craft');
+    document.getElementById('panelInv').style.display = tab === 'inv' ? 'block' : 'none';
+    document.getElementById('panelTasks').classList.toggle('active', tab === 'tasks');
+    document.getElementById('panelCraft').classList.toggle('active', tab === 'craft');
+    if(tab === 'tasks') renderTasks();
+    if(tab === 'craft') renderCraft();
+}
+
+/* ============================================================
+   РЕНДЕР
+   ============================================================ */
+function renderUpgradeSlot(){
+    const slot = document.getElementById('upgradeSlot');
+    if(!state.selectedItemId){
+        slot.classList.remove('filled');
+        slot.innerHTML = '<div class="empty-icon">🔧</div>';
+        return;
+    }
+    const cell = getItemCell(state.selectedItemId);
+    if(!cell){ state.selectedItemId = null; renderUpgradeSlot(); return; }
+    const data = getItemData(cell.id, cell.level);
+    slot.classList.add('filled');
+    slot.innerHTML = `
+        <div class="slot-icon">${data.icon}</div>
+        <div class="slot-name">${data.name}</div>
+        <div class="slot-meta">
+            <span class="slot-lvl">Ур. ${data.level}</span>
+            <span class="slot-price">${data.price} ₽</span>
+        </div>
+    `;
+}
+
+function renderChances(){
+    const up = document.getElementById('chanceUp');
+    const stay = document.getElementById('chanceStay');
+    const down = document.getElementById('chanceDown');
+    if(!state.selectedItemId){
+        up.textContent = '—'; stay.textContent = '—'; down.textContent = '—';
+        return;
+    }
+    const cell = getItemCell(state.selectedItemId);
+    if(!cell) return;
+    if(cell.level >= MAX_LEVEL){
+        up.textContent = '—'; stay.textContent = '—'; down.textContent = '—';
+        return;
+    }
+    const ch = getChances(cell.level);
+    up.textContent = ch.up + '%';
+    stay.textContent = ch.stay + '%';
+    down.textContent = ch.down + '%';
+}
+
+function renderUpgradeBtn(){
+    const btn = document.getElementById('upgradeBtn');
+    if(state.isRolling){ btn.disabled = true; btn.textContent = 'Улучшение...'; return; }
+    if(!state.selectedItemId){ btn.disabled = true; btn.textContent = 'Выберите предмет'; return; }
+    const cell = getItemCell(state.selectedItemId);
+    if(!cell){ btn.disabled = true; btn.textContent = 'Выберите предмет'; return; }
+    if(cell.level >= MAX_LEVEL){ btn.disabled = true; btn.textContent = 'Максимальный уровень'; return; }
+    if(getRepairCount() < 1){ btn.disabled = true; btn.textContent = 'Нужен ремкомплект'; return; }
+    btn.disabled = false;
+    btn.textContent = 'Улучшить';
+}
+
+function renderInventory(){
+    const inv = document.getElementById('inventory');
+    inv.innerHTML = '';
+
+    // 0..6 — 7 предметов
+    ITEM_SLOTS.forEach((base, idx) => {
+        const cell = document.createElement('div');
+        const invItem = state.inventory[idx];
+        if(!invItem){
+            const broken = isItemBroken(base.id);
+            cell.className = 'inv-cell locked';
+            cell.innerHTML = `
+                <div class="lock-icon">🔒</div>
+                <div class="inv-lock-label">${broken ? 'Разрушен' : 'Не выпал'}</div>
+            `;
+            inv.appendChild(cell);
+            return;
+        }
+        const data = getItemData(invItem.id, invItem.level);
+        const isSelected = state.selectedItemId === invItem.id;
+        cell.className = 'inv-cell' + (isSelected ? ' selected' : '');
+        cell.onclick = () => selectItem(invItem.id);
+        const isMax = invItem.level >= MAX_LEVEL;
+        cell.innerHTML = `
+            <div class="inv-icon">${data.icon}</div>
+            <div class="inv-name">${data.name}</div>
+            <div class="inv-meta">
+                <span class="inv-level ${isMax ? 'max' : ''}">${isMax ? 'MAX' : 'Ур. ' + invItem.level}</span>
+                <span class="inv-price">${data.price} ₽</span>
+            </div>
+        `;
+        inv.appendChild(cell);
+    });
+
+    // 7 — Ремкомплект
+    {
+        const cell = document.createElement('div');
+        const count = getRepairCount();
+        if(count <= 0){
+            cell.className = 'inv-cell stack-cell locked';
+            cell.innerHTML = '<div class="lock-icon">🔒</div>';
+        } else {
+            cell.className = 'inv-cell stack-cell';
+            cell.onclick = () => showError('Ремкомплект нужен для улучшения');
+            cell.innerHTML = `
+                <div class="inv-icon">🔧</div>
+                <div class="inv-name">Ремкомплект</div>
+                <div class="inv-count">×${count}</div>
+            `;
+        }
+        inv.appendChild(cell);
+    }
+
+    // 8 — Деталь
+    {
+        const cell = document.createElement('div');
+        const count = getDetailCount();
+        if(count <= 0){
+            cell.className = 'inv-cell stack-cell locked';
+            cell.innerHTML = '<div class="lock-icon">🔒</div>';
+        } else {
+            cell.className = 'inv-cell stack-cell';
+            cell.onclick = () => showError('Детали нужны для крафта');
+            cell.innerHTML = `
+                <div class="inv-icon">🔩</div>
+                <div class="inv-name">Деталь</div>
+                <div class="inv-count">×${count}</div>
+            `;
+        }
+        inv.appendChild(cell);
+    }
+
+    // Занято ячеек
+    let occupied = 0;
+    for(let i=0;i<9;i++){
+        const c = state.inventory[i];
+        if(!c) continue;
+        if(i === REPAIR_SLOT || i === DETAIL_SLOT){
+            if((c.count || 0) > 0) occupied++;
+        } else occupied++;
+    }
+    document.getElementById('invCount').textContent = occupied + ' / 9';
+}
+
+function renderCraft(){
+    const d = getDetailCount();
+    const haveEl = document.getElementById('craftHave');
+    const matEl = document.getElementById('matDetails');
+    if(!haveEl || !matEl) return;
+    haveEl.textContent = 'У вас: ' + getRepairCount();
+    matEl.textContent = Math.min(d, CRAFT_RECIPE.details) + ' / ' + CRAFT_RECIPE.details;
+    matEl.className = 'craft-row-mat-count ' + (d >= CRAFT_RECIPE.details ? 'enough' : 'not-enough');
+    document.getElementById('craftBtn').disabled = !canCraftRepair();
+}
+
+function renderBonus(){
+    const btn = document.getElementById('bonusBtn');
+    const sub = document.getElementById('bonusSub');
+    if(!btn || !sub) return;
+    if(isBonusReady()){
+        btn.disabled = false;
+        btn.textContent = 'Забрать';
+        btn.classList.add('ready');
+        sub.textContent = 'Доступно сейчас';
+    } else {
+        btn.disabled = true;
+        btn.textContent = 'Ждите';
+        btn.classList.remove('ready');
+        sub.textContent = 'Через ' + formatBonusTime(getBonusRemainingMs());
+    }
+}
+
+function renderAll(){
+    renderUpgradeSlot();
+    renderChances();
+    renderUpgradeBtn();
+    renderInventory();
+    renderBonus();
+    renderTasksBadge();
+    if(document.getElementById('panelTasks').classList.contains('active')) renderTasks();
+    if(document.getElementById('panelCraft').classList.contains('active')) renderCraft();
+    saveState();
+}
+
+/* ============================================================
+   ВЫБОР
+   ============================================================ */
+function selectItem(id){
+    const cell = getItemCell(id);
+    if(!cell) return;
+    state.selectedItemId = (state.selectedItemId === id) ? null : id;
+    renderAll();
+}
+
+function openPanel(which){
+    if(which !== 'upgrade') return;
+    const grid = document.getElementById('panelUpgradeGrid');
+    grid.innerHTML = '';
+    const items = [];
+    ITEM_SLOTS.forEach(base => {
+        const c = getItemCell(base.id);
+        if(c) items.push(c);
+    });
+    if(items.length === 0){
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:rgba(147,197,253,.5);font-size:12px;font-weight:700;">Нет предметов</div>';
+    } else {
+        items.forEach(invItem => {
+            const data = getItemData(invItem.id, invItem.level);
+            const el = document.createElement('div');
+            el.className = 'panel-item';
+            el.onclick = () => {
+                state.selectedItemId = invItem.id;
+                closePanel('upgrade');
+                renderAll();
+            };
+            el.innerHTML = `
+                <div class="panel-item-icon">${data.icon}</div>
+                <div class="panel-item-name">${data.name}</div>
+                <div class="panel-item-lvl">Ур. ${data.level} · ${data.price} ₽</div>
+            `;
+            grid.appendChild(el);
+        });
+    }
+    document.getElementById('overlay-upgrade').classList.add('active');
+    document.getElementById('panel-upgrade').classList.add('active');
+}
+
+function closePanel(which){
+    document.getElementById('overlay-' + which).classList.remove('active');
+    document.getElementById('panel-' + which).classList.remove('active');
+}
+
+/* ============================================================
+   УЛУЧШЕНИЕ (анимация в ячейке)
+   ============================================================ */
+function doUpgrade(){
+    if(state.isRolling) return;
+    if(!state.selectedItemId){ showError('Выберите предмет'); return; }
+    const cell = getItemCell(state.selectedItemId);
+    if(!cell){ showError('Предмет не найден'); return; }
+    if(cell.level >= MAX_LEVEL){ showError('Максимальный уровень'); return; }
+    if(getRepairCount() < 1){ showError('Нет ремкомплектов'); return; }
+
+    spendRepair();
+    state.isRolling = true;
+    renderAll();
+
+    const slot = document.getElementById('upgradeSlot');
+    slot.classList.add('slot-rolling');
+
+    const ch = getChances(cell.level);
+    const roll = Math.random() * 100;
+    let result;
+    if(roll < ch.up) result = 'up';
+    else if(roll < ch.up + ch.stay) result = 'stay';
+    else result = 'down';
+
+    document.getElementById('resultBanner').classList.remove('show');
+
+    setTimeout(() => {
+        slot.classList.remove('slot-rolling');
+        state.isRolling = false;
+
+        let destroyed = false;
+        if(result === 'up'){
+            cell.level = Math.min(MAX_LEVEL, cell.level + 1);
+        } else if(result === 'down'){
+            if(cell.level === 1){
+                const idx = findItemSlot(cell.id);
+                if(idx !== -1) state.inventory[idx] = null;
+                if(!state.brokenItems.includes(cell.id)) state.brokenItems.push(cell.id);
+                state.selectedItemId = null;
+                destroyed = true;
+            } else {
+                cell.level = Math.max(1, cell.level - 1);
+            }
+        }
+
+        state.daily.upgrade = (state.daily.upgrade || 0) + 1;
+        state.weekly.upgrade = (state.weekly.upgrade || 0) + 1;
+        state.weekly.upgrade5 = (state.weekly.upgrade5 || 0) + 1;
+        if(result === 'up'){
+            state.daily.win = (state.daily.win || 0) + 1;
+            state.weekly.win = (state.weekly.win || 0) + 1;
+            state.weekly.win3 = (state.weekly.win3 || 0) + 1;
+        }
+
+        // Звук
+        if(result === 'up') Sfx.up();
+        else if(result === 'down') Sfx.down();
+        else Sfx.stay();
+
+        // Вспышка
+        const flashClass = 'slot-flash-' + result;
+        slot.classList.add(flashClass);
+        setTimeout(() => slot.classList.remove(flashClass), 800);
+
+        const banner = document.getElementById('resultBanner');
+        if(destroyed){
+            const data = getItemData(cell.id, 1);
+            banner.className = 'result-banner down show';
+            banner.innerHTML = `<div class="result-text">Предмет разрушен</div><div class="result-desc">${data.name} исчез из инвентаря.<br>Ячейка заблокирована до нового выпадения.</div>`;
+        } else if(result === 'up'){
+            const data = getItemData(cell.id, cell.level);
+            banner.className = 'result-banner up show';
+            banner.innerHTML = `<div class="result-text">Улучшено</div><div class="result-desc">${data.name} · Уровень ${cell.level} · ${data.price} ₽</div>`;
+        } else if(result === 'down'){
+            const data = getItemData(cell.id, cell.level);
+            banner.className = 'result-banner down show';
+            banner.innerHTML = `<div class="result-text">Откат</div><div class="result-desc">${data.name} · Уровень ${cell.level} · ${data.price} ₽</div>`;
+        } else {
+            const data = getItemData(cell.id, cell.level);
+            banner.className = 'result-banner stay show';
+            banner.innerHTML = `<div class="result-text">Без изменений</div><div class="result-desc">${data.name} · Уровень ${cell.level}</div>`;
+        }
+
+        renderAll();
+        setTimeout(() => banner.classList.remove('show'), 4500);
+    }, 1500);
+}
+
+/* ============================================================
+   ЗАДАНИЯ
+   ============================================================ */
+const DAILY_TASKS = [
+    { id:'d_upg5',  icon:'🔄', name:'Разминка кузнеца', desc:'Сделайте 5 улучшений', target:5,  key:'upgrade', group:'daily', rewardType:'details', details:2 },
+    { id:'d_upg10', icon:'⚡', name:'Дневная норма',    desc:'Сделайте 10 улучшений', target:10, key:'upgrade', group:'daily', rewardType:'details', details:3 },
+    { id:'d_win3',  icon:'🏆', name:'Три победы',        desc:'Улучшите предмет 3 раза', target:3, key:'win', group:'daily', rewardType:'details', details:3 },
+    { id:'d_win5',  icon:'👑', name:'Пять побед',        desc:'Улучшите предмет 5 раз', target:5, key:'win', group:'daily', rewardType:'item', item:'cookie' }
+];
+
+const WEEKLY_TASKS = [
+    { id:'w_upg40',  icon:'🔥', name:'Сорок улучшений',   desc:'Сделайте 40 улучшений', target:40, key:'upgrade5', group:'weekly', rewardType:'details', details:10 },
+    { id:'w_upg80',  icon:'💥', name:'Восемьдесят улучшений', desc:'Сделайте 80 улучшений', target:80, key:'upgrade5', group:'weekly', rewardType:'item', item:'hotchoc' },
+    { id:'w_win12',  icon:'🌟', name:'Двенадцать побед',  desc:'Улучшите предмет 12 раз', target:12, key:'win3', group:'weekly', rewardType:'item', item:'mittens' },
+    { id:'w_win20',  icon:'💎', name:'Двадцать побед',    desc:'Улучшите предмет 20 раз', target:20, key:'win3', group:'weekly', rewardType:'details', details:12 },
+    { id:'w_win8',   icon:'👑', name:'Восемь побед',      desc:'Улучшите предмет 8 раз', target:8, key:'win3', group:'weekly', rewardType:'details', details:6 },
+    { id:'w_upg50',  icon:'🎯', name:'Пятьдесят улучшений', desc:'Сделайте 50 улучшений', target:50, key:'upgrade5', group:'weekly', rewardType:'details', details:8 }
+];
+
+function getTaskProgress(task){
+    if(task.group === 'daily') return state.daily[task.key] || 0;
+    return state.weekly[task.key] || 0;
+}
+function isTaskClaimed(id){ return state.claimed.includes(id); }
+function isTaskDone(task){ return getTaskProgress(task) >= task.target; }
+
+function renderTasksBadge(){
+    const all = [...DAILY_TASKS, ...WEEKLY_TASKS];
+    const available = all.filter(t => isTaskDone(t) && !isTaskClaimed(t.id)).length;
+    const badge = document.getElementById('tasksBadge');
+    if(available > 0){ badge.style.display = ''; badge.textContent = available; }
+    else badge.style.display = 'none';
+}
+
+function pad2(n){ return String(n).padStart(2,'0'); }
+function formatTime(totalSec){
+    const s = Math.max(0, Math.floor(totalSec));
+    return pad2(Math.floor(s/3600)) + ':' + pad2(Math.floor((s%3600)/60)) + ':' + pad2(s%60);
+}
+function formatDaysTime(totalSec){
+    const s = Math.max(0, Math.floor(totalSec));
+    const d = Math.floor(s / 86400);
+    const rest = s % 86400;
+    const h = Math.floor(rest / 3600);
+    const m = Math.floor((rest % 3600) / 60);
+    const sec = rest % 60;
+    if(d > 0) return d + 'д ' + pad2(h) + ':' + pad2(m) + ':' + pad2(sec);
+    return pad2(h) + ':' + pad2(m) + ':' + pad2(sec);
+}
+function getDailySecondsLeft(){
+    const now = new Date();
+    const next = new Date(now);
+    next.setHours(24, 0, 0, 0);
+    return Math.floor((next - now) / 1000);
+}
+function getWeeklySecondsLeft(){
+    const now = new Date();
+    const next = new Date(now);
+    const daysToMonday = ((7 - ((now.getDay() + 6) % 7)) % 7) || 7;
+    next.setDate(now.getDate() + daysToMonday);
+    next.setHours(0, 0, 0, 0);
+    return Math.floor((next - now) / 1000);
+}
+
+function getRewardHtml(task){
+    if(task.rewardType === 'details'){
+        return '🔩 Детали ×' + task.details;
+    }
+    const base = getItemBase(task.item);
+    if(hasItem(task.item)){
+        return '🔩 ×' + DETAILS_ON_DUPLICATE + ' <span style="opacity:.6;font-weight:600;">(есть)</span>';
+    }
+    return base.icon + ' ' + base.name;
+}
+
+function renderTaskItem(task){
+    const progress = getTaskProgress(task);
+    const done = progress >= task.target;
+    const claimed = isTaskClaimed(task.id);
+    const rewardHtml = getRewardHtml(task);
+
+    const el = document.createElement('div');
+    el.className = 'task-item' + (done ? ' done' : '');
+    el.innerHTML = `
+        <div class="task-icon">${task.icon}</div>
+        <div class="task-body">
+            <div class="task-name">${task.name}</div>
+            <div class="task-desc">${task.desc}</div>
+            <div class="task-progress"><div class="task-progress-fill" style="width:${Math.min(100, (progress/task.target)*100)}%"></div></div>
+            <div class="task-meta">
+                <span>${Math.min(progress, task.target)} / ${task.target}</span>
+                <span class="task-reward">${rewardHtml}</span>
+            </div>
+        </div>
+        <button class="task-claim ${claimed ? 'claimed' : ''}" ${(!done || claimed) ? 'disabled' : ''} onclick="claimTask('${task.id}')">
+            ${claimed ? '✓' : done ? 'Забрать' : '—'}
+        </button>
+    `;
+    return el;
+}
+
+function renderTasks(){
+    const list = document.getElementById('tasksList');
+    list.innerHTML = '';
+
+    const dailyGroup = document.createElement('div');
+    dailyGroup.className = 'task-group';
+    dailyGroup.innerHTML = `
+        <div class="task-group-title">
+            <span>Ежедневные · до обновления <span class="task-group-timer" id="dailyTimer">--:--:--</span></span>
+        </div>
+    `;
+    DAILY_TASKS.forEach(t => dailyGroup.appendChild(renderTaskItem(t)));
+    list.appendChild(dailyGroup);
+
+    const weeklyGroup = document.createElement('div');
+    weeklyGroup.className = 'task-group';
+    weeklyGroup.innerHTML = `
+        <div class="task-group-title">
+            <span>Еженедельные · до обновления <span class="task-group-timer" id="weeklyTimer">--:--:--</span></span>
+        </div>
+    `;
+    WEEKLY_TASKS.forEach(t => weeklyGroup.appendChild(renderTaskItem(t)));
+    list.appendChild(weeklyGroup);
+
+    updateTaskTimers();
+}
+
+function claimTask(id){
+    const all = [...DAILY_TASKS, ...WEEKLY_TASKS];
+    const task = all.find(t => t.id === id);
+    if(!task || isTaskClaimed(id) || !isTaskDone(task)) return;
+
+    if(task.rewardType === 'details'){
+        addDetails(task.details);
+        state.claimed.push(id);
+        renderAll();
+        showSuccess('Получено: 🔩 Детали ×' + task.details);
+        return;
+    }
+
+    if(hasItem(task.item)){
+        addDetails(DETAILS_ON_DUPLICATE);
+        state.claimed.push(id);
+        renderAll();
+        showSuccess('Предмет уже есть → +' + DETAILS_ON_DUPLICATE + ' 🔩');
+        return;
+    }
+
+    const idx = findItemSlot(task.item);
+    if(idx === -1){ showError('Неизвестный предмет'); return; }
+    state.inventory[idx] = { id: task.item, level: 1 };
+    state.brokenItems = state.brokenItems.filter(x => x !== task.item);
+    state.claimed.push(id);
+    renderAll();
+    showSuccess('Получено: ' + getItemBase(task.item).name);
+}
+
+/* ============================================================
+   УВЕДОМЛЕНИЯ
+   ============================================================ */
+let errorTimer;
+function showError(text){
+    const el = document.getElementById('errorToast');
+    el.textContent = text;
+    el.className = 'error-toast error show';
+    clearTimeout(errorTimer);
+    errorTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+function showSuccess(text){
+    const el = document.getElementById('errorToast');
+    el.textContent = text;
+    el.className = 'error-toast success show';
+    clearTimeout(errorTimer);
+    errorTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+/* ============================================================
+   ГЛОБАЛЬНЫЙ ТИК (таймеры заданий + бонус)
+   ============================================================ */
+function updateTaskTimers(){
+    const d = document.getElementById('dailyTimer');
+    const w = document.getElementById('weeklyTimer');
+    if(d) d.textContent = formatTime(getDailySecondsLeft());
+    if(w) w.textContent = formatDaysTime(getWeeklySecondsLeft());
+}
+setInterval(() => {
+    updateTaskTimers();
+    // обновляем бонус, если пора
+    if(isBonusReady()){
+        const btn = document.getElementById('bonusBtn');
+        if(btn && btn.disabled) renderBonus();
+    } else {
+        const sub = document.getElementById('bonusSub');
+        if(sub) sub.textContent = 'Через ' + formatBonusTime(getBonusRemainingMs());
+    }
+}, 1000);
+
+/* ============================================================
+   ЗАПУСК
+   ============================================================ */
+checkDailyReset();
+checkWeeklyReset();
+renderAll();
+</script>
+</body>
+</html>
